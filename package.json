@@ -1,0 +1,21 @@
+{
+  "name": "@starlightcms/web-templates",
+  "version": "0.1.0",
+  "description": "Official Starlight templates for web applications.",
+  "private": true,
+  "main": "index.js",
+  "workspaces": [
+    "templates/nextjs-typescript"
+  ],
+  "scripts": {
+    "dev": "node scripts/select-template.mjs run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Varela",
+  "license": "MIT",
+  "devDependencies": {
+    "@inquirer/prompts": "^3.0.0",
+    "chalk": "^4.1.2",
+    "commander": "^11.0.0"
+  }
+}

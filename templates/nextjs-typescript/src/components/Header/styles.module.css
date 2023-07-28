@@ -1,0 +1,121 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--color-gray-0, #FFF);
+    border-bottom: 1px solid var(--color-gray-300, #DDE0E4);
+    box-shadow: 0 0 8px 0 var(--color-gray-200, #F1F2F4);
+    z-index: 1;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: block;
+    margin: 18px 0;
+}
+
+.menu {
+    position: fixed;
+    left: 0;
+    top: var(--menu-height);
+    width: 100%;
+    height: calc(100% - var(--menu-height));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+    padding: 20px;
+    background-color: var(--color-gray-0, #FFF);
+    transform: translateX(100%);
+    transition: all 200ms cubic-bezier(0.3, 0.0, 0.8, 0.15);
+}
+
+.linkList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 30px;
+    font-size: 16px;
+}
+
+.linkList > li > a {
+    font-weight: 500;
+    color: var(--color-gray-700, #67717E);
+    text-decoration: none;
+}
+
+.linkList > li > a:hover {
+    color: var(--color-gray-1000, #2D3239);
+}
+
+.actionList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.actionList button {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+}
+
+.cta {
+    background-color: #F07319;
+    border-color: #F07319;
+    box-shadow: 0 3px 10px -5px rgba(240, 115, 25, 0.70);
+    color: var(--color-gray-0, #FFF);
+}
+
+.burger {
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 0;
+    background: transparent url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzEiIHZpZXdCb3g9IjAgMCAzMCAzMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMyA2LjVBMS41IDEuNSAwIDAgMSA0LjUgNWgyMWExLjUgMS41IDAgMCAxIDAgM2gtMjFBMS41IDEuNSAwIDAgMSAzIDYuNVpNMyAyNC41QTEuNSAxLjUgMCAwIDEgNC41IDIzaDIxYTEuNSAxLjUgMCAwIDEgMCAzaC0yMUExLjUgMS41IDAgMCAxIDMgMjQuNVpNMyAxNS41QTEuNSAxLjUgMCAwIDEgNC41IDE0aDIxYTEuNSAxLjUgMCAwIDEgMCAzaC0yMUExLjUgMS41IDAgMCAxIDMgMTUuNVoiIGZpbGw9IiM0RjU4NjQiLz48L3N2Zz4=");
+    box-shadow: none;
+}
+
+.menuOpen {
+    transform: translateX(0);
+    transition: all 300ms cubic-bezier(0.2, 0.0, 0, 1.0);
+}
+
+@media (min-width: 768px) {
+    .menu {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 0;
+        transform: none;
+        transition: none;
+    }
+
+    .linkList {
+        flex-direction: row;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .actionList {
+        flex-direction: row;
+    }
+
+    .actionList button {
+        font-size: 14px;
+        height: 38px;
+    }
+
+    .burger {
+        display: none;
+    }
+}
