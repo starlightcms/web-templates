@@ -54,8 +54,8 @@ export default function Model({ model, entries }: ModelProps) {
           </ul>
         ) : (
           <p>
-            <b>This model has no entries yet.</b> Publish at least one entry and
-            refresh this page.
+            <b>This model has no published entries yet.</b> Publish at least one
+            entry and refresh this page.
           </p>
         )}
       </Layout>
