@@ -1,8 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Starlight, { Entry, StarlightError } from "@starlightcms/next-sdk";
 import { Layout } from "@/components/Layout";
-import Starlight, { Entry } from "@starlightcms/next-sdk";
 import styles from "@/styles/Models.module.css";
 
 type EntryProps = {
@@ -22,13 +22,13 @@ export default function Entry({ entry }: EntryProps) {
         <h1>{entry.title}</h1>
         <Link href={`/models/${entry.model?.slug}`}>← Back to entries</Link>
         <p>
-          Since this template is generic, it wouldn't know how you want to
-          render this entry's content. However, you can find its JSON
-          representation below. This is the exact JSON returned by Starlight's
-          Query API.
+          Since this template is generic, it wouldn&apos;t know how you want to
+          render this entry&apos;s content. However, you can find its JSON
+          representation below. This is the exact JSON returned by
+          Starlight&apos;s Query API.
         </p>
         <p>
-          <b>Tip</b>: take a look at this page's code at{" "}
+          <b>Tip</b>: take a look at this page&apos;s code at{" "}
           <code>src/pages/models/[model]/[entry].tsx</code> to learn how to
           request entries.
         </p>
@@ -60,28 +60,48 @@ type EntryParams = {
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the current model and its latest entries.
+// You'll probably notice the usage of non-null assertions (!) below. This is
+// because the "params" object might be undefined in case the current route
+// doesn't have any params. Since we know that this route have params, we assert
+// TypeScript that this object will definitely be defined.
 export const getStaticProps: GetStaticProps<EntryProps, EntryParams> = async ({
   params,
 }) => {
-  const response = await Starlight.model(params?.model as string).entries.get(
-    params?.entry as string,
-  );
+  try {
+    // Request entries by selecting a model using ".model(modelSlug)" and then
+    // calling ".entries.get(entrySlug)".
+    const response = await Starlight.model(params!.model).entries.get(
+      params!.entry,
+    );
 
-  return {
-    props: {
-      // Remember: the requested content will always be in the "data" property.
-      entry: response.data,
-    },
-    /**
-     * This page is static, that is, it'll be rendered once at build time.
-     * On production, however, Next.js will attempt to regenerate this page:
-     * - When a request comes in;
-     * - At most once every 15 seconds.
-     *
-     * See how static regeneration works: https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration
-     */
-    revalidate: 15,
-  };
+    return {
+      props: {
+        // Remember: the requested content will always be in the "data" property.
+        entry: response.data,
+      },
+      /**
+       * This page is static, that is, it'll be rendered once at build time.
+       * On production, however, Next.js will attempt to regenerate this page:
+       * - When a request comes in;
+       * - At most once every 15 seconds.
+       *
+       * See how static regeneration works: https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration
+       */
+      revalidate: 15,
+    };
+  } catch (e) {
+    if (e instanceof StarlightError) {
+      throw new Error(
+        "The Starlight SDK threw an error. Please check if you correctly set " +
+          "the NEXT_PUBLIC_STARLIGHT_WORKSPACE environment variable with a " +
+          "workspace ID. Original error message: " +
+          e.message,
+      );
+    }
+
+    // Not an SDK error, just throw it again.
+    throw e;
+  }
 };
 
 /**

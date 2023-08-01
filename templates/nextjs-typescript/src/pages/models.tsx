@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { Layout } from "@/components/Layout";
-import Starlight, { Model } from "@starlightcms/next-sdk";
 import Link from "next/link";
+import Starlight, { Model, StarlightError } from "@starlightcms/next-sdk";
+import { Layout } from "@/components/Layout";
 import styles from "@/styles/Models.module.css";
 
 type ModelsProps = {
@@ -26,20 +26,27 @@ export default function Models({ models }: ModelsProps) {
           is not paginated and limited to 10 models, ordered by creation date.
         </p>
         <p>
-          <b>Tip</b>: take a look at this page's code at{" "}
+          <b>Tip</b>: take a look at this page&apos;s code at{" "}
           <code>src/pages/models.tsx</code> to learn how to list models.
         </p>
-        <ul className={styles.list}>
-          {models.map((model) => (
-            <li key={model.id} className={styles.model}>
-              <Link href={`/models/${model.slug}`}>{model.title}</Link>
-              <span>
-                ↳ {model.entry_count}{" "}
-                {model.entry_count === 1 ? "entry" : "entries"}
-              </span>
-            </li>
-          ))}
-        </ul>
+        {models.length ? (
+          <ul className={styles.list}>
+            {models.map((model) => (
+              <li key={model.id} className={styles.model}>
+                <Link href={`/models/${model.slug}`}>{model.title}</Link>
+                <span>
+                  ↳ {model.entry_count}{" "}
+                  {model.entry_count === 1 ? "entry" : "entries"}
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>
+            <b>No models found in the current workspace.</b> Create at least one
+            model and refresh this page.
+          </p>
+        )}
       </Layout>
     </>
   );
@@ -48,17 +55,31 @@ export default function Models({ models }: ModelsProps) {
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the list of models in the configured workspace.
 export const getServerSideProps: GetServerSideProps<ModelsProps> = async () => {
-  // Notice the "await": all Starlight SDK methods return Promises.
-  const response = await Starlight.models.list();
+  try {
+    // Notice the "await": all Starlight SDK methods return Promises.
+    const response = await Starlight.models.list();
 
-  return {
-    // This "props" object is what our page component (above) will receive as props.
-    props: {
-      // All Starlight SDK responses are "raw" and contain everything the API
-      // returns, including metadata related to the request. API responses always
-      // place the requested content in an object called "data", which is what
-      // we need to pass to our page.
-      models: response.data,
-    },
-  };
+    return {
+      // This "props" object is what our page component (above) will receive as props.
+      props: {
+        // All Starlight SDK responses are "raw" and contain everything the API
+        // returns, including metadata related to the request. API responses
+        // always return the requested content in an object called "data",
+        // which is what we need to pass to our page.
+        models: response.data,
+      },
+    };
+  } catch (e) {
+    if (e instanceof StarlightError) {
+      throw new Error(
+        "The Starlight SDK threw an error. Please check if you correctly set " +
+          "the NEXT_PUBLIC_STARLIGHT_WORKSPACE environment variable with a " +
+          "workspace ID. Original error message: " +
+          e.message,
+      );
+    }
+
+    // Not an SDK error, just throw it again.
+    throw e;
+  }
 };
