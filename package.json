@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "workspaces": [
-    "templates/nextjs-typescript"
+    "templates/*"
   ],
   "scripts": {
     "dev": "node scripts/select-template.mjs run dev",

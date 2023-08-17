@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/Container";
 import styles from "./styles.module.css";
+import React from "react";
 
 /**
  * Renders a footer with the website logo, a set columns with navigation

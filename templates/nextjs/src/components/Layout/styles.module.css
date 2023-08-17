@@ -1,0 +1,12 @@
+.mainContainer {
+    --content-vertical-padding: 20px;
+
+    padding-top: calc(var(--menu-height) + var(--content-vertical-padding));
+    padding-bottom: var(--content-vertical-padding);
+}
+
+@media (min-width: 768px) {
+    .mainContainer {
+        --content-vertical-padding: 40px;
+    }
+}

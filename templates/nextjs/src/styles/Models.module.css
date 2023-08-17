@@ -1,0 +1,26 @@
+.list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.model {
+    margin-bottom: 20px;
+}
+
+.model > a {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--color-gray-1000, #2D3239);
+}
+
+.model > span {
+    color: var(--color-gray-700, #67717E);
+}
+
+.json {
+    background-color: var(--color-gray-100, #F9FAFB);
+    border-radius: 6px;
+    padding: 14px;
+    overflow-x: auto;
+}
