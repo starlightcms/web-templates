@@ -1,15 +1,10 @@
-import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Starlight, { Model, StarlightError } from "@starlightcms/next-sdk";
+import Starlight, { StarlightError } from "@starlightcms/next-sdk";
 import { Layout } from "@/components/Layout";
 import styles from "@/styles/Models.module.css";
 
-type ModelsProps = {
-  models: Model[];
-};
-
-export default function Models({ models }: ModelsProps) {
+export default function Models({ models }) {
   return (
     <>
       <Head>
@@ -54,7 +49,7 @@ export default function Models({ models }: ModelsProps) {
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the list of models in the configured workspace.
-export const getServerSideProps: GetServerSideProps<ModelsProps> = async () => {
+export const getServerSideProps = async () => {
   try {
     // Notice the "await": all Starlight SDK methods return Promises.
     const response = await Starlight.models.list();

@@ -64,7 +64,7 @@ export default function Model({ model, entries }: ModelProps) {
 }
 
 // This route receives one parameter: the slug of the model we want to view.
-// This is why this file is named [model].tsx.
+// This is why this file is named [model].jsx.
 type ModelParams = {
   model: string;
 };

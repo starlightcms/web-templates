@@ -29,13 +29,13 @@ export const Footer = () => (
             <h4>Starlight</h4>
             <ul>
               <li>
-                <a href="#">Website</a>
+                <a href="https://www.starlight.sh/" target="_blank">Website</a>
               </li>
               <li>
-                <a href="#">Features</a>
+                <a href="https://www.starlight.sh/#intro" target="_blank">Features</a>
               </li>
               <li>
-                <a href="#">Knowledge Center</a>
+                <a href="https://knowledge.starlight.sh/" target="_blank">Knowledge Center</a>
               </li>
             </ul>
           </li>
@@ -43,10 +43,10 @@ export const Footer = () => (
             <h4>Documentation</h4>
             <ul>
               <li>
-                <a href="#">Development Guide</a>
+                <a href="https://knowledge.starlight.sh/guia/desenvolvimento/" target="_blank">Development Guide</a>
               </li>
               <li>
-                <a href="#">SDK Docs</a>
+                <a href="https://react.sdk.starlight.sh/" target="_blank">SDK Docs</a>
               </li>
             </ul>
           </li>

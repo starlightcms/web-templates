@@ -1,20 +1,12 @@
-import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Starlight, {
-  Entry,
-  Model,
-  StarlightError,
-} from "@starlightcms/next-sdk";
+import Starlight, { StarlightError } from "@starlightcms/next-sdk";
 import { Layout } from "@/components/Layout";
 import styles from "@/styles/Models.module.css";
 
-type ModelProps = {
-  model: Model;
-  entries: Entry<any>[];
-};
-
-export default function Model({ model, entries }: ModelProps) {
+// This route receives one parameter: the slug of the model we want to view.
+// This is why this file is named [model].tsx.
+export default function Model({ model, entries }) {
   return (
     <>
       <Head>
@@ -25,7 +17,7 @@ export default function Model({ model, entries }: ModelProps) {
       </Head>
       <Layout>
         <h1>{model.title}</h1>
-        <Link href="/models">← Back to models</Link>
+        <Link href="/templates/nextjs/src/pages/models">← Back to models</Link>
         <p>
           This is a list of entries of the <b>{model.title}</b> model. For the
           sake of simplicity, this list is not paginated, and only the last 15
@@ -46,7 +38,7 @@ export default function Model({ model, entries }: ModelProps) {
                 <span>
                   ↳ Created by {entry.author.name} • Published at{" "}
                   {Intl.DateTimeFormat("en-US").format(
-                    new Date(entry.published_at!),
+                    new Date(entry.published_at),
                   )}
                 </span>
               </li>
@@ -63,19 +55,13 @@ export default function Model({ model, entries }: ModelProps) {
   );
 }
 
-// This route receives one parameter: the slug of the model we want to view.
-// This is why this file is named [model].tsx.
-type ModelParams = {
-  model: string;
-};
-
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the current model and its latest entries.
 // You'll probably notice the usage of non-null assertions (!) below. This is
 // because the "params" object might be undefined in case the current route
 // doesn't have any params. Since we know that this route have params, we assert
 // TypeScript that this object will definitely be defined.
-export const getStaticProps: GetStaticProps<ModelProps, ModelParams> = async ({
+export const getStaticProps = async ({
   params,
 }) => {
   try {
@@ -83,10 +69,10 @@ export const getStaticProps: GetStaticProps<ModelProps, ModelParams> = async ({
     const [modelResponse, entriesResponse] = await Promise.all([
       // Get model information. This is only required to show
       // the model's title at the top of the page.
-      Starlight.models.get(params!.model),
+      Starlight.models.get(params.model),
       // List the latest entries. By default, it returns the last 15 entries,
       // but you can change this by passing a configuration object to `.list()`.
-      Starlight.model(params!.model).entries.list(),
+      Starlight.model(params.model).entries.list(),
     ]);
 
     return {
@@ -126,7 +112,7 @@ export const getStaticProps: GetStaticProps<ModelProps, ModelParams> = async ({
  *
  * Learn more at: https://nextjs.org/docs/pages/building-your-application/data-fetching/get-static-paths
  */
-export const getStaticPaths: GetStaticPaths<ModelParams> = () => {
+export const getStaticPaths = () => {
   return {
     // We don't need to generate any pages on build.
     paths: [],

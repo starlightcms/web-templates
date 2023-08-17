@@ -52,7 +52,7 @@ export default function Entry({ entry }: EntryProps) {
 }
 
 // This route receives two parameters: the slug of the entry we want to view and
-// the slug of its model. This is why this file is named [model]/[entry].tsx.
+// the slug of its model. This is why this file is named [model]/[entry].jsx.
 type EntryParams = {
   model: string;
   entry: string;
