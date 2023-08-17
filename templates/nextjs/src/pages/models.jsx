@@ -22,7 +22,7 @@ export default function Models({ models }) {
         </p>
         <p>
           <b>Tip</b>: take a look at this page&apos;s code at{" "}
-          <code>src/pages/models.tsx</code> to learn how to list models.
+          <code>src/pages/models.jsx</code> to learn how to list models.
         </p>
         {models.length ? (
           <ul className={styles.list}>

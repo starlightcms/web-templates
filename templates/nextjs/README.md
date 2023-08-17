@@ -12,7 +12,7 @@ open-source starter templates for web applications created by the [Starlight](ht
 The easiest way to bootstrap this template is by using the Starlight CLI:
 
 ```shell
-npx @starlightcms/cli create nextjs --typescript
+npx @starlightcms/cli create nextjs
 ```
 
 The CLI will clone this template locally and set-up the Starlight SDK for you.

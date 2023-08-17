@@ -5,7 +5,7 @@ import { Layout } from "@/components/Layout";
 import styles from "@/styles/Models.module.css";
 
 // This route receives one parameter: the slug of the model we want to view.
-// This is why this file is named [model].tsx.
+// This is why this file is named [model].jsx.
 export default function Model({ model, entries }) {
   return (
     <>
@@ -25,7 +25,7 @@ export default function Model({ model, entries }) {
         </p>
         <p>
           <b>Tip</b>: take a look at this page&apos;s code at{" "}
-          <code>src/pages/models/[model].tsx</code> to learn how to list
+          <code>src/pages/models/[model].jsx</code> to learn how to list
           entries.
         </p>
         {entries.length ? (
@@ -57,13 +57,7 @@ export default function Model({ model, entries }) {
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the current model and its latest entries.
-// You'll probably notice the usage of non-null assertions (!) below. This is
-// because the "params" object might be undefined in case the current route
-// doesn't have any params. Since we know that this route have params, we assert
-// TypeScript that this object will definitely be defined.
-export const getStaticProps = async ({
-  params,
-}) => {
+export const getStaticProps = async ({ params }) => {
   try {
     // Use Promise.all() to make multiple requests in parallel.
     const [modelResponse, entriesResponse] = await Promise.all([

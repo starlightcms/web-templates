@@ -41,7 +41,7 @@ export default function Home() {
           </p>
           <div className={styles.instructions}>
             <p>
-              Get started by editing <code>src/pages/index.tsx</code>.
+              Get started by editing <code>src/pages/index.jsx</code>.
             </p>
             <span>OR</span>
             <p>

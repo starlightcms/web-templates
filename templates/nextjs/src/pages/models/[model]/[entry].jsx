@@ -5,7 +5,7 @@ import { Layout } from "@/components/Layout";
 import styles from "@/styles/Models.module.css";
 
 // This route receives two parameters: the slug of the entry we want to view and
-// the slug of its model. This is why this file is named [model]/[entry].tsx.
+// the slug of its model. This is why this file is named [model]/[entry].jsx.
 export default function Entry({ entry }) {
   return (
     <>
@@ -26,7 +26,7 @@ export default function Entry({ entry }) {
         </p>
         <p>
           <b>Tip</b>: take a look at this page&apos;s code at{" "}
-          <code>src/pages/models/[model]/[entry].tsx</code> to learn how to
+          <code>src/pages/models/[model]/[entry].jsx</code> to learn how to
           request entries.
         </p>
         <p>
@@ -49,14 +49,8 @@ export default function Entry({ entry }) {
 }
 
 // This function runs server-side and fetches whatever the page needs to render.
-// In this case, we'll request the current model and its latest entries.
-// You'll probably notice the usage of non-null assertions (!) below. This is
-// because the "params" object might be undefined in case the current route
-// doesn't have any params. Since we know that this route have params, we assert
-// TypeScript that this object will definitely be defined.
-export const getStaticProps = async ({
-  params,
-}) => {
+// In this case, we'll request the current entry's content.
+export const getStaticProps = async ({ params }) => {
   try {
     // Request entries by selecting a model using ".model(modelSlug)" and then
     // calling ".entries.get(entrySlug)".
