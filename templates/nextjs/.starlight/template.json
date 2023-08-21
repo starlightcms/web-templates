@@ -1,0 +1,21 @@
+{
+  "name": "Next.js Boilerplate",
+  "author": "Starlight",
+  "instructions": "To start working, enter your project folder and run the development server:\n\n$ cd $project.name\n$ npm run dev",
+  "actions": [
+    {
+      "type": "copy",
+      "file": ".env.example",
+      "to": ".env",
+      "replace": {
+        "NEXT_PUBLIC_STARLIGHT_WORKSPACE=replace_me": "NEXT_PUBLIC_STARLIGHT_WORKSPACE=$workspace.id"
+      }
+    }, {
+      "type": "replace",
+      "target": "src/components/Footer/index.jsx",
+      "replace": {
+        "Your Company": "$organization.title"
+      }
+    }
+  ]
+}
