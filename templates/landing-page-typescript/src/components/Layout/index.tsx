@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import { Container } from "@/components/Container";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import styles from "./styles.module.css";
+import { Container } from "react-bootstrap";
+import styles from "./styles.module.scss";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 type LayoutProps = {
   children: ReactNode;
@@ -17,14 +17,13 @@ type LayoutProps = {
  *
  * @see Header
  * @see Footer
- * @see Container
  */
 export const Layout = ({ children }: LayoutProps) => (
-  <>
+  <div className={styles.layout}>
     <Header />
-    <Container as="main" className={styles.mainContainer}>
+    <Container as="main" className="d-flex flex-column gap-7 py-6 py-lg-7">
       {children}
     </Container>
     <Footer />
-  </>
+  </div>
 );
