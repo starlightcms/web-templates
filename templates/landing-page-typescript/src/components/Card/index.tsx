@@ -11,7 +11,11 @@ type CardProps = {
   borderless?: boolean;
 };
 
-// TODO! Description?
+/**
+ * Renders a card with many optional props. You can send an icon, a title, a
+ * text description, a button label and a borderless boolean (defaulted as
+ * false) as props.
+ */
 export default function Card({
   icon,
   title,
@@ -19,7 +23,6 @@ export default function Card({
   button,
   borderless = false,
 }: CardProps) {
-  // TODO! Margin not matching up on borderless (see FeaturesRight)
   return (
     <Col
       className={clsx(

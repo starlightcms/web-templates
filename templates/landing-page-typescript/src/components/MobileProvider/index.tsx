@@ -9,6 +9,11 @@ const MobileContext = createContext<MobileContextType>({
 
 export const useMobile = () => useContext(MobileContext);
 
+/**
+ * Doesn't render anything, but wraps around the application and adds a hook
+ * so the developer can request the screen width and a boolean stating if the
+ * screen is a mobile screen (under 768 pixels) or not.
+ */
 export const MobileProvider = ({ children }: MobileProviderProps) => {
   const [isMobile, setIsMobile] = useState(false);
   const [screenWidth, setScreenWidth] = useState(800);

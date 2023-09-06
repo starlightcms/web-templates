@@ -3,12 +3,13 @@ import Card from "@/components/Card";
 import temp from "./assets/temp.png";
 import { Col, Row } from "react-bootstrap";
 
-// TODO! Review description?
 /**
  * Renders the last few details and information on the page. It has an image, a
  * title, some text and 2 Cards. It is named as such because the information
  * will be displayed on the left part of the screen while on desktop. In
  * smaller pages the image will simply be above the texts.
+ *
+ * @see Card
  */
 export default function FeaturesLeft() {
   return (

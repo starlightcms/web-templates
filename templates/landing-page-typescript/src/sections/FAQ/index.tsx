@@ -1,6 +1,11 @@
 import { Accordion, Col, Row } from "react-bootstrap";
 
-// TODO! Description?
+/**
+ * Renders an FAQ using the Accordion component from Bootstrap. Each item has
+ * a title (the question) and a description (the answer).
+ *
+ * @see https://react-bootstrap.github.io/docs/components/accordion/
+ */
 export default function FAQ() {
   const accordionItems = [
     {

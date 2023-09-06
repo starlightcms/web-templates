@@ -1,4 +1,3 @@
-// import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import Starlight from "@starlightcms/next-sdk";

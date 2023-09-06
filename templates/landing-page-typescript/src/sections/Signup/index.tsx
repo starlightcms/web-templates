@@ -2,7 +2,10 @@ import Image from "next/image";
 import temp from "./assets/temp.png";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
-// TODO! Description?
+/**
+ * Renders a signup (to newsletter) call to action, with an image, some text,
+ * an email input and a "Sign up" button.
+ */
 export default function Signup() {
   // TODO! Fix image size?
   return (
@@ -22,7 +25,6 @@ export default function Signup() {
           et eros sollicitudin sagittis.
         </p>
 
-        {/* TODO! Ajeitar isso... */}
         <div className="d-flex flex-column justify-content-center align-items-stretch w-100 my-4 mx-0 gap-2 flex-lg-row">
           <Form.Control placeholder="E-mail address" className="p-3 w-100" />
           <Button className="py-3 px-5 bg-brand-100 border-brand-100 fw-bold text-brand-500 flex-shrink-0">

@@ -1,6 +1,11 @@
 import Plan from "@/components/Plan";
 
-// TODO! Description?
+/**
+ * Renders 3 Plan components with pricing and benefit information on payment
+ * plans for your app.
+ *
+ * @see Plan
+ */
 export default function Pricing() {
   return (
     <div className="text-center">

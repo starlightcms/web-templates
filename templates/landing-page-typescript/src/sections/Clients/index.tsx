@@ -12,22 +12,19 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 
-type InnerClientsProps = {
-  screenWidth: number;
-};
-
-// TODO! Review description?
 /**
- * Renders the client logos. On smaller windows that can't fit all the 7 logos
- * (including mobile) it uses a modified Carousel component that cycles around
- * to show all the logos. It is outside the main Container component because it
- * should fit the entire screen in smaller windows.
+ * Renders client logos. If the logos don't fit the browser window, it renders
+ * a customized Bootstrap Carousel that cycles around to show all of them. This
+ * component renders its content inside a Container, so you shouldn't place it
+ * inside another one.
  *
- * Below this component is Clients, which wraps around InnerClients.
+ * @see https://react-bootstrap.github.io/docs/components/carousel
+ * @see Clients
  */
-function InnerClients({ screenWidth }: InnerClientsProps) {
-  const [clientRows, setClientRows] = useState<string[][]>([]);
+export default function Clients() {
+  const { screenWidth } = useMobile();
   const [clientsRowSize, setClientsRowSize] = useState(7);
+  const [clientRows, setClientRows] = useState<string[][]>([]);
 
   /**
    * This effect defines the amount of logos that should fit the screen
@@ -92,17 +89,17 @@ function InnerClients({ screenWidth }: InnerClientsProps) {
   }, [clientsRowSize]);
 
   return (
-    <>
+    <Container className="text-center text-brand-800 mt-6 position-relative px-4">
       <h5 className="fw-bold">Trusted by global companies</h5>
-      <Carousel
-        interval={0}
-        indicators={false}
-        controls={false}
-        touch={false}
-        className={clsx("pe-none w-100", styles.carousel)}
-      >
-        {clientRows.length > 1 &&
-          clientRows.map((clientRow, index) => (
+      {clientRows.length > 1 && (
+        <Carousel
+          interval={0}
+          indicators={false}
+          controls={false}
+          touch={false}
+          className={clsx("pe-none w-100", styles.carousel)}
+        >
+          {clientRows.map((clientRow, index) => (
             <Carousel.Item key={index} className="h-100">
               <div className="d-flex justify-content-around align-items-center h-100">
                 {clientRow.length &&
@@ -112,41 +109,17 @@ function InnerClients({ screenWidth }: InnerClientsProps) {
               </div>
             </Carousel.Item>
           ))}
-        {clientRows.length === 1 && (
-          <div className="d-flex justify-content-around align-items-center h-100">
-            {clientRows[0].length &&
-              clientRows[0].map((client, index) => (
-                <Image key={index} src={client} alt={client} priority />
-              ))}
-          </div>
-        )}
-      </Carousel>
-    </>
-  );
-}
-
-// TODO! Review description?
-/**
- * Renders the InnerClients wrapper. On bigger screens it's simply a custom
- * Container component (with horizontal margins), but on smaller screens it
- * is a div that fits the whole width and has a white-to-transparent gradient
- * on both sides of the screen.
- */
-export default function Clients() {
-  const { screenWidth } = useMobile();
-
-  return (
-    <>
-      {screenWidth >= 1200 ? (
-        <Container className="text-center text-brand-800 mt-6 position-relative px-4">
-          <InnerClients screenWidth={screenWidth} />
-        </Container>
-      ) : (
-        <div className="text-center text-brand-800 mt-6 position-relative">
-          <InnerClients screenWidth={screenWidth} />
-          <div className={styles.gradient} />
+        </Carousel>
+      )}
+      {clientRows.length === 1 && (
+        <div className="d-flex justify-content-around align-items-center h-100">
+          {clientRows[0].length &&
+            clientRows[0].map((client, index) => (
+              <Image key={index} src={client} alt={client} priority />
+            ))}
         </div>
       )}
-    </>
+      <div className={styles.gradient} />
+    </Container>
   );
 }

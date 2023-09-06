@@ -3,7 +3,6 @@ import Cellphone from "./assets/Cellphone.png";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 
-// TODO! Review description?
 /**
  * Renders a Hero - the topmost component of the page with basic information,
  * "Sign up" and "Learn more" buttons and the main image. It is outside the

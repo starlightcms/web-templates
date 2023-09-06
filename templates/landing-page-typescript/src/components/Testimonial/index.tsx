@@ -10,7 +10,11 @@ type CardProps = {
   company?: ReactNode;
 };
 
-// TODO! Description?
+/**
+ * Renders a card-like component with testimonials from your website's users.
+ * You can send text (the testimonial), the person's icon, their name and their
+ * job information (company and position).
+ */
 export default function Testimonial({ text, icon, name, company }: CardProps) {
   return (
     <div className="d-flex flex-column lh-lg border rounded-4 p-4 text-lg-start">

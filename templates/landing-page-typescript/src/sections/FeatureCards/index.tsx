@@ -4,10 +4,11 @@ import eyeglasses from "./assets/eyeglasses.svg";
 import heart from "./assets/heart.svg";
 import { Row } from "react-bootstrap";
 
-// TODO! Review description?
 /**
  * Renders some more details and information on the page usind Cards. It is
  * named as such because it is simply comprised of 3 Cards.
+ *
+ * @see Card
  */
 export default function FeatureCards() {
   return (

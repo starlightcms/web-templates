@@ -7,12 +7,13 @@ import Card from "@/components/Card";
 import Image from "next/image";
 import clsx from "clsx";
 
-// TODO! Review description?
 /**
  * Renders the first details and information on the page. It has an image, a
  * title, some text and 2 (borderless) Cards. It is named as such because the
  * information will be displayed on the right part of the screen while on
  * desktop. In smaller pages the image will simply be above the texts.
+ *
+ * @see Card
  */
 export default function FeaturesRight() {
   return (

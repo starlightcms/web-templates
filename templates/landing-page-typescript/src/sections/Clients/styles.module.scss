@@ -28,8 +28,11 @@
 .gradient {
   position: absolute;
   top: 2rem;
-  left: 0;
+  left: 1.5rem;
   height: 3.5rem;
-  width: 100%;
-  background: linear-gradient(90deg, #FFF 0%, transparent 17.35%, transparent 82.81%, #FFF 100%);
+  width: calc(100% - 3rem);
+
+  @include media-breakpoint-down(xl) {
+    background: linear-gradient(90deg, #FFF 0%, transparent 17.35%, transparent 82.81%, #FFF 100%);
+  }
 }
