@@ -1,11 +1,13 @@
+import { Singleton, Image } from "@starlightcms/next-sdk";
+import { FeaturesRightSingleton } from "@/starlight";
 import { Col, Row } from "react-bootstrap";
 import styles from "./styles.module.scss";
-import cloud from "./assets/cloud.svg";
-import award from "./assets/award.svg";
-import temp from "./assets/temp.png";
 import Card from "@/components/Card";
-import Image from "next/image";
 import clsx from "clsx";
+
+type FeaturesRightProps = {
+  singleton: Singleton<FeaturesRightSingleton>;
+};
 
 /**
  * Renders the first details and information on the page. It has an image, a
@@ -15,29 +17,31 @@ import clsx from "clsx";
  *
  * @see Card
  */
-export default function FeaturesRight() {
+export default function FeaturesRight({ singleton }: FeaturesRightProps) {
   return (
     <Row className="d-flex flex-column text-center text-brand-800 flex-lg-row text-lg-start justify-content-lg-between gap-6">
       <Col className="d-flex flex-column justify-content-center">
-        <Image src={temp} alt="TODO" className="w-100" height={500} />
+        <Image
+          media={singleton.data.image}
+          alt="TODO"
+          className="w-100"
+          height={500}
+        />
       </Col>
       <Col className="d-flex flex-column justify-content-center">
-        <h2 className="fw-bold">Nullam felis ipsum, mollis quis.</h2>
-        <p className="lh-lg mt-3 mb-0">
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-          officia deserunt mollit anim id est laborum.
-        </p>
+        <h2 className="fw-bold">{singleton.data.title}</h2>
+        <p className="lh-lg mt-3 mb-0">{singleton.data.description}</p>
         <div
           className={clsx("d-flex flex-column gap-4 mt-5", styles.cardWrapper)}
         >
           <Card
-            icon={award}
-            text="Suspendisse id justo ac magna volutpat vus. Ut in dignissim purus. Ut efficitur fermentum sapien vitae scelerisque. Nullam lobortis lorem et eros sollicitudin sagittis."
+            icon={singleton.data.card_1_icon}
+            text={singleton.data.card_1_text}
             borderless
           />
           <Card
-            icon={cloud}
-            text="Aliquam imperdiet, orci et sollicitudin porttitor, magna augue convallis erat, id consequat augue nibh vitae lectus."
+            icon={singleton.data.card_2_icon}
+            text={singleton.data.card_2_text}
             borderless
           />
         </div>

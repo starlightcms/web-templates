@@ -2,12 +2,40 @@ import { ReactNode } from "react";
 import { Badge, Card, ListGroup } from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
 import clsx from "clsx";
+import {
+  ListBlock,
+  VisualContent,
+  VisualData,
+  VisualDataBlock,
+} from "@starlightcms/next-sdk";
+
+type CustomListProps = VisualDataBlock<ListBlock> & {
+  popular?: boolean;
+};
+
+function CustomList({ data, popular }: CustomListProps) {
+  return (
+    <ListGroup variant="flush">
+      {data.items.map((item, index) => (
+        <ListGroup.Item
+          key={index}
+          className={clsx(
+            "text-gray-600 border-brand-100 border-bottom",
+            popular && "border-brand-500",
+          )}
+        >
+          {item.content}
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
+  );
+}
 
 type PlanProps = {
   title?: string;
   popular?: boolean;
   description?: string;
-  features?: Array<string | ReactNode>;
+  features?: VisualData;
   signupHref?: string;
 };
 
@@ -47,20 +75,14 @@ export default function Plan({
         </div>
         <p className="text-gray-600 mb-0">{description}</p>
       </CardHeader>
-      <ListGroup variant="flush" className="flex-grow-1">
-        {features &&
-          features.map((feature, index) => (
-            <ListGroup.Item
-              key={index}
-              className={clsx(
-                "text-gray-600 border-brand-100 border-bottom",
-                popular && "border-brand-500",
-              )}
-            >
-              {feature}
-            </ListGroup.Item>
-          ))}
-      </ListGroup>
+      <div className="flex-grow-1">
+        <VisualContent
+          content={features}
+          components={{
+            list: (props) => <CustomList popular={popular} {...props} />,
+          }}
+        />
+      </div>
       <Card.Body
         className={clsx(
           "text-center bg-brand-100 flex-grow-0",

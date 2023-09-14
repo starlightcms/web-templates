@@ -1,7 +1,11 @@
-import Image from "next/image";
-import Card from "@/components/Card";
-import temp from "./assets/temp.png";
+import { Singleton, Image } from "@starlightcms/next-sdk";
+import { FeaturesLeftSingleton } from "@/starlight";
 import { Col, Row } from "react-bootstrap";
+import Card from "@/components/Card";
+
+type FeaturesLeftProps = {
+  singleton: Singleton<FeaturesLeftSingleton>;
+};
 
 /**
  * Renders the last few details and information on the page. It has an image, a
@@ -11,28 +15,30 @@ import { Col, Row } from "react-bootstrap";
  *
  * @see Card
  */
-export default function FeaturesLeft() {
+export default function FeaturesLeft({ singleton }: FeaturesLeftProps) {
   return (
     <Row className="d-flex flex-column text-center text-brand-800 flex-lg-row-reverse text-lg-start justify-content-lg-between gap-6">
       <Col className="d-flex flex-column justify-content-center">
-        <Image src={temp} alt="TODO" className="w-100" height={625} />
+        <Image
+          media={singleton.data.image}
+          alt="TODO"
+          className="w-100"
+          height={625}
+        />
       </Col>
       <Col>
-        <h2 className="fw-bold">Nullam felis ipsum, mollis quis.</h2>
-        <p className="lh-lg mt-2">
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-          officia deserunt mollit anim id est laborum.
-        </p>
+        <h2 className="fw-bold">{singleton.data.title}</h2>
+        <p className="lh-lg mt-2">{singleton.data.description}</p>
         <div className="d-flex flex-column gap-4 mt-5">
           <Card
-            title="Phasellus feugiat tellus"
-            text="In leo nisi, lobortis id vulputate non, aliquet vitae massa. Fusce luctus sed felis id gravida. Aliquam erat volutpat. Quisque et ex nec neque aliquet tincidunt nec sit amet libero."
-            button="Learn more"
+            title={singleton.data.card_1_title}
+            text={singleton.data.card_1_text}
+            button={singleton.data.card_1_button}
           />
           <Card
-            title="Maecenas quis nunc"
-            text="Sed feugiat, massa ac placerat fermentum, metus mi vehicula ante, varius semper magna lacus ut leo."
-            button="Learn more"
+            title={singleton.data.card_2_title}
+            text={singleton.data.card_2_text}
+            button={singleton.data.card_2_button}
           />
         </div>
       </Col>

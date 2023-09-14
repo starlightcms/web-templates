@@ -1,14 +1,18 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
-import Cellphone from "./assets/Cellphone.png";
+import { Singleton, Image } from "@starlightcms/next-sdk";
+import { HeroSingleton } from "@/starlight";
 import styles from "./styles.module.scss";
-import Image from "next/image";
+
+type HeroProps = {
+  singleton: Singleton<HeroSingleton>;
+};
 
 /**
  * Renders a Hero - the topmost component of the page with basic information,
  * "Sign up" and "Learn more" buttons and the main image. It is outside the
  * main Container component because of the background.
  */
-export default function Hero() {
+export default function Hero({ singleton }: HeroProps) {
   return (
     <div className={styles.heroBackground}>
       <Container className="pt-7 px-4">
@@ -18,24 +22,21 @@ export default function Hero() {
             sm={12}
             lg={5}
           >
-            <h1 className="fw-bold">Lorem ipsum dolor sit amet consectetur.</h1>
-            <p className="lh-lg">
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-              officia deserunt mollit anim id est laborum.
-            </p>
+            <h1 className="fw-bold">{singleton.data.title}</h1>
+            <p className="lh-lg">{singleton.data.description}</p>
             <div>
               <Button className="me-3 bg-brand-500 border-brand-500 fw-bold">
-                Sign up
+                {singleton.data.main_button_label}
               </Button>
               <Button className="bg-transparent text-brand-500 border-brand-500 fw-bold">
-                Learn more
+                {singleton.data.second_button_label}
               </Button>
             </div>
           </Col>
 
           <Col className="d-flex justify-content-center" sm={12} lg={6}>
             <Image
-              src={Cellphone}
+              media={singleton.data.image}
               alt="Cellphone"
               className="my-5 mw-100"
               height={535}

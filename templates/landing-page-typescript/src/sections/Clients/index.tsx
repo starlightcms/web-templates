@@ -1,16 +1,15 @@
-import { Carousel, Container } from "react-bootstrap";
+import { MediaObject, Singleton, Image } from "@starlightcms/next-sdk";
 import { useMobile } from "@/components/MobileProvider";
-import Image from "next/image";
-import amazon from "./assets/amazon.svg";
-import apple from "./assets/apple.svg";
-import cisco from "./assets/cisco.svg";
-import google from "./assets/google.svg";
-import netflix from "./assets/netflix.svg";
-import nintendo from "./assets/nintendo.svg";
-import nubank from "./assets/nubank.svg";
+import { Carousel, Container } from "react-bootstrap";
+import { ClientsSingleton } from "@/starlight";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
+
+type ClientsProps = {
+  singleton: Singleton<ClientsSingleton>;
+  collection: MediaObject[];
+};
 
 /**
  * Renders client logos. If the logos don't fit the browser window, it renders
@@ -21,10 +20,10 @@ import clsx from "clsx";
  * @see https://react-bootstrap.github.io/docs/components/carousel
  * @see Clients
  */
-export default function Clients() {
+export default function Clients({ singleton, collection }: ClientsProps) {
   const { screenWidth } = useMobile();
   const [clientsRowSize, setClientsRowSize] = useState(7);
-  const [clientRows, setClientRows] = useState<string[][]>([]);
+  const [clientRows, setClientRows] = useState<MediaObject[][]>([]);
 
   /**
    * This effect defines the amount of logos that should fit the screen
@@ -60,10 +59,15 @@ export default function Clients() {
    * Note that the row that follows row 3 is row 1.
    */
   useEffect(() => {
-    const clients = [google, netflix, nubank, nintendo, apple, cisco, amazon];
+    // const clients = [google, netflix, nubank, nintendo, apple, cisco, amazon];
+    const clients = [];
     const size = clientsRowSize;
     let arrays: any[] = [];
     let index = 0;
+
+    for (const client of collection) {
+      clients.push(client);
+    }
 
     if (clients.length === size) {
       arrays.push(clients);
@@ -90,7 +94,7 @@ export default function Clients() {
 
   return (
     <Container className="text-center text-brand-800 mt-6 position-relative px-4">
-      <h5 className="fw-bold">Trusted by global companies</h5>
+      <h5 className="fw-bold">{singleton.data.label}</h5>
       {clientRows.length > 1 && (
         <Carousel
           interval={0}
@@ -103,9 +107,16 @@ export default function Clients() {
             <Carousel.Item key={index} className="h-100">
               <div className="d-flex justify-content-around align-items-center h-100">
                 {clientRow.length &&
-                  clientRow.map((client, index) => (
-                    <Image key={index} src={client} alt={client} priority />
-                  ))}
+                  clientRow.map((client, index) => {
+                    return (
+                      <Image
+                        key={index}
+                        media={client}
+                        alt={client.name}
+                        priority
+                      />
+                    );
+                  })}
               </div>
             </Carousel.Item>
           ))}
@@ -115,7 +126,7 @@ export default function Clients() {
         <div className="d-flex justify-content-around align-items-center h-100">
           {clientRows[0].length &&
             clientRows[0].map((client, index) => (
-              <Image key={index} src={client} alt={client} priority />
+              <Image key={index} media={client} alt={client.name} priority />
             ))}
         </div>
       )}

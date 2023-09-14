@@ -1,10 +1,10 @@
+import { Image, MediaObject } from "@starlightcms/next-sdk";
 import { Button, Col } from "react-bootstrap";
 import { ReactNode } from "react";
-import Image from "next/image";
 import clsx from "clsx";
 
 type CardProps = {
-  icon?: string;
+  icon?: MediaObject;
   title?: string;
   text?: string;
   button?: ReactNode;
@@ -31,7 +31,7 @@ export default function Card({
       )}
     >
       <div className="theme-card">
-        {icon && <Image src={icon} alt="" className="mb-3" />}
+        {icon && <Image media={icon} alt="" className="mb-3" />}
         {title && <h4 className="text-gray-800 fw-bold">{title}</h4>}
         {text && (
           <p className={clsx("text-gray-700 mb-0", button && "mb-1")}>{text}</p>

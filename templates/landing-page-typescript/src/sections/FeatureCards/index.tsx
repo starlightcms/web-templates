@@ -1,35 +1,38 @@
-import Card from "@/components/Card";
-import compass from "./assets/compass.svg";
-import eyeglasses from "./assets/eyeglasses.svg";
-import heart from "./assets/heart.svg";
+import { FeatureCardsSingleton } from "@/starlight";
+import { Singleton } from "@starlightcms/next-sdk";
 import { Row } from "react-bootstrap";
+import Card from "@/components/Card";
+
+type FeatureCardsProps = {
+  singleton: Singleton<FeatureCardsSingleton>;
+};
 
 /**
- * Renders some more details and information on the page usind Cards. It is
+ * Renders some more details and information on the page using Cards. It is
  * named as such because it is simply comprised of 3 Cards.
  *
  * @see Card
  */
-export default function FeatureCards() {
+export default function FeatureCards({ singleton }: FeatureCardsProps) {
   return (
     <Row className="d-flex flex-column gap-4 text-center text-brand-800 mx-0 flex-lg-row">
       <Card
-        icon={compass}
-        title="Vivamus et tellus augue"
-        text="Suspendisse id justo ac magna volutpat varius. Ut in dignissim purus. Ut efficitur fermentum sapien vitae scelerisque. Nullam lobortis lorem et eros sollicitudin sagittis."
-        button="Learn more"
+        icon={singleton.data.card_1_icon}
+        title={singleton.data.card_1_title}
+        text={singleton.data.card_1_text}
+        button={singleton.data.card_1_button}
       />
       <Card
-        icon={eyeglasses}
-        title="Donec eu pharetra eros"
-        text="Suspendisse in augue turpis. Pellentesque ac ante justo. Suspendisse id justo ac magna volutpat varius."
-        button="Learn more"
+        icon={singleton.data.card_2_icon}
+        title={singleton.data.card_2_title}
+        text={singleton.data.card_2_text}
+        button={singleton.data.card_2_button}
       />
       <Card
-        icon={heart}
-        title="Sed neque velit"
-        text="Morbi ultricies quis tellus sed pretium. Aenean lobortis luctus tellus, sit amet sodales odio consequat eu."
-        button="Learn more"
+        icon={singleton.data.card_3_icon}
+        title={singleton.data.card_3_title}
+        text={singleton.data.card_3_text}
+        button={singleton.data.card_3_button}
       />
     </Row>
   );

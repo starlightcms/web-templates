@@ -1,11 +1,15 @@
-import { ReactNode } from "react";
+import { FooterSingleton, HeaderSingleton } from "@/starlight";
+import { Singleton } from "@starlightcms/next-sdk";
 import { Container } from "react-bootstrap";
 import styles from "./styles.module.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { ReactNode } from "react";
 
 type LayoutProps = {
   children: ReactNode;
+  headerSingleton: Singleton<HeaderSingleton>;
+  footerSingleton: Singleton<FooterSingleton>;
 };
 
 /**
@@ -18,12 +22,16 @@ type LayoutProps = {
  * @see Header
  * @see Footer
  */
-export const Layout = ({ children }: LayoutProps) => (
+export const Layout = ({
+  children,
+  headerSingleton,
+  footerSingleton,
+}: LayoutProps) => (
   <div className={styles.layout}>
-    <Header />
+    <Header singleton={headerSingleton} />
     <Container as="main" className="d-flex flex-column gap-7 py-6 py-lg-7">
       {children}
     </Container>
-    <Footer />
+    <Footer singleton={footerSingleton} />
   </div>
 );

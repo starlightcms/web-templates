@@ -62,7 +62,7 @@ Indigo colors) and 3 Gray colors. If you want to change or add colors, just modi
 
 A few margin and padding sizes were also added in `customBootstrap.scss`, along with a new font size. In the same vein 
 as the colors, if you want to add sizes or other variables, just modify the maps provided or create a new one, merging
-it with Bootstrap with the `map-merge` function.
+it with Bootstrap using the `map-merge` function.
 
 ### Sections
 

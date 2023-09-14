@@ -1,4 +1,11 @@
 import { Accordion, Col, Row } from "react-bootstrap";
+import { Entry, Singleton } from "@starlightcms/next-sdk";
+import { FAQItem, FAQSingleton } from "@/starlight";
+
+type FAQProps = {
+  singleton: Singleton<FAQSingleton>;
+  collection: Entry<FAQItem>[];
+};
 
 /**
  * Renders an FAQ using the Accordion component from Bootstrap. Each item has
@@ -6,39 +13,19 @@ import { Accordion, Col, Row } from "react-bootstrap";
  *
  * @see https://react-bootstrap.github.io/docs/components/accordion/
  */
-export default function FAQ() {
-  const accordionItems = [
-    {
-      key: "0",
-      title: "Accordion Item #1",
-      body: "This is the first item's accordion body. It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
-    },
-    {
-      key: "1",
-      title: "Accordion Item #2",
-      body: "This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
-    },
-    {
-      key: "2",
-      title: "Accordion Item #3",
-      body: "This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
-    },
-    {
-      key: "3",
-      title: "Accordion Item #4",
-      body: "This is the fourth item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
-    },
-    {
-      key: "4",
-      title: "Accordion Item #5",
-      body: "This is the fifth item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
-    },
-  ];
+export default function FAQ({ singleton, collection }: FAQProps) {
+  const accordionItems = collection.reverse().map((item) => {
+    return {
+      key: item.slug,
+      title: item.data.question,
+      body: item.data.answer,
+    };
+  });
 
   return (
     <div>
       <h2 className="text-center text-brand-800 fw-bold">
-        Questions & answers
+        {singleton.data.title}
       </h2>
       <Row>
         <Col sm={0} lg={3} />

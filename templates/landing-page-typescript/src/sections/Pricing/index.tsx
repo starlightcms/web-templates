@@ -1,4 +1,11 @@
+import { PricingSingleton, Plan as PlanType } from "@/starlight";
+import { Entry, Singleton } from "@starlightcms/next-sdk";
 import Plan from "@/components/Plan";
+
+type PricingProps = {
+  singleton: Singleton<PricingSingleton>;
+  collection: Entry<PlanType>[];
+};
 
 /**
  * Renders 3 Plan components with pricing and benefit information on payment
@@ -6,48 +13,21 @@ import Plan from "@/components/Plan";
  *
  * @see Plan
  */
-export default function Pricing() {
+export default function Pricing({ singleton, collection }: PricingProps) {
   return (
     <div className="text-center">
-      <h2 className="text-brand-800 fw-bold">Pricing</h2>
+      <h2 className="text-brand-800 fw-bold">{singleton.data.title}</h2>
       <div className="d-flex flex-column gap-4 mt-6 flex-lg-row justify-content-lg-between">
-        <Plan
-          title="Pro"
-          description="Lorem ipsum dolor sit amet consectetur."
-          signupHref="#"
-          features={[
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-          ]}
-        />
-        <Plan
-          title="Premium"
-          description="Lorem ipsum dolor sit amet consectetur."
-          signupHref="#"
-          popular
-          features={[
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-          ]}
-        />
-        <Plan
-          title="Ultimate"
-          description="Lorem ipsum dolor sit amet consectetur."
-          signupHref="#"
-          features={[
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-            "Dapibus ac facilisis in",
-          ]}
-        />
+        {collection.reverse().map((item) => (
+          <Plan
+            title={item.data.title}
+            description={item.data.description}
+            popular={item.data.most_popular}
+            key={item.slug}
+            signupHref="#"
+            features={item.data.plan_items}
+          />
+        ))}
       </div>
     </div>
   );

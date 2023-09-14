@@ -1,11 +1,9 @@
-import { Button } from "react-bootstrap";
+import { Image, MediaObject } from "@starlightcms/next-sdk";
 import { ReactNode } from "react";
-import Image from "next/image";
-import clsx from "clsx";
 
 type CardProps = {
   text?: string;
-  icon?: string;
+  icon?: MediaObject;
   name?: string;
   company?: ReactNode;
 };
@@ -22,7 +20,7 @@ export default function Testimonial({ text, icon, name, company }: CardProps) {
       <div className="d-flex flex-column align-items-center flex-lg-row align-self-lg-start">
         {icon && (
           <Image
-            src={icon}
+            media={icon}
             alt=""
             width={64}
             height={64}
