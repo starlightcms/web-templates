@@ -1,6 +1,8 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { Singleton, Image } from "@starlightcms/next-sdk";
+import { Singleton, Image as SLImage } from "@starlightcms/next-sdk";
 import { HeaderSingleton } from "@/starlight";
+import burger from "./assets/burger.svg";
+import Image from "next/image";
 
 type HeaderProps = {
   singleton: Singleton<HeaderSingleton>;
@@ -16,7 +18,7 @@ export default function Header({ singleton }: HeaderProps) {
     <Navbar expand="lg" fixed="top" bg="brand-50">
       <Container>
         <Navbar.Brand>
-          <Image
+          <SLImage
             media={singleton.data.logo}
             alt="Web Templates Logo"
             width={195}
@@ -24,7 +26,9 @@ export default function Header({ singleton }: HeaderProps) {
             priority
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0">
+          <Image src={burger} alt={"burger"} />
+        </Navbar.Toggle>
         <Navbar.Collapse>
           <Nav className="ms-auto grid gap-0 column-gap-4">
             <Nav.Link href="#">{singleton.data.link_1_label}</Nav.Link>
