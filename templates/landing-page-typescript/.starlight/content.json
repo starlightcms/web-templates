@@ -3,7 +3,7 @@
   "content": [
     {
       "type": "entry",
-      "model": "plan",
+      "model": "plans",
       "data": {
         "draft": false,
         "data": {
@@ -56,7 +56,7 @@
     },
     {
       "type": "entry",
-      "model": "plan",
+      "model": "plans",
       "data": {
         "draft": false,
         "data": {
@@ -119,7 +119,7 @@
     },
     {
       "type": "entry",
-      "model": "plan",
+      "model": "plans",
       "data": {
         "draft": false,
         "data": {
@@ -162,7 +162,7 @@
     },
     {
       "type": "entry",
-      "model": "faq-item",
+      "model": "faq-items",
       "data": {
         "draft": false,
         "data": {
@@ -174,7 +174,7 @@
     },
     {
       "type": "entry",
-      "model": "faq-item",
+      "model": "faq-items",
       "data": {
         "draft": false,
         "data": {
@@ -186,7 +186,7 @@
     },
     {
       "type": "entry",
-      "model": "faq-item",
+      "model": "faq-items",
       "data": {
         "draft": false,
         "data": {
@@ -198,7 +198,7 @@
     },
     {
       "type": "entry",
-      "model": "faq-item",
+      "model": "faq-items",
       "data": {
         "draft": false,
         "data": {
@@ -210,7 +210,7 @@
     },
     {
       "type": "entry",
-      "model": "faq-item",
+      "model": "faq-items",
       "data": {
         "draft": false,
         "data": {
@@ -240,7 +240,7 @@
     },
     {
       "type": "entry",
-      "model": "testimonial",
+      "model": "testimonials",
       "data": {
         "draft": false,
         "data": {
@@ -254,7 +254,7 @@
     },
     {
       "type": "entry",
-      "model": "testimonial",
+      "model": "testimonials",
       "data": {
         "draft": false,
         "data": {
@@ -523,11 +523,11 @@
       "type": "collectionItems",
       "collection": "faq-items",
       "items": [
-        "#{entry.faq-item.accordion-item-1}",
-        "#{entry.faq-item.accordion-item-2}",
-        "#{entry.faq-item.accordion-item-3}",
-        "#{entry.faq-item.accordion-item-4}",
-        "#{entry.faq-item.accordion-item-5}"
+        "#{entry.faq-items.accordion-item-1}",
+        "#{entry.faq-items.accordion-item-2}",
+        "#{entry.faq-items.accordion-item-3}",
+        "#{entry.faq-items.accordion-item-4}",
+        "#{entry.faq-items.accordion-item-5}"
       ]
     },
     {
@@ -547,8 +547,8 @@
       "type": "collectionItems",
       "collection": "testimonials",
       "items": [
-        "#{entry.faq-item.jane-doe}",
-        "#{entry.faq-item.jane-doe-2}"
+        "#{entry.testimonials.jane-doe}",
+        "#{entry.testimonials.jane-doe-2}"
       ]
     },
     {

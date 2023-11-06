@@ -15,8 +15,8 @@
         {
           "type": "model",
           "data": {
-            "title": "Plan",
-            "slug": "plan",
+            "title": "Plans",
+            "slug": "plans",
             "groups": [
               {
                 "title": "Informações básicas",
@@ -74,8 +74,8 @@
         {
           "type": "model",
           "data": {
-            "title": "FAQ item",
-            "slug": "faq-item",
+            "title": "FAQ items",
+            "slug": "faq-items",
             "groups": [
               {
                 "title": "Informações básicas",
@@ -115,8 +115,8 @@
         {
           "type": "model",
           "data": {
-            "title": "Testimonial",
-            "slug": "testimonial",
+            "title": "Testimonials",
+            "slug": "testimonials",
             "groups": [
               {
                 "title": "Informações básicas",
