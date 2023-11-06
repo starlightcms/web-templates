@@ -6,6 +6,13 @@
       "type": "create",
       "entities": [
         {
+          "type": "singletonCategory",
+          "data": {
+            "title": "Seções",
+            "slug": "sections"
+          }
+        },
+        {
           "type": "model",
           "data": {
             "title": "Plan",
@@ -495,7 +502,7 @@
                     "is_archived": false,
                     "rules": {
                       "min": 0,
-                      "max": 5000
+                      "max": 1000
                     }
                   },
                   {
@@ -521,7 +528,7 @@
                     "is_archived": false,
                     "rules": {
                       "min": 0,
-                      "max": 5000
+                      "max": 1000
                     }
                   }
                 ]
@@ -549,7 +556,7 @@
                     "is_archived": false,
                     "rules": {
                       "min": 0,
-                      "max": 5000
+                      "max": 1000
                     }
                   },
                   {
@@ -575,7 +582,7 @@
                     "is_archived": false,
                     "rules": {
                       "min": 0,
-                      "max": 5000
+                      "max": 1000
                     }
                   }
                 ]
@@ -603,7 +610,7 @@
                     "is_archived": false,
                     "rules": {
                       "min": 0,
-                      "max": 5000
+                      "max": 1000
                     }
                   },
                   {
@@ -629,7 +636,7 @@
                     "is_archived": false,
                     "rules": {
                       "min": 0,
-                      "max": 5000
+                      "max": 1000
                     }
                   }
                 ]
