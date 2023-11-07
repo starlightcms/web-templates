@@ -11,7 +11,7 @@ import clsx from "clsx";
  * "aside", the Container component will accept all props that an `aside`
  * HTML element would normally accept.
  *
- * This also works with React components: if the user provides a React
+ * This also works with React assets: if the user provides a React
  * component to the `as` prop, all props accepted by the given component
  * will be accepted by the Container component too. In the implementation
  * below, all props passed to the Container will be forwarded to the given

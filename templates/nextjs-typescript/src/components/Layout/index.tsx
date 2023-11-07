@@ -10,7 +10,7 @@ type LayoutProps = {
 
 /**
  * Renders the main website layout and place its children inside a Container
- * component. The layout includes the Header and Footer components.
+ * component. The layout includes the Header and Footer assets.
  *
  * You'll probably want to wrap all your pages with this component.
  * See the website index file to learn how to use it.
