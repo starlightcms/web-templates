@@ -500,9 +500,9 @@
       "type": "collectionItems",
       "collection": "plans",
       "items": [
-        "#{entry.plan.pro}",
-        "#{entry.plan.ultimate}",
-        "#{entry.plan.premium}"
+        "#{entry.plans.pro}",
+        "#{entry.plans.ultimate}",
+        "#{entry.plans.premium}"
       ]
     },
     {
