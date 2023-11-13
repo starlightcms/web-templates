@@ -512,7 +512,7 @@
         "data": {
           "title": "Pricing",
           "sign_up": "Sign up",
-          "relation": {
+          "plans": {
             "type": "collection",
             "id": "#{collection.plans}"
           }
@@ -536,7 +536,7 @@
       "data": {
         "data": {
           "title": "Questions & answers",
-          "relation": {
+          "faq_items": {
             "type": "collection",
             "id": "#{collection.faq-items}"
           }
@@ -557,7 +557,7 @@
       "data": {
         "data": {
           "title": "Testimonials",
-          "relation": {
+          "testimonials": {
             "type": "collection",
             "id": "#{collection.testimonials}"
           }
