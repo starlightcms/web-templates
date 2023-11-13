@@ -392,7 +392,7 @@
       "data": {
         "data": {
           "label": "Trusted by global companies",
-          "clients": {
+          "client_logos": {
             "type": "collection",
             "id": "#{collection.clients}"
           }
