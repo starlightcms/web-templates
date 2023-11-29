@@ -1,0 +1,56 @@
+@use "sass:map";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// TODO! CHECAR SE CORES 50 ESTAO CORRETAS
+$custom-colors: (
+  "brand-primary-50": tint-color($indigo-500, 90%),
+  "brand-primary-100": $indigo-100,
+  "brand-primary-200": $indigo-200,
+  "brand-primary-300": $indigo-300,
+  "brand-primary-400": $indigo-400,
+  "brand-primary-500": $indigo-500,
+  "brand-primary-600": $indigo-600,
+  "brand-primary-700": $indigo-700,
+  "brand-primary-800": $indigo-800,
+  "brand-primary-900": $indigo-900,
+  "brand-secondary-50": tint-color($pink-500, 90%),
+  "brand-secondary-100": $pink-100,
+  "brand-secondary-200": $pink-200,
+  "brand-secondary-300": $pink-300,
+  "brand-secondary-400": $pink-400,
+  "brand-secondary-500": $pink-500,
+  "brand-secondary-600": $pink-600,
+  "brand-secondary-700": $pink-700,
+  "brand-secondary-800": $pink-800,
+  "brand-secondary-900": $pink-900,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$input-focus-box-shadow: 0 0 $focus-ring-blur $focus-ring-width rgba(map.get($custom-colors, "brand-secondary-600"), $focus-ring-opacity);
+
+$font-sizes: map-merge($font-sizes, (
+  7: $font-size-base * 0.75
+));
+
+$gutters: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 3,
+  7: $spacer * 6,
+);
+
+$spacers: map-merge($spacers, (
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 3,
+  7: $spacer * 4,
+  8: $spacer * 6,
+));
+
+@import 'bootstrap/scss/bootstrap.scss';

@@ -1,0 +1,619 @@
+{
+  "version": 1,
+  "content": [
+    {
+      "type": "entry",
+      "model": "plans",
+      "data": {
+        "draft": false,
+        "data": {
+          "title": "Premium",
+          "slug": "premium",
+          "description": "Lorem ipsum dolor sit amet consectetur.",
+          "most_popular": true,
+          "plan_items": {
+            "time": 1694195562368,
+            "blocks": [
+              {
+                "id": "LOeRqcvpja",
+                "data": {
+                  "items": [
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    }
+                  ],
+                  "style": "ordered"
+                },
+                "type": "list"
+              }
+            ],
+            "version": "2.27.0-rc.4"
+          }
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "plans",
+      "data": {
+        "draft": false,
+        "data": {
+          "title": "Ultimate",
+          "slug": "ultimate",
+          "description": "Lorem ipsum dolor sit amet consectetur.",
+          "most_popular": false,
+          "plan_items": {
+            "time": 1694195584972,
+            "blocks": [
+              {
+                "id": "DygjJCex09",
+                "data": {
+                  "items": [
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    }
+                  ],
+                  "style": "ordered"
+                },
+                "type": "list"
+              }
+            ],
+            "version": "2.27.0-rc.4"
+          }
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "plans",
+      "data": {
+        "draft": false,
+        "data": {
+          "title": "Pro",
+          "slug": "pro",
+          "description": "Lorem ipsum dolor sit amet consectetur.",
+          "most_popular": false,
+          "plan_items": {
+            "time": 1694195528938,
+            "blocks": [
+              {
+                "id": "iB7vARiZF8",
+                "data": {
+                  "items": [
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    },
+                    {
+                      "items": [
+                      ],
+                      "content": "Dapibus ac facilisis in"
+                    }
+                  ],
+                  "style": "ordered"
+                },
+                "type": "list"
+              }
+            ],
+            "version": "2.27.0-rc.4"
+          }
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "faq-items",
+      "data": {
+        "draft": false,
+        "data": {
+          "answer": "This is the first item's accordion body. It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
+          "question": "Accordion Item #1",
+          "slug": "accordion-item-1"
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "faq-items",
+      "data": {
+        "draft": false,
+        "data": {
+          "answer": "This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
+          "question": "Accordion Item #2",
+          "slug": "accordion-item-2"
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "faq-items",
+      "data": {
+        "draft": false,
+        "data": {
+          "answer": "This is the third item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
+          "question": "Accordion Item #3",
+          "slug": "accordion-item-3"
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "faq-items",
+      "data": {
+        "draft": false,
+        "data": {
+          "answer": "This is the fourth item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
+          "question": "Accordion Item #4",
+          "slug": "accordion-item-4"
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "faq-items",
+      "data": {
+        "draft": false,
+        "data": {
+          "answer": "This is the fifth item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.",
+          "question": "Accordion Item #5",
+          "slug": "accordion-item-5"
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/janedoe1.png",
+        "title": "janedoe1",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/janedoe2.png",
+        "title": "janedoe2",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "entry",
+      "model": "testimonials",
+      "data": {
+        "draft": false,
+        "data": {
+          "company": "CEO at Somewhere Inc.",
+          "description": "“All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.”",
+          "icon": "#{media.janedoe1}",
+          "name": "Jane Doe",
+          "slug": "jane-doe"
+        }
+      }
+    },
+    {
+      "type": "entry",
+      "model": "testimonials",
+      "data": {
+        "draft": false,
+        "data": {
+          "company": "CEO at Somewhere Inc.",
+          "description": "“All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.”",
+          "icon": "#{media.janedoe2}",
+          "name": "Jane Doe",
+          "slug": "jane-doe-2"
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/grayrectangle.png",
+        "title": "grayrectangle",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "singleton",
+      "slug": "hero",
+      "data": {
+        "data": {
+          "title": "Lorem ipsum dolor sit amet consectetur.",
+          "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "main_button_label": "Sign up",
+          "second_button_label": "Learn more",
+          "image": "#{media.grayrectangle}"
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/webtemplateslogo.svg",
+        "title": "web-templates-logo",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "singleton",
+      "slug": "header",
+      "data": {
+        "data": {
+          "logo": "#{media.web-templates-logo}",
+          "button_label": "Sign up",
+          "link_1_label": "Features",
+          "link_2_label": "Pricing",
+          "link_3_label": "FAQ"
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/amazon.svg",
+        "title": "amazon",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/apple.svg",
+        "title": "apple",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/cisco.svg",
+        "title": "cisco",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/google.svg",
+        "title": "google",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/netflix.svg",
+        "title": "netflix",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/nintendo.svg",
+        "title": "nintendo",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/nubank.svg",
+        "title": "nubank",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "collectionItems",
+      "collection": "clients",
+      "items": [
+        "#{media.amazon}",
+        "#{media.apple}",
+        "#{media.cisco}",
+        "#{media.google}",
+        "#{media.netflix}",
+        "#{media.nintendo}",
+        "#{media.nubank}"
+      ]
+    },
+    {
+      "type": "singleton",
+      "slug": "clients",
+      "data": {
+        "data": {
+          "label": "Trusted by global companies",
+          "client_logos": {
+            "type": "collection",
+            "id": "#{collection.clients}"
+          }
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/award.svg",
+        "title": "award",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/cloud.svg",
+        "title": "cloud",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "singleton",
+      "slug": "features-right",
+      "data": {
+        "data": {
+          "title": "Nullam felis ipsum, mollis quis.",
+          "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "image": "#{media.grayrectangle}",
+          "card_1_icon": "#{media.award}",
+          "card_1_text": "Suspendisse id justo ac magna volutpat varius. Ut in dignissim purus. Ut efficitur fermentum sapien vitae scelerisque. Nullam lobortis lorem et eros sollicitudin sagittis.",
+          "card_2_icon": "#{media.cloud}",
+          "card_2_text": "Aliquam imperdiet, orci et sollicitudin porttitor, magna augue convallis erat, id consequat augue nibh vitae lectus."
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/compass.svg",
+        "title": "compass",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/eyeglasses.svg",
+        "title": "eyeglasses",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/heart.svg",
+        "title": "heart",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "singleton",
+      "slug": "feature-cards",
+      "data": {
+        "data": {
+          "card_1_icon": "#{media.compass}",
+          "card_1_title": "Vivamus et tellus augue",
+          "card_1_text": "Aliquam tincidunt ipsum eros, ut auctor turpis consectetur non. Praesent leo ex, ornare ut metus sed, euismod posuere lacus.",
+          "card_1_button": "Learn more",
+          "card_2_icon": "#{media.eyeglasses}",
+          "card_2_title": "Donec eu pharetra eros",
+          "card_2_text": "Suspendisse in augue turpis. Pellentesque ac ante justo. Suspendisse id justo ac magna volutpat varius.",
+          "card_2_button": "Learn more",
+          "card_3_icon": "#{media.heart}",
+          "card_3_title": "Sed neque velit",
+          "card_3_text": "Morbi ultricies quis tellus sed pretium. Aenean lobortis luctus tellus, sit amet sodales odio consequat eu.",
+          "card_3_button": "Learn more"
+        }
+      }
+    },
+    {
+      "type": "singleton",
+      "slug": "features-left",
+      "data": {
+        "data": {
+          "title": "Nullam felis ipsum, mollis quis.",
+          "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "image": "#{media.grayrectangle}",
+          "card_1_title": "Phasellus feugiat tellus",
+          "card_1_text": "In leo nisi, lobortis id vulputate non, aliquet vitae massa. Fusce luctus sed felis id gravida. Aliquam erat volutpat. Quisque et ex nec neque aliquet tincidunt nec sit amet libero.",
+          "card_1_button": "Learn more",
+          "card_2_title": "Maecenas quis nunc",
+          "card_2_text": "Sed feugiat, massa ac placerat fermentum, metus mi vehicula ante, varius semper magna lacus ut leo.",
+          "card_2_button": "Learn more"
+        }
+      }
+    },
+    {
+      "type": "collectionItems",
+      "collection": "plans",
+      "items": [
+        "#{entry.plans.pro}",
+        "#{entry.plans.ultimate}",
+        "#{entry.plans.premium}"
+      ]
+    },
+    {
+      "type": "singleton",
+      "slug": "pricing",
+      "data": {
+        "data": {
+          "title": "Pricing",
+          "sign_up": "Sign up",
+          "plans": {
+            "type": "collection",
+            "id": "#{collection.plans}"
+          }
+        }
+      }
+    },
+    {
+      "type": "collectionItems",
+      "collection": "faq-items",
+      "items": [
+        "#{entry.faq-items.accordion-item-1}",
+        "#{entry.faq-items.accordion-item-2}",
+        "#{entry.faq-items.accordion-item-3}",
+        "#{entry.faq-items.accordion-item-4}",
+        "#{entry.faq-items.accordion-item-5}"
+      ]
+    },
+    {
+      "type": "singleton",
+      "slug": "faq",
+      "data": {
+        "data": {
+          "title": "Questions & answers",
+          "faq_items": {
+            "type": "collection",
+            "id": "#{collection.faq-items}"
+          }
+        }
+      }
+    },
+    {
+      "type": "collectionItems",
+      "collection": "testimonials",
+      "items": [
+        "#{entry.testimonials.jane-doe}",
+        "#{entry.testimonials.jane-doe-2}"
+      ]
+    },
+    {
+      "type": "singleton",
+      "slug": "testimonials",
+      "data": {
+        "data": {
+          "title": "Testimonials",
+          "testimonials": {
+            "type": "collection",
+            "id": "#{collection.testimonials}"
+          }
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/letters.png",
+        "title": "letters",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "singleton",
+      "slug": "signup",
+      "data": {
+        "data": {
+          "image": "#{media.letters}",
+          "title": "Sign up to our newsletter",
+          "description": "Suspendisse id justo ac magna volutpat varius. Ut in dignissim purus. Ut efficitur fermentum sapien vitae scelerisque. Nullam lobortis lorem et eros sollicitudin sagittis.",
+          "email_placeholder": "E-mail address",
+          "button_label": "Sign up",
+          "footnote": "Aenean lobortis luctus tellus, sit amet sodales odio consequat eu."
+        }
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/starlight.svg",
+        "title": "starlight-logo",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "singleton",
+      "slug": "footer",
+      "data": {
+        "data": {
+          "website_logo": "#{media.web-templates-logo}",
+          "year": "2023",
+          "company_name": "Your Company",
+          "developed_by": "Developed by",
+          "starlight_logo": "#{media.starlight-logo}",
+          "website": "Website",
+          "features": "Features",
+          "knowledge_center": "Knowledge Center",
+          "documentation": "Documentation",
+          "development_guide": "Development Guide",
+          "sdk_docs": "SDK Docs"
+        }
+      }
+    }
+  ]
+}
