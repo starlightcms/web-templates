@@ -4,8 +4,10 @@ import Starlight, {
   Singleton,
   StarlightError,
 } from "@starlightcms/next-sdk";
+import PopularArticles from "@/components/PopularArticles";
+import FeaturedContent from "@/components/FeaturedContent";
 import FeaturesRight from "@/sections/FeaturesRight";
-import FeatureCards from "@/sections/FeatureCards";
+import ArticlePage from "@/components/ArticlePage";
 import { Layout } from "@/components/Layout";
 import Signup from "@/sections/Signup";
 import Hero from "@/sections/Hero";
@@ -17,16 +19,11 @@ import {
   HeroSingleton,
   ClientsSingleton,
   FeaturesRightSingleton,
-  FeatureCardsSingleton,
   FooterSingleton,
   FAQItem,
   FAQSingleton,
-  TestimonialsSingleton,
   SignupSingleton,
-  Testimonial,
 } from "@/starlight";
-import MainContent from "@/sections/MainContent";
-import PopularContent from "@/sections/PopularContent";
 
 type HomeProps = {
   header: Singleton<HeaderSingleton>;
@@ -34,7 +31,6 @@ type HomeProps = {
   clients: Singleton<ClientsSingleton>;
   clientCollection: MediaObject[];
   featuresRight: Singleton<FeaturesRightSingleton>;
-  featureCards: Singleton<FeatureCardsSingleton>;
   faq: Singleton<FAQSingleton>;
   faqCollection: Entry<FAQItem>[];
   signup: Singleton<SignupSingleton>;
@@ -45,7 +41,6 @@ export default function Home({
   header,
   hero,
   featuresRight,
-  featureCards,
   faq,
   faqCollection,
   signup,
@@ -59,12 +54,22 @@ export default function Home({
       </Head>
       <Hero singleton={hero} />
       <Layout headerSingleton={header} footerSingleton={footer}>
-        <Row className="gx-6 d-flex flex-column-reverse flex-md-row">
-          <MainContent singleton={hero} />
-          <PopularContent singleton={hero} />
+        <Row className="gx-6 gy-6 d-flex flex-column-reverse flex-md-row">
+          <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
+            <FeaturedContent label="More Featured Content" />
+            {/* //TODO! GET LASTPAGE OF ALL! */}
+            <ArticlePage
+              label="Latest Articles"
+              category={"page"}
+              currentPage={1}
+              lastPage={10}
+            />
+          </Col>
+          <Col sm={12} lg={4}>
+            <PopularArticles label="Most Popular" />
+          </Col>
         </Row>
         <FeaturesRight singleton={featuresRight} />
-        <FeatureCards singleton={featureCards} />
         <FAQ singleton={faq} collection={faqCollection} />
         <Signup singleton={signup} />
       </Layout>
@@ -82,19 +87,16 @@ export const getStaticProps = async () => {
     const heroPromise = Starlight.singletons.get<HeroSingleton>("hero");
     const featuresRightPromise =
       Starlight.singletons.get<FeaturesRightSingleton>("features-right");
-    const featureCardsPromise =
-      Starlight.singletons.get<FeatureCardsSingleton>("feature-cards");
     const faqPromise = Starlight.singletons.get<FAQSingleton>("faq");
     const signupPromise = Starlight.singletons.get<SignupSingleton>("signup");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, hero, featuresRight, featureCards, faq, signup, footer] =
+    const [header, hero, featuresRight, faq, signup, footer] =
       await Promise.all([
         headerPromise,
         heroPromise,
         featuresRightPromise,
-        featureCardsPromise,
         faqPromise,
         signupPromise,
         footerPromise,
@@ -117,7 +119,6 @@ export const getStaticProps = async () => {
         header: header.data,
         hero: hero.data,
         featuresRight: featuresRight.data,
-        featureCards: featureCards.data,
         faq: faq.data,
         faqCollection: faqCollection.data,
         signup: signup.data,

@@ -13,15 +13,19 @@ import { Col, Container, Row } from "react-bootstrap";
 import ArticlePage from "@/components/ArticlePage";
 import PopularArticles from "@/components/PopularArticles";
 
-type CategoryProps = {
+type CategoryPageProps = {
   header: Singleton<HeaderSingleton>;
   hero: Singleton<HeroSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
-export default function Category({ header, hero, footer }: CategoryProps) {
+export default function CategoryPage({
+  header,
+  hero,
+  footer,
+}: CategoryPageProps) {
   const router = useRouter();
-  const { category } = router.query;
+  const { category, page } = router.query;
 
   const getUppercaseCategory = (category: string) => {
     return (
@@ -37,21 +41,36 @@ export default function Category({ header, hero, footer }: CategoryProps) {
       </Head>
       <div className="bg-brand-primary-50">
         <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
-          <div className="d-flex flex-column gap-2">
-            <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
-              Category
-            </p>
-            <h1 className="m-0 fw-bold text-brand-primary-600">
-              {getUppercaseCategory(category as string)}
-            </h1>
-            <span className="m-0 text-brand-primary-700 fs-5 lh-1">
-              Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-              esse quam nihil molestiae consequatu.
-            </span>
-          </div>
-          <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
-            <p className="m-0 text-brand-secondary-800 fw-bold">800 articles</p>
-          </div>
+          {category !== "page" ? (
+            <>
+              <div className="d-flex flex-column gap-2">
+                <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
+                  Category
+                </p>
+                <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
+                  {getUppercaseCategory(category as string)}
+                </h1>
+                <span className="m-0 text-brand-primary-700 fs-5 lh-1">
+                  Quis autem vel eum iure reprehenderit qui in ea voluptate
+                  velit esse quam nihil molestiae consequatu.
+                </span>
+              </div>
+              <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
+                <p className="m-0 text-brand-secondary-800 fw-bold">
+                  800 articles
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
+                Category
+              </p>
+              <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
+                Latest Articles
+              </h1>
+            </>
+          )}
         </Container>
       </div>
       <Layout headerSingleton={header} footerSingleton={footer}>
@@ -59,9 +78,9 @@ export default function Category({ header, hero, footer }: CategoryProps) {
           <Col sm={12} lg={8}>
             {/* // TODO! FIX CATEGORY AND LASTPAGE PROPS... */}
             <ArticlePage
-              label="Page 2"
+              label={`Page ${page as string}`}
               category={category as string}
-              currentPage={1}
+              currentPage={parseInt(page as string)}
               lastPage={10}
             />
           </Col>
@@ -78,7 +97,7 @@ export default function Category({ header, hero, footer }: CategoryProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   // TODO! GET ALL CATEGORIES FROM STARLIGHT
   return {
-    paths: ["/tech", "/science", "/entertainment"],
+    paths: [],
     fallback: "blocking",
   };
 };
@@ -88,10 +107,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // In case you're wondering, the reason we request this on the page rather than in
 // the individual sections is because it won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (params?.category === "page") {
+  if (
+    isNaN(parseInt(params?.page as string)) ||
+    parseInt(params?.page as string) === 1
+  ) {
     return {
       redirect: {
-        destination: "/",
+        destination: params?.category !== "page" ? `/${params?.category}` : "/",
         permanent: false,
       },
     };

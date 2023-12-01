@@ -83,7 +83,7 @@ export default function Footer({ singleton }: FooterProps) {
                 <h6 className="mb-4 fw-bold">{list.name}</h6>
                 <ul className="list-unstyled d-flex flex-column gap-2">
                   {list.items.map((item) => (
-                    <li key={item.href}>
+                    <li key={item.label}>
                       <a
                         href={item.href}
                         target="_blank"
