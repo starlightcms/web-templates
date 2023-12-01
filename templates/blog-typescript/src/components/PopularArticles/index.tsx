@@ -1,13 +1,12 @@
 import { Col, Row } from "react-bootstrap";
-import { Singleton, Image } from "@starlightcms/next-sdk";
-import { HeroSingleton } from "@/starlight";
 import styles from "./styles.module.scss";
 import Card from "@/components/Card";
 import clsx from "clsx";
 
-// TODO! SINGLETON - OBLIGATORY! ALSO, SINGLETON TYPE
-type MainContentProps = {
-  singleton: Singleton<HeroSingleton>;
+// TODO! TYPING OF ARTICLES, ALSO SHOULD NOT BE OPTIONAL
+type PopularArticlesProps = {
+  label: string;
+  articles?: any;
 };
 
 // TODO! Texts, image, description
@@ -15,7 +14,10 @@ type MainContentProps = {
 /**
  * Renders a
  */
-export default function PopularContent({ singleton }: MainContentProps) {
+export default function PopularArticles({
+  label,
+  articles,
+}: PopularArticlesProps) {
   const mockPopularContent = [
     {
       title: "Lessons and insights from 8 years of Pixelgrade",
@@ -46,31 +48,31 @@ export default function PopularContent({ singleton }: MainContentProps) {
     },
   ];
 
-  return (
-    <Col className="" sm={12} lg={4}>
-      <div
-        className={clsx(
-          "d-flex flex-column gap-4 position-sticky",
-          styles.stickyContainer,
-        )}
-      >
-        <div className="text-brand-secondary-400 fw-bold">
-          <span>Most popular</span>
-        </div>
+  // TODO! ARTICLES MAP
 
-        <Row className="d-flex flex-column gap-4 pb-6">
-          {mockPopularContent.map((card, index) => (
-            <Card
-              key={card.title}
-              title={card.title}
-              label={card.label}
-              rank={index + 1}
-              info={card.info}
-              small
-            />
-          ))}
-        </Row>
+  return (
+    <div
+      className={clsx(
+        "d-flex flex-column gap-4 position-sticky",
+        styles.stickyContainer,
+      )}
+    >
+      <div className="text-brand-secondary-400 fw-bold">
+        <span>{label}</span>
       </div>
-    </Col>
+
+      <Row className="d-flex flex-column gap-4">
+        {mockPopularContent.map((card, index) => (
+          <Card
+            key={card.title}
+            title={card.title}
+            label={card.label}
+            rank={index + 1}
+            info={card.info}
+            small
+          />
+        ))}
+      </Row>
+    </div>
   );
 }

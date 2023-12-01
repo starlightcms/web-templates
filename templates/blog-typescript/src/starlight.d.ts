@@ -10,6 +10,7 @@ import {
   MediaObject,
 } from "@starlightcms/next-sdk";
 
+// TODO! ALL THE TYPES
 type HeaderSingleton = {
   logo: MediaField;
   button_label: StringField;
