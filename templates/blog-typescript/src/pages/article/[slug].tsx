@@ -10,27 +10,24 @@ import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
-import ArticlesPage from "../components/ArticlesPage";
+import styles from "./styles.module.scss";
+import clsx from "clsx";
+import FeaturedContent from "@/components/FeaturedContent";
 import PopularArticles from "@/components/PopularArticles";
 import { Main } from "@/components/Main";
 
-type CategoryProps = {
+type ArticleProps = {
   header: Singleton<HeaderSingleton>;
   hero: Singleton<HeroSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
-export default function Category({ header, hero, footer }: CategoryProps) {
-  const router = useRouter();
-  const { category } = router.query;
+// TODO! DESCRIPTION
 
-  const getUppercaseCategory = (category: string) => {
-    return (
-      category.charAt(0).toUpperCase() + category.slice(1).replaceAll("-", " ")
-    );
-  };
+export default function Article({ header, hero, footer }: ArticleProps) {
+  const logos = []; // TODO! USE THIS?
 
-  // TODO! TITLE - ALSO, GET CATEGORY NAME FROM STARLIGHT, UPPERCASE FUNCTION WONT BE NEEDED
+  // TODO! TITLE
   return (
     <>
       <Head>
@@ -38,36 +35,65 @@ export default function Category({ header, hero, footer }: CategoryProps) {
       </Head>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
-          <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
-            <div className="d-flex flex-column gap-2">
-              <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
-                Category
-              </p>
-              <h1 className="m-0 fw-bold text-brand-primary-600">
-                {getUppercaseCategory(category as string)}
-              </h1>
-              <span className="m-0 text-brand-primary-700 fs-5 lh-1">
-                Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-                esse quam nihil molestiae consequatu.
-              </span>
-            </div>
-            <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
-              <p className="m-0 text-brand-secondary-800 fw-bold">
-                800 articles
-              </p>
+          <Container className="d-flex flex-column pt-8 px-4">
+            <h1 className="fw-bold text-brand-primary-600">
+              Traveling as a way of self-discovery and progress
+            </h1>
+            <span className="mb-3 text-brand-primary-700 fs-5 lh-1">
+              Quis autem vel eum iure reprehenderit qui in ea voluptate velit
+              esse quam nihil molestiae consequatu.
+            </span>
+            <p className="mb-4 text-brand-secondary-400 fs-6 lh-1 fw-bold">
+              By John Doe • November 12th, 2023 at 2:50 PM
+            </p>
+
+            <div className="d-flex gap-4 mb-5">
+              {[1, 2, 3, 4, 5].map((item) => (
+                <div
+                  key={item}
+                  className={clsx(
+                    "bg-brand-secondary-200 rounded-5",
+                    styles.shareButton,
+                  )}
+                >
+                  <div
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      backgroundColor: "gray",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           </Container>
         </div>
+        <div className={styles.imageContainer}>
+          <Container>
+            <div
+              style={{
+                height: "380px",
+              }}
+              className="w-100 bg-brand-secondary-900 rounded-4"
+            />
+            {/*  // TODO! MISSING LABEL ON IMAGE... SEE HERO */}
+          </Container>
+        </div>
         <Main>
-          <Row className="gx-6 gy-6 d-flex flex-row flex-md-row">
-            <Col sm={12} lg={8}>
-              {/* // TODO! FIX CATEGORY AND LASTPAGE PROPS... */}
-              <ArticlesPage
-                label="Page 2"
-                category={category as string}
-                currentPage={1}
-                lastPage={10}
+          <Row className="gx-6 gy-6 d-flex flex-column flex-md-row">
+            <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
+              <div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+                adipisci aliquam expedita ipsum pariatur reprehenderit. Harum,
+                id libero maiores, nobis odit officiis, pariatur perspiciatis
+                rem tempore temporibus velit voluptate? Blanditiis?
+              </div>
+              <div
+                className="bg-brand-primary-300 w-100"
+                style={{ height: "1px" }}
               />
+              <FeaturedContent label="More Featured Content" />
             </Col>
             <Col sm={12} lg={4}>
               <PopularArticles label="Most Popular" />
@@ -79,11 +105,10 @@ export default function Category({ header, hero, footer }: CategoryProps) {
   );
 }
 
-// TODO! COMMENT EXPLAINING
 export const getStaticPaths: GetStaticPaths = async () => {
   // TODO! GET ALL CATEGORIES FROM STARLIGHT
   return {
-    paths: ["/tech", "/science", "/entertainment"],
+    paths: [],
     fallback: "blocking",
   };
 };
@@ -93,15 +118,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // In case you're wondering, the reason we request this on the page rather than in
 // the individual sections is because it won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (params?.category === "page") {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
     const heroPromise = Starlight.singletons.get<HeroSingleton>("hero");

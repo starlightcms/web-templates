@@ -12,7 +12,7 @@ type HeroProps = {
 /**
  * Renders a Hero - the topmost component of the page with the picture,
  * title, description and information of the featured article. It is outside
- * the main Container component because of its background.
+ * the "Main" component because of its fullscreen (full width) background.
  */
 export default function Hero({ singleton }: HeroProps) {
   return (
@@ -37,33 +37,6 @@ export default function Hero({ singleton }: HeroProps) {
             By John Doe • November 12th, 2023 at 2:50 PM
           </p>
         </div>
-        {/*<Row className="text-center text-brand-800 text-lg-start d-lg-flex justify-content-lg-between pt-lg-0">*/}
-        {/*  <Col*/}
-        {/*    className="align-items-start justify-content-center d-lg-flex flex-lg-column"*/}
-        {/*    sm={12}*/}
-        {/*    lg={5}*/}
-        {/*  >*/}
-        {/*    <h1 className="fw-bold">{singleton.data.title}</h1>*/}
-        {/*    <p className="lh-lg">{singleton.data.description}</p>*/}
-        {/*    <div>*/}
-        {/*      <Button className="me-3 bg-brand-500 border-brand-500 fw-bold">*/}
-        {/*        {singleton.data.main_button_label}*/}
-        {/*      </Button>*/}
-        {/*      <Button className="bg-transparent text-brand-500 border-brand-500 fw-bold">*/}
-        {/*        {singleton.data.second_button_label}*/}
-        {/*      </Button>*/}
-        {/*    </div>*/}
-        {/*  </Col>*/}
-
-        {/*  <Col className="d-flex justify-content-center" sm={12} lg={6}>*/}
-        {/*    <Image*/}
-        {/*      media={singleton.data.image}*/}
-        {/*      alt="Cellphone"*/}
-        {/*      className="my-5 mw-100"*/}
-        {/*      height={535}*/}
-        {/*    />*/}
-        {/*  </Col>*/}
-        {/*</Row>*/}
       </Container>
     </div>
   );

@@ -9,10 +9,12 @@ type FeaturedContentProps = {
   articles?: any;
 };
 
-// TODO! Texts, image, description
-
+// TODO! Texts, image
 /**
- * Renders a
+ * Renders 3 Cards as "featured content". It's supposed to be used in the home
+ * page and in the Article page.
+ *
+ * @see Card
  */
 export default function FeaturedContent({
   label,

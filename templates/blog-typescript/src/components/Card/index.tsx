@@ -23,9 +23,9 @@ type CardProps = {
  * A couple of notes some props:
  * - The "small" prop will take precedence over the "horizontal" prop - i.e.
  * there are no cards that are both small and vertical, they'll be small and
- * vertical.
- * - On smaller screens, "horizontal" cards and "small" cards are the same
- * size.
+ * horizontal.
+ * - On smaller screens, "horizontal" (non-small) cards and "small" cards are
+ * the same size.
  * - The "number" prop will only consider numbers from 1 to 5 (if they're on a
  * list, ideally you should send index + 1).
  */

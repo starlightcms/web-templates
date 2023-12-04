@@ -7,7 +7,7 @@ import Starlight, {
 import PopularArticles from "@/components/PopularArticles";
 import FeaturedContent from "@/components/FeaturedContent";
 import FeaturesRight from "@/sections/FeaturesRight";
-import ArticlePage from "@/components/ArticlePage";
+import ArticlesPage from "../components/ArticlesPage";
 import { Layout } from "@/components/Layout";
 import Signup from "@/sections/Signup";
 import Hero from "@/sections/Hero";
@@ -24,6 +24,7 @@ import {
   FAQSingleton,
   SignupSingleton,
 } from "@/starlight";
+import { Main } from "@/components/Main";
 
 type HomeProps = {
   header: Singleton<HeaderSingleton>;
@@ -46,32 +47,35 @@ export default function Home({
   signup,
   footer,
 }: HomeProps) {
-  // TODO! FOOTER + HEADER FIXES
+  // TODO! HEADER FIXES
+  // TODO! MD VS LG! CHECK ALL SPOTS...
   return (
     <>
       <Head>
         <title>Blog Template</title>
       </Head>
-      <Hero singleton={hero} />
       <Layout headerSingleton={header} footerSingleton={footer}>
-        <Row className="gx-6 gy-6 d-flex flex-column-reverse flex-md-row">
-          <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
-            <FeaturedContent label="More Featured Content" />
-            {/* //TODO! GET LASTPAGE OF ALL! */}
-            <ArticlePage
-              label="Latest Articles"
-              category={"page"}
-              currentPage={1}
-              lastPage={10}
-            />
-          </Col>
-          <Col sm={12} lg={4}>
-            <PopularArticles label="Most Popular" />
-          </Col>
-        </Row>
-        <FeaturesRight singleton={featuresRight} />
-        <FAQ singleton={faq} collection={faqCollection} />
-        <Signup singleton={signup} />
+        <Hero singleton={hero} />
+        <Main>
+          <Row className="gx-6 gy-6 d-flex flex-column-reverse flex-md-row">
+            <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
+              <FeaturedContent label="More Featured Content" />
+              {/* //TODO! GET LASTPAGE OF ALL! */}
+              <ArticlesPage
+                label="Latest Articles"
+                category={"page"}
+                currentPage={1}
+                lastPage={10}
+              />
+            </Col>
+            <Col sm={12} lg={4}>
+              <PopularArticles label="Most Popular" />
+            </Col>
+          </Row>
+          <FeaturesRight singleton={featuresRight} />
+          <FAQ singleton={faq} collection={faqCollection} />
+          <Signup singleton={signup} />
+        </Main>
       </Layout>
     </>
   );

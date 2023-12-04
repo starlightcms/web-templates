@@ -13,14 +13,16 @@ type LayoutProps = {
 };
 
 /**
- * Renders the main website layout and place its children inside a Container
- * component. The layout includes the Header and Footer assets.
+ * Renders the main website layout with the Header and Footer components.
+ * Inside it, you should have the "Hero" content (the one with a pink
+ * background) and a <Main> tag that has the page content inside it.
  *
  * You'll probably want to wrap all your pages with this component.
- * See the website index file to learn how to use it.
+ * See any page index file to learn how to use it.
  *
  * @see Header
  * @see Footer
+ * @see Main
  */
 export const Layout = ({
   children,
@@ -29,9 +31,7 @@ export const Layout = ({
 }: LayoutProps) => (
   <div className={styles.layout}>
     <Header singleton={headerSingleton} />
-    <Container as="main" className="d-flex flex-column gap-7 py-5 py-lg-6">
-      {children}
-    </Container>
+    {children}
     <Footer singleton={footerSingleton} />
   </div>
 );

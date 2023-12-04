@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import Card from "@/components/Card";
 
 // TODO! TYPING OF ARTICLES, ALSO SHOULD NOT BE OPTIONAL
-type ArticlePageProps = {
+type ArticlesPageProps = {
   label: string;
   articles?: any;
   category: string;
@@ -11,18 +11,23 @@ type ArticlePageProps = {
   lastPage: number;
 };
 
-// TODO! Texts, image, description
-
+// TODO! Texts, image
 /**
- * Renders a
+ * Renders a page of articles (as Cards) with a small title label and a page
+ * selector at the bottom. Requires a label, a list of articles to be
+ * displayed, its category (being "page" or a category name), the current page
+ * number and the last page number as props.
+ *
+ * @see Card
+ * @see PageSelector
  */
-export default function ArticlePage({
+export default function ArticlesPage({
   label,
   articles,
   category,
   currentPage,
   lastPage,
-}: ArticlePageProps) {
+}: ArticlesPageProps) {
   const mockLatestArticles = [
     {
       title: "How to choose the right customer for your photo business?",

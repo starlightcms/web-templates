@@ -77,7 +77,7 @@ export default function Footer({ singleton }: FooterProps) {
           </span>
         </div>
         <nav>
-          <ul className="list-unstyled gap-5 d-flex flex-column flex-lg-row mb-0">
+          <ul className="list-unstyled gap-5 mb-0 d-flex flex-column flex-lg-row gap-lg-8">
             {lists.map((list) => (
               <li key={list.name}>
                 <h6 className="mb-4 fw-bold">{list.name}</h6>

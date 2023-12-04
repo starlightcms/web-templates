@@ -10,8 +10,9 @@ import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
-import ArticlePage from "@/components/ArticlePage";
+import ArticlesPage from "../../components/ArticlesPage";
 import PopularArticles from "@/components/PopularArticles";
+import { Main } from "@/components/Main";
 
 type CategoryPageProps = {
   header: Singleton<HeaderSingleton>;
@@ -39,55 +40,57 @@ export default function CategoryPage({
       <Head>
         <title>Blog Template</title>
       </Head>
-      <div className="bg-brand-primary-50">
-        <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
-          {category !== "page" ? (
-            <>
-              <div className="d-flex flex-column gap-2">
+      <Layout headerSingleton={header} footerSingleton={footer}>
+        <div className="bg-brand-primary-50">
+          <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
+            {category !== "page" ? (
+              <>
+                <div className="d-flex flex-column gap-2">
+                  <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
+                    Category
+                  </p>
+                  <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
+                    {getUppercaseCategory(category as string)}
+                  </h1>
+                  <span className="m-0 text-brand-primary-700 fs-5 lh-1">
+                    Quis autem vel eum iure reprehenderit qui in ea voluptate
+                    velit esse quam nihil molestiae consequatu.
+                  </span>
+                </div>
+                <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
+                  <p className="m-0 text-brand-secondary-800 fw-bold">
+                    800 articles
+                  </p>
+                </div>
+              </>
+            ) : (
+              <>
                 <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
                   Category
                 </p>
                 <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
-                  {getUppercaseCategory(category as string)}
+                  Latest Articles
                 </h1>
-                <span className="m-0 text-brand-primary-700 fs-5 lh-1">
-                  Quis autem vel eum iure reprehenderit qui in ea voluptate
-                  velit esse quam nihil molestiae consequatu.
-                </span>
-              </div>
-              <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
-                <p className="m-0 text-brand-secondary-800 fw-bold">
-                  800 articles
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
-                Category
-              </p>
-              <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
-                Latest Articles
-              </h1>
-            </>
-          )}
-        </Container>
-      </div>
-      <Layout headerSingleton={header} footerSingleton={footer}>
-        <Row className="gx-6 gy-6 d-flex flex-row flex-md-row">
-          <Col sm={12} lg={8}>
-            {/* // TODO! FIX CATEGORY AND LASTPAGE PROPS... */}
-            <ArticlePage
-              label={`Page ${page as string}`}
-              category={category as string}
-              currentPage={parseInt(page as string)}
-              lastPage={10}
-            />
-          </Col>
-          <Col sm={12} lg={4}>
-            <PopularArticles label="Most Popular" />
-          </Col>
-        </Row>
+              </>
+            )}
+          </Container>
+        </div>
+        <Main>
+          <Row className="gx-6 gy-6 d-flex flex-row flex-md-row">
+            <Col sm={12} lg={8}>
+              {/* // TODO! FIX CATEGORY AND LASTPAGE PROPS... */}
+              <ArticlesPage
+                label={`Page ${page as string}`}
+                category={category as string}
+                currentPage={parseInt(page as string)}
+                lastPage={10}
+              />
+            </Col>
+            <Col sm={12} lg={4}>
+              <PopularArticles label="Most Popular" />
+            </Col>
+          </Row>
+        </Main>
       </Layout>
     </>
   );
@@ -107,6 +110,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // In case you're wondering, the reason we request this on the page rather than in
 // the individual sections is because it won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  // TODO! REDIRECT
   if (
     isNaN(parseInt(params?.page as string)) ||
     parseInt(params?.page as string) === 1
