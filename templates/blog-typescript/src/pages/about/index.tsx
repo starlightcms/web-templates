@@ -10,8 +10,9 @@ import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
-import ArticlePage from "@/components/ArticlePage";
+import ArticlesPage from "../../components/ArticlesPage";
 import PopularArticles from "@/components/PopularArticles";
+import { Main } from "@/components/Main";
 
 type AboutProps = {
   header: Singleton<HeaderSingleton>;
@@ -20,25 +21,33 @@ type AboutProps = {
 };
 
 export default function About({ header, hero, footer }: AboutProps) {
-  // TODO! TITLE - ALSO, GET CATEGORY NAME FROM STARLIGHT, UPPERCASE FUNCTION WONT BE NEEDED
+  // TODO! TITLE
   return (
     <>
       <Head>
         <title>Blog Template</title>
       </Head>
-      <div className="bg-brand-primary-50">
-        <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
-          <div className="d-flex flex-column gap-2">
-            <h1 className="m-0 fw-bold text-brand-primary-600">About Us</h1>
-            <span className="m-0 text-brand-primary-700 fs-5 lh-1">
-              Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-              esse quam nihil molestiae consequatu.
-            </span>
-          </div>
-        </Container>
-      </div>
       <Layout headerSingleton={header} footerSingleton={footer}>
-        <div>{/* TODO! PUT A VISUALCONTENT HERE... and that's it. */}</div>
+        <div className="bg-brand-primary-50">
+          <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
+            <div className="d-flex flex-column gap-2">
+              <h1 className="m-0 fw-bold text-brand-primary-600">About Us</h1>
+              <span className="m-0 text-brand-primary-700 fs-5 lh-1">
+                Quis autem vel eum iure reprehenderit qui in ea voluptate velit
+                esse quam nihil molestiae consequatu.
+              </span>
+            </div>
+          </Container>
+        </div>
+        <Main>
+          <div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+            aliquid assumenda, commodi consectetur dolores ducimus eligendi est
+            fugiat maiores, maxime nesciunt perspiciatis, quam quas rem
+            repellendus vel vero voluptas voluptatum!
+            {/* TODO! PUT A VISUALCONTENT HERE... and that's it. */}
+          </div>
+        </Main>
       </Layout>
     </>
   );

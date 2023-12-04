@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.imageContainer {
+  background: linear-gradient(to bottom, tint-color($indigo-500, 90%) 50%, white 0%);
+}
+
+.shareButton {
+  padding: 0.625rem 1.125rem;
+}

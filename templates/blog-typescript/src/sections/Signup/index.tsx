@@ -41,7 +41,7 @@ export default function Signup({ singleton }: SignupProps) {
 
   // TODO! OPACITY TRANSITION
   return (
-    <Row className="bg-brand-secondary-100 text-center text-gray-100 mx-0 rounded-4 overflow-hidden d-lg-flex flex-lg-row">
+    <Row className="bg-brand-secondary-100 text-center text-gray-100 mx-0 rounded-4 overflow-hidden d-md-flex flex-md-row">
       <Col
         className="p-0 overflow-hidden"
         sm={12}
@@ -59,7 +59,7 @@ export default function Signup({ singleton }: SignupProps) {
         {/*/>*/}
       </Col>
       <Col
-        className="d-flex flex-column justify-content-center align-items-center px-4 py-6 px-lg-4"
+        className="d-flex flex-column justify-content-center align-items-center px-4 py-6 px-md-4"
         sm={12}
         lg={6}
       >
