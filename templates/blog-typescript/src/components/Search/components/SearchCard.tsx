@@ -4,17 +4,14 @@ import { useMemo } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
-// TODO! REVIEW PROPS... LINK OBLIGATORY!
-type CardProps = {
+// TODO! REVIEW PROPS, SLUG NOT OPTIONAL
+type SearchCardProps = {
   image?: MediaObject;
   slug?: string;
   title: string;
-  description?: string;
   label?: string;
   info?: string;
-  small?: boolean;
-  horizontal?: boolean;
-  rank?: number;
+  active: boolean;
 };
 
 /**
@@ -32,34 +29,23 @@ type CardProps = {
  * - The "number" prop will only consider numbers from 1 to 5 (if they're on a
  * list, ideally you should send index + 1).
  */
-export default function Card({
+export default function SearchCard({
   image,
   slug,
   title,
-  description,
   label,
   info,
-  small = false,
-  horizontal = false,
-  rank,
-}: CardProps) {
-  // TODO! BUTTON?
-
-  const cardClass = useMemo(() => {
-    if (small) return "small";
-    if (horizontal) return "defaultHorizontal";
-    return "defaultVertical";
-  }, [small, horizontal]);
-
-  // TODO! FIX LINK, WONT BE OPTIONAL - /article/slug
+  active,
+}: SearchCardProps) {
+  // TODO! IMAGE!
 
   return (
     <Link
       href={slug ? `/article/${slug}` : "/article/testing"}
       className={clsx(
-        "d-flex flex-row position-relative text-decoration-none",
-        cardClass === "defaultVertical" && "flex-column",
-        styles[cardClass],
+        "d-flex flex-row position-relative gap-3 w-100 rounded-2 text-decoration-none",
+        active && "bg-brand-secondary-200",
+        styles.searchCard,
       )}
     >
       <div
@@ -86,20 +72,6 @@ export default function Card({
             {label}
           </div>
         )}
-
-        {rank !== undefined && (
-          <div
-            className={clsx(
-              `d-flex justify-content-center align-items-center bg-brand-secondary-${
-                600 - rank * 100
-              } fw-bold position-absolute rounded-5`,
-              rank > 3 ? "text-brand-secondary-700" : "text-white",
-              styles.number,
-            )}
-          >
-            {rank}
-          </div>
-        )}
       </div>
 
       <div
@@ -108,18 +80,10 @@ export default function Card({
           styles.texts,
         )}
       >
-        <div
-          className={clsx(
-            "d-flex flex-column gap-2",
-            cardClass === "defaultVertical" && "gap-3",
-          )}
-        >
+        <div className="d-flex flex-column gap-2">
           <span className="text-brand-primary-600 fw-bold overflow-hidden">
             {title}
           </span>
-          {description !== undefined && cardClass !== "small" && (
-            <p className="text-brand-primary-700 mb-0">{description}</p>
-          )}
         </div>
         <p className="text-brand-secondary-400 mb-0 fw-semibold overflow-hidden">
           {info}

@@ -1,0 +1,48 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// TODO! USE CUSTOM VARIABLES
+
+.overlay {
+  background-color: rgba($indigo-900, 0.5);
+}
+
+.popup {
+  width: 100%;
+  height: 100%;
+
+  @include media-breakpoint-up(md) {
+    max-width: 630px;
+    height: auto;
+    border-radius: 1rem;
+  }
+}
+
+.cardWrapper {
+
+
+  @include media-breakpoint-up(md) {
+    max-height: 400px;
+  }
+}
+
+.closeButton {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+.searchInput {
+  outline: none;
+  border-color: $pink-500;
+  border-style: solid;
+  --bs-focus-ring-color: $pink-500;
+}
+
+.searchIcon {
+  left: 1.5rem;
+  top: 1.1rem;
+}

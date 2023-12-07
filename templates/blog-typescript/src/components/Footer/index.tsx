@@ -57,7 +57,7 @@ export default function Footer({ singleton }: FooterProps) {
 
   return (
     <footer className="bg-brand-primary-50 border-top border-brand-100 text-brand-primary-700">
-      <Container className="d-flex flex-column gap-4 flex-lg-row justify-content-lg-between p-5">
+      <Container className="d-flex flex-column gap-4 flex-md-row justify-content-md-between p-5">
         <div className="d-flex flex-column gap-4 justify-content-lg-between">
           <Link href="/">
             {/*<Image*/}
@@ -77,7 +77,7 @@ export default function Footer({ singleton }: FooterProps) {
           </span>
         </div>
         <nav>
-          <ul className="list-unstyled gap-5 mb-0 d-flex flex-column flex-lg-row gap-lg-8">
+          <ul className="list-unstyled gap-5 mb-0 d-flex flex-column flex-md-row gap-lg-8">
             {lists.map((list) => (
               <li key={list.name}>
                 <h6 className="mb-4 fw-bold">{list.name}</h6>

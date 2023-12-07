@@ -3,10 +3,12 @@ import { Singleton, Image as SLImage } from "@starlightcms/next-sdk";
 import { HeaderSingleton } from "@/starlight";
 import burger from "./assets/burger.svg";
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 
 // TODO! SINGLETON - OBLIGATORY!
 type HeaderProps = {
   singleton?: Singleton<HeaderSingleton>;
+  setIsSearchOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 /**
@@ -14,7 +16,7 @@ type HeaderProps = {
  * On mobile, a "burger" icon is rendered, which allows the user to open
  * and close a mobile sidebar with the link and button lists.
  */
-export default function Header({ singleton }: HeaderProps) {
+export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
   // TODO! DO THIS ON LANDING PAGE
   const links = [
     { label: "Tech", href: "#" },
@@ -24,7 +26,7 @@ export default function Header({ singleton }: HeaderProps) {
   ];
 
   return (
-    <Navbar expand="lg" fixed="top" bg="brand-primary-50">
+    <Navbar expand="lg" fixed="top" bg="brand-primary-50 z-1">
       <Container>
         <Navbar.Brand>
           {/*<SLImage*/}
@@ -58,7 +60,10 @@ export default function Header({ singleton }: HeaderProps) {
               Newsletter
             </Button>
             {/* // TODO! ICON */}
-            <Button className="bg-transparent border-brand-secondary-500">
+            <Button
+              className="bg-transparent border-brand-secondary-500"
+              onClick={() => setIsSearchOpen(true)}
+            >
               🔍
             </Button>
           </Nav>
