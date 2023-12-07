@@ -20,6 +20,7 @@ type AboutProps = {
   footer: Singleton<FooterSingleton>;
 };
 
+// TODO! DESCRIPTION
 export default function About({ header, hero, footer }: AboutProps) {
   // TODO! TITLE
   return (

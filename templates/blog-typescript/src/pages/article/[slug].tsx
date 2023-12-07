@@ -8,13 +8,15 @@ import { Layout } from "@/components/Layout";
 import Head from "next/head";
 import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import FeaturedContent from "@/components/FeaturedContent";
 import PopularArticles from "@/components/PopularArticles";
 import { Main } from "@/components/Main";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import { Search } from "@/components/Search";
 
 type ArticleProps = {
   header: Singleton<HeaderSingleton>;
@@ -25,9 +27,67 @@ type ArticleProps = {
 // TODO! DESCRIPTION
 
 export default function Article({ header, hero, footer }: ArticleProps) {
-  const logos = []; // TODO! USE THIS?
+  const { asPath } = useRouter();
 
-  // TODO! TITLE
+  const [currentURL, setCurrentURL] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined")
+      setCurrentURL(window.location.origin + asPath);
+  }, [asPath]);
+
+  const placeholderIcon = (
+    <div
+      style={{
+        width: "24px",
+        height: "24px",
+        backgroundColor: "gray",
+        borderRadius: "10px",
+      }}
+    />
+  );
+
+  const onShareClick = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Blog Template",
+          url: currentURL,
+        })
+        .catch(console.error);
+    } else {
+      // TODO! SOME WARNING TO SAY TEXT WAS COPIED?
+      navigator.clipboard.writeText(currentURL ?? "");
+    }
+  };
+
+  const shareButtons = useMemo(
+    () => [
+      {
+        icon: placeholderIcon,
+        link: `https://twitter.com/intent/tweet?text=${currentURL}`,
+        shareClass: "twitter-share-button",
+      },
+      {
+        icon: placeholderIcon,
+        link: `https://wa.me/?text=${currentURL}`,
+        shareClass: "whatsapp-share-button",
+      },
+      {
+        icon: placeholderIcon,
+        link: `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`,
+        shareClass: "facebook-share-button",
+      },
+      {
+        icon: placeholderIcon,
+        link: `https://www.linkedin.com/sharing/share-offsite/?url=${currentURL}`,
+        shareClass: "linkedin-share-button",
+      },
+    ],
+    [currentURL, placeholderIcon],
+  );
+
+  // TODO! TITLE?
   return (
     <>
       <Head>
@@ -48,23 +108,28 @@ export default function Article({ header, hero, footer }: ArticleProps) {
             </p>
 
             <div className="d-flex gap-4 mb-5">
-              {[1, 2, 3, 4, 5].map((item) => (
-                <div
-                  key={item}
+              <div
+                className={clsx(
+                  "bg-brand-secondary-200 rounded-5",
+                  styles.shareButton,
+                )}
+                onClick={onShareClick}
+              >
+                {placeholderIcon}
+              </div>
+              {shareButtons.map((item) => (
+                <a
+                  key={item.link}
+                  href={item.link}
                   className={clsx(
                     "bg-brand-secondary-200 rounded-5",
                     styles.shareButton,
+                    item.shareClass,
                   )}
+                  target="_blank"
                 >
-                  <div
-                    style={{
-                      width: "24px",
-                      height: "24px",
-                      backgroundColor: "gray",
-                      borderRadius: "10px",
-                    }}
-                  />
-                </div>
+                  {item.icon}
+                </a>
               ))}
             </div>
           </Container>

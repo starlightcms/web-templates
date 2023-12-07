@@ -20,6 +20,7 @@ type CategoryPageProps = {
   footer: Singleton<FooterSingleton>;
 };
 
+// TODO! DESCRIPTION
 export default function CategoryPage({
   header,
   hero,
