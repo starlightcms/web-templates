@@ -1,9 +1,9 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Singleton, Image as SLImage } from "@starlightcms/next-sdk";
+import { Dispatch, SetStateAction } from "react";
 import { HeaderSingleton } from "@/starlight";
 import burger from "./assets/burger.svg";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
 
 // TODO! SINGLETON - OBLIGATORY!
 type HeaderProps = {

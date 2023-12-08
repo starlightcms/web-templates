@@ -24,7 +24,7 @@ Starlight.configure({
  */
 const inter = Inter({ subsets: ["latin"] });
 
-export default function App({ Component, pageProps }: AppProps) {
+export const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
@@ -40,4 +40,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </>
   );
-}
+};
+
+export default App;

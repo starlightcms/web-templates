@@ -1,5 +1,5 @@
 import PageSelector from "@/components/PageSelector";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import Card from "@/components/Card";
 
 // TODO! TYPING OF ARTICLES, ALSO SHOULD NOT BE OPTIONAL
@@ -11,7 +11,7 @@ type ArticlesPageProps = {
   lastPage: number;
 };
 
-// TODO! Texts, image
+// TODO! Starlight texts + image
 /**
  * Renders a page of articles (as Cards) with a small title label and a page
  * selector at the bottom. Requires a label, a list of articles to be
@@ -21,13 +21,13 @@ type ArticlesPageProps = {
  * @see Card
  * @see PageSelector
  */
-export default function ArticlesPage({
+export const ArticlesPage = ({
   label,
   articles,
   category,
   currentPage,
   lastPage,
-}: ArticlesPageProps) {
+}: ArticlesPageProps) => {
   const mockLatestArticles = [
     {
       title: "How to choose the right customer for your photo business?",
@@ -83,4 +83,4 @@ export default function ArticlesPage({
       />
     </div>
   );
-}
+};

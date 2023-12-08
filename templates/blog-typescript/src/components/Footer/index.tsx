@@ -1,6 +1,8 @@
-import { Singleton, Image } from "@starlightcms/next-sdk";
+import { Singleton } from "@starlightcms/next-sdk";
 import { FooterSingleton } from "@/starlight";
 import { Container } from "react-bootstrap";
+import logo from "./assets/logo.svg";
+import Image from "next/image";
 import Link from "next/link";
 
 // TODO! SINGLETON - OBLIGATORY!
@@ -8,23 +10,13 @@ type FooterProps = {
   singleton?: Singleton<FooterSingleton>;
 };
 
-// TODO! LINKS, IMAGENS, TEXTOS
-// TODO! VARIAVEL "LISTS" NO OUTRO TEMPLATE...
+// TODO! LINKS, IMAGENS, TEXTOS DO STARLIGHT
 
 /**
  * Renders a footer with the website logo, a set columns with navigation
  * links and some credits/copyright information.
  */
 export default function Footer({ singleton }: FooterProps) {
-  // const firstListItems = [
-  //   { href: "https://www.starlight.sh/", label: singleton.data.website },
-  //   { href: "https://www.starlight.sh/#intro", label: singleton.data.features },
-  //   {
-  //     href: "https://knowledge.starlight.sh/",
-  //     label: singleton.data.knowledge_center,
-  //   },
-  // ];
-
   const firstListItems = [
     { href: "https://google.com/", label: "Tech" },
     { href: "https://google.com/", label: "Science" },
@@ -105,20 +97,10 @@ export default function Footer({ singleton }: FooterProps) {
           Developed by <b>Your Company</b>
         </span>
         <div className="vr mx-3 bg-brand-200" />
-        <span>
-          Powered by {/*<a href="https://starlight.sh" target="_blank">*/}
-          {/*  <Image*/}
-          {/*    media={singleton.data.starlight_logo}*/}
-          {/*    alt="Starlight Logo"*/}
-          {/*    width={84}*/}
-          {/*    height={18}*/}
-          {/*  />*/}
-          {/*</a>*/}
-        </span>
-        <div
-          style={{ height: "18px", width: "84px" }}
-          className="bg-brand-secondary-900 rounded-1"
-        />
+        <span className="me-2">Powered by</span>
+        <a href="https://starlight.sh" target="_blank">
+          <Image src={logo} alt={"burger"} />
+        </a>
       </div>
     </footer>
   );

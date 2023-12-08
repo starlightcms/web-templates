@@ -4,16 +4,14 @@ import Starlight, {
   Singleton,
   StarlightError,
 } from "@starlightcms/next-sdk";
-import PopularArticles from "@/components/PopularArticles";
-import FeaturedContent from "@/components/FeaturedContent";
-import FeaturesRight from "@/sections/FeaturesRight";
-import ArticlesPage from "../components/ArticlesPage";
+import { PopularArticles } from "@/components/PopularArticles";
+import { FeaturedContent } from "@/components/FeaturedContent";
+import { ArticlesPage } from "@/components/ArticlesPage";
 import { Layout } from "@/components/Layout";
-import Signup from "@/sections/Signup";
-import Hero from "@/sections/Hero";
-import FAQ from "@/sections/FAQ";
-import Head from "next/head";
+import { Signup } from "@/components/Signup";
 import { Col, Row } from "react-bootstrap";
+import { Hero } from "@/components/Hero";
+import Head from "next/head";
 import {
   HeaderSingleton,
   HeroSingleton,
@@ -26,6 +24,7 @@ import {
 } from "@/starlight";
 import { Main } from "@/components/Main";
 
+// TODO! REMOVE UNUSED TYPES...
 type HomeProps = {
   header: Singleton<HeaderSingleton>;
   hero: Singleton<HeroSingleton>;
@@ -38,16 +37,8 @@ type HomeProps = {
   footer: Singleton<FooterSingleton>;
 };
 
-export default function Home({
-  header,
-  hero,
-  featuresRight,
-  faq,
-  faqCollection,
-  signup,
-  footer,
-}: HomeProps) {
-  // TODO! HEADER FIXES
+const Home = ({ header, hero, signup, footer }: HomeProps) => {
+  // TODO! HEADER FIXES?
   // TODO! MD VS LG! CHECK ALL SPOTS...
   return (
     <>
@@ -72,20 +63,19 @@ export default function Home({
               <PopularArticles label="Most Popular" />
             </Col>
           </Row>
-          <FeaturesRight singleton={featuresRight} />
-          <FAQ singleton={faq} collection={faqCollection} />
           <Signup singleton={signup} />
         </Main>
       </Layout>
     </>
   );
-}
+};
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the section singletons in the configured workspace.
 // In case you're wondering, the reason we request this on the page rather than in
 // the individual sections is because it won't run on components, just on pages.
 export const getStaticProps = async () => {
+  // TODO! REMOVE UNUSED REQUESTS
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
     const heroPromise = Starlight.singletons.get<HeroSingleton>("hero");
@@ -144,3 +134,5 @@ export const getStaticProps = async () => {
     throw e;
   }
 };
+
+export default Home;

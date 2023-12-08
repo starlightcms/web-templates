@@ -4,15 +4,15 @@ import Starlight, {
   Singleton,
   StarlightError,
 } from "@starlightcms/next-sdk";
-import { Layout } from "@/components/Layout";
-import Head from "next/head";
 import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
+import { PopularArticles } from "@/components/PopularArticles";
+import { ArticlesPage } from "@/components/ArticlesPage";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
-import ArticlesPage from "../../components/ArticlesPage";
-import PopularArticles from "@/components/PopularArticles";
+import { Layout } from "@/components/Layout";
 import { Main } from "@/components/Main";
+import { useRouter } from "next/router";
+import Head from "next/head";
 
 type CategoryPageProps = {
   header: Singleton<HeaderSingleton>;
@@ -21,11 +21,7 @@ type CategoryPageProps = {
 };
 
 // TODO! DESCRIPTION
-export default function CategoryPage({
-  header,
-  hero,
-  footer,
-}: CategoryPageProps) {
+const CategoryPage = ({ header, hero, footer }: CategoryPageProps) => {
   const router = useRouter();
   const { category, page } = router.query;
 
@@ -95,7 +91,7 @@ export default function CategoryPage({
       </Layout>
     </>
   );
-}
+};
 
 // TODO! COMMENT EXPLAINING
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -163,3 +159,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     throw e;
   }
 };
+
+export default CategoryPage;

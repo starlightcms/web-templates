@@ -1,6 +1,6 @@
-import { Container } from "react-bootstrap";
 import { Singleton, Image } from "@starlightcms/next-sdk";
 import { HeroSingleton } from "@/starlight";
+import { Container } from "react-bootstrap";
 
 // TODO! SINGLETON - OBLIGATORY!
 type HeroProps = {
@@ -14,13 +14,14 @@ type HeroProps = {
  * title, description and information of the featured article. It is outside
  * the "Main" component because of its fullscreen (full width) background.
  */
-export default function Hero({ singleton }: HeroProps) {
+export const Hero = ({ singleton }: HeroProps) => {
   return (
     <div className="bg-brand-primary-50">
       <Container className="px-4 py-7 d-flex flex-column gap-3">
         <p className="text-brand-secondary-400 fw-bold fs-6 mb-0">
           Featured Article
         </p>
+        {/* TODO! IMAGE */}
         <div
           style={{ height: "380px" }}
           className="w-100 bg-brand-secondary-900 rounded-4"
@@ -40,4 +41,4 @@ export default function Hero({ singleton }: HeroProps) {
       </Container>
     </div>
   );
-}
+};

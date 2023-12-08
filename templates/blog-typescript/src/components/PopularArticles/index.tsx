@@ -1,5 +1,5 @@
-import { Col, Row } from "react-bootstrap";
 import styles from "./styles.module.scss";
+import { Row } from "react-bootstrap";
 import Card from "@/components/Card";
 import clsx from "clsx";
 
@@ -14,10 +14,7 @@ type PopularArticlesProps = {
 /**
  * Renders a
  */
-export default function PopularArticles({
-  label,
-  articles,
-}: PopularArticlesProps) {
+export const PopularArticles = ({ label, articles }: PopularArticlesProps) => {
   const mockPopularContent = [
     {
       title: "Lessons and insights from 8 years of Pixelgrade",
@@ -75,4 +72,4 @@ export default function PopularArticles({
       </Row>
     </div>
   );
-}
+};

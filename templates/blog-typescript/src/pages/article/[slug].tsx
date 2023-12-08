@@ -4,19 +4,18 @@ import Starlight, {
   Singleton,
   StarlightError,
 } from "@starlightcms/next-sdk";
-import { Layout } from "@/components/Layout";
-import Head from "next/head";
 import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
+import { FeaturedContent } from "@/components/FeaturedContent";
+import { PopularArticles } from "@/components/PopularArticles";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Col, Container, Row } from "react-bootstrap";
-import styles from "./styles.module.scss";
-import clsx from "clsx";
-import FeaturedContent from "@/components/FeaturedContent";
-import PopularArticles from "@/components/PopularArticles";
-import { Main } from "@/components/Main";
 import { useEffect, useMemo, useState } from "react";
+import { Layout } from "@/components/Layout";
+import styles from "./styles.module.scss";
+import { Main } from "@/components/Main";
 import { useRouter } from "next/router";
-import { Search } from "@/components/Search";
+import Head from "next/head";
+import clsx from "clsx";
 
 type ArticleProps = {
   header: Singleton<HeaderSingleton>;
@@ -26,7 +25,7 @@ type ArticleProps = {
 
 // TODO! DESCRIPTION
 
-export default function Article({ header, hero, footer }: ArticleProps) {
+const Article = ({ header, hero, footer }: ArticleProps) => {
   const { asPath } = useRouter();
 
   const [currentURL, setCurrentURL] = useState("");
@@ -36,15 +35,18 @@ export default function Article({ header, hero, footer }: ArticleProps) {
       setCurrentURL(window.location.origin + asPath);
   }, [asPath]);
 
-  const placeholderIcon = (
-    <div
-      style={{
-        width: "24px",
-        height: "24px",
-        backgroundColor: "gray",
-        borderRadius: "10px",
-      }}
-    />
+  const placeholderIcon = useMemo(
+    () => (
+      <div
+        style={{
+          width: "24px",
+          height: "24px",
+          backgroundColor: "gray",
+          borderRadius: "10px",
+        }}
+      />
+    ),
+    [],
   );
 
   const onShareClick = () => {
@@ -86,6 +88,10 @@ export default function Article({ header, hero, footer }: ArticleProps) {
     ],
     [currentURL, placeholderIcon],
   );
+
+  // TODO!!!!!! FIX BUTTONS ON MOBILE
+  // TODO!!!!! FIX TEXT ON MOBILE
+  // TODO!!!!!! " - WEB TEMPLATES" ON TITLE - SUFFIX! - ALSO, FIX ALL PAGE TITLES
 
   // TODO! TITLE?
   return (
@@ -168,7 +174,7 @@ export default function Article({ header, hero, footer }: ArticleProps) {
       </Layout>
     </>
   );
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // TODO! GET ALL CATEGORIES FROM STARLIGHT
@@ -222,3 +228,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     throw e;
   }
 };
+
+export default Article;
