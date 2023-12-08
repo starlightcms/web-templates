@@ -1,6 +1,5 @@
-import { Col, Row } from "react-bootstrap";
 import { Singleton, Image } from "@starlightcms/next-sdk";
-import { HeroSingleton } from "@/starlight";
+import { Row } from "react-bootstrap";
 import Card from "@/components/Card";
 
 // TODO! TYPING OF ARTICLES, ALSO SHOULD NOT BE OPTIONAL
@@ -9,17 +8,14 @@ type FeaturedContentProps = {
   articles?: any;
 };
 
-// TODO! Texts, image
+// TODO! Starlight: texts + image
 /**
  * Renders 3 Cards as "featured content". It's supposed to be used in the home
  * page and in the Article page.
  *
  * @see Card
  */
-export default function FeaturedContent({
-  label,
-  articles,
-}: FeaturedContentProps) {
+export const FeaturedContent = ({ label, articles }: FeaturedContentProps) => {
   const mockFeaturedContent = [
     {
       title:
@@ -68,4 +64,4 @@ export default function FeaturedContent({
       </Row>
     </div>
   );
-}
+};

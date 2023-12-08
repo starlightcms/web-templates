@@ -1,10 +1,10 @@
 import { Image, MediaObject } from "@starlightcms/next-sdk";
 import styles from "./styles.module.scss";
 import { useMemo } from "react";
-import clsx from "clsx";
 import Link from "next/link";
+import clsx from "clsx";
 
-// TODO! REVIEW PROPS... LINK OBLIGATORY!
+// TODO! SLUG OBLIGATORY + REVIEW PROPS...
 type CardProps = {
   image?: MediaObject;
   slug?: string;
@@ -43,8 +43,6 @@ export default function Card({
   horizontal = false,
   rank,
 }: CardProps) {
-  // TODO! BUTTON?
-
   const cardClass = useMemo(() => {
     if (small) return "small";
     if (horizontal) return "defaultHorizontal";

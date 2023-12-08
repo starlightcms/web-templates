@@ -9,7 +9,7 @@ type PageSelectorProps = {
   lastPage: number;
 };
 
-// TODO! Texts, image, description
+// TODO! Texts, image from Starlight
 
 /**
  * Renders a

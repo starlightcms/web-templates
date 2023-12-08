@@ -1,12 +1,10 @@
 import { FooterSingleton, HeaderSingleton } from "@/starlight";
+import { ReactNode, useEffect, useState } from "react";
 import { Singleton } from "@starlightcms/next-sdk";
-import { Container } from "react-bootstrap";
+import { Search } from "@/components/Search";
 import styles from "./styles.module.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ReactNode, useEffect, useState } from "react";
-import { Search } from "@/components/Search";
-import { Are_You_Serious } from "next/dist/compiled/@next/font/dist/google";
 
 type LayoutProps = {
   children: ReactNode;

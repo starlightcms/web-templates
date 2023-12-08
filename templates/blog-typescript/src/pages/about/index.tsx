@@ -4,15 +4,12 @@ import Starlight, {
   Singleton,
   StarlightError,
 } from "@starlightcms/next-sdk";
-import { Layout } from "@/components/Layout";
-import Head from "next/head";
 import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { Col, Container, Row } from "react-bootstrap";
-import ArticlesPage from "../../components/ArticlesPage";
-import PopularArticles from "@/components/PopularArticles";
+import { Layout } from "@/components/Layout";
+import { Container } from "react-bootstrap";
 import { Main } from "@/components/Main";
+import { GetStaticProps } from "next";
+import Head from "next/head";
 
 type AboutProps = {
   header: Singleton<HeaderSingleton>;
@@ -21,7 +18,7 @@ type AboutProps = {
 };
 
 // TODO! DESCRIPTION
-export default function About({ header, hero, footer }: AboutProps) {
+const About = ({ header, hero, footer }: AboutProps) => {
   // TODO! TITLE
   return (
     <>
@@ -52,7 +49,7 @@ export default function About({ header, hero, footer }: AboutProps) {
       </Layout>
     </>
   );
-}
+};
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the section singletons in the configured workspace.
@@ -98,3 +95,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     throw e;
   }
 };
+
+export default About;

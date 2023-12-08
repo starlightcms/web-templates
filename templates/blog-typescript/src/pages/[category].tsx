@@ -10,8 +10,8 @@ import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { Col, Container, Row } from "react-bootstrap";
-import ArticlesPage from "../components/ArticlesPage";
-import PopularArticles from "@/components/PopularArticles";
+import { ArticlesPage } from "@/components/ArticlesPage";
+import { PopularArticles } from "@/components/PopularArticles";
 import { Main } from "@/components/Main";
 
 type CategoryProps = {
@@ -20,7 +20,7 @@ type CategoryProps = {
   footer: Singleton<FooterSingleton>;
 };
 
-export default function Category({ header, hero, footer }: CategoryProps) {
+const Category = ({ header, hero, footer }: CategoryProps) => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -77,7 +77,7 @@ export default function Category({ header, hero, footer }: CategoryProps) {
       </Layout>
     </>
   );
-}
+};
 
 // TODO! COMMENT EXPLAINING
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -141,3 +141,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     throw e;
   }
 };
+
+export default Category;

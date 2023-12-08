@@ -1,6 +1,6 @@
 import { Image, MediaObject } from "@starlightcms/next-sdk";
 import styles from "./styles.module.scss";
-import { useMemo } from "react";
+import { RefObject, useMemo } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
@@ -12,6 +12,7 @@ type SearchCardProps = {
   label?: string;
   info?: string;
   active: boolean;
+  cardRef: (element: HTMLAnchorElement) => HTMLAnchorElement;
 };
 
 /**
@@ -29,14 +30,15 @@ type SearchCardProps = {
  * - The "number" prop will only consider numbers from 1 to 5 (if they're on a
  * list, ideally you should send index + 1).
  */
-export default function SearchCard({
+export const SearchCard = ({
   image,
   slug,
   title,
   label,
   info,
   active,
-}: SearchCardProps) {
+  cardRef,
+}: SearchCardProps) => {
   // TODO! IMAGE!
 
   return (
@@ -47,6 +49,7 @@ export default function SearchCard({
         active && "bg-brand-secondary-200",
         styles.searchCard,
       )}
+      ref={cardRef}
     >
       <div
         className={clsx(
@@ -89,6 +92,12 @@ export default function SearchCard({
           {info}
         </p>
       </div>
+
+      {/*<div*/}
+      {/*  className="position-absolute top-0 h-100"*/}
+      {/*  style={{ width: "20px", backgroundColor: "red" }}*/}
+      {/*  ref={cardRef}*/}
+      {/*/>*/}
     </Link>
   );
-}
+};

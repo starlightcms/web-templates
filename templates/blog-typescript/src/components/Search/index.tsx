@@ -1,9 +1,9 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { EmptySearch } from "./components/EmptySearch";
+import { KeyWrapper } from "./components/KeyWrapper";
+import { SearchCard } from "./components/SearchCard";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { KeyWrapper } from "./components/KeyWrapper";
-import SearchCard from "@/components/Search/components/SearchCard";
-import { EmptySearch } from "@/components/Search/components/EmptySearch";
 
 type SearchProps = {
   isOpen: boolean;
@@ -17,7 +17,10 @@ type SearchProps = {
 export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
   // TODO! REVIEW SPANS AND PS ALL OVER PROJECT
 
-  const [hasSearched, setHasSearched] = useState(true);
+  const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const [searchResults, setSearchResults] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
+  const [hasSearched, setHasSearched] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const maxIndex = 8; // TODO! REQUEST SEARCH LIST...
 
@@ -27,10 +30,9 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
 
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
-      event.preventDefault();
+      if (event.key.includes("Arrow")) event.preventDefault();
 
-      // TODO! ALSO CHECK IF EMPTY
-      if (hasSearched) {
+      if (hasSearched && searchResults.length > 0) {
         if (selectedIndex === 0) {
           setSelectedIndex(1);
         } else {
@@ -43,6 +45,12 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
             setSelectedIndex((prevState) =>
               prevState !== 1 ? prevState - 1 : prevState,
             );
+
+          console.log(cardRefs.current[selectedIndex - 1]);
+          cardRefs.current[selectedIndex - 1]?.scrollIntoView({
+            behavior: "smooth",
+            block: event.key === "ArrowUp" ? "end" : "start",
+          });
 
           if (event.key === "Enter") {
             console.log("hello");
@@ -57,20 +65,22 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
     return () => {
       document.removeEventListener("keydown", keyDownHandler);
     };
-  }, [selectedIndex]);
+  }, [selectedIndex, hasSearched]);
 
   if (!isOpen) return <></>;
 
   return (
-    <div
-      className={clsx(
-        "d-flex align-items-center justify-content-center w-100 h-100 position-fixed start-0 top-0 z-2",
-        styles.overlay,
-      )}
-    >
+    <div className="d-flex align-items-center justify-content-center w-100 h-100 position-fixed start-0 top-0 z-2">
       <div
         className={clsx(
-          "d-flex flex-column flex-grow-1 overflow-hidden",
+          "w-100 h-100 position-absolute start-0 top-0",
+          styles.overlay,
+        )}
+        onClick={() => setIsOpen(false)}
+      />
+      <div
+        className={clsx(
+          "d-flex flex-column flex-grow-1 overflow-hidden z-2",
           styles.popup,
         )}
       >
@@ -101,30 +111,36 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
             </span>
           </div>
           {hasSearched ? (
-            // TODO! IF IT DOES NOT HAVE ITEMS, RENDER ANOTHER EMPTYSEARCH
             <div
               className={clsx(
                 "d-flex flex-column gap-3 overflow-y-scroll",
                 styles.cardWrapper,
               )}
             >
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+              {searchResults.map((item, index) => (
                 <SearchCard
                   key={item}
                   title="Travelling as a way of self-discovery and progress"
                   info="Nov 12th at 2:50 PM"
                   label="Tech"
                   active={selectedIndex === index + 1}
+                  cardRef={(element: HTMLAnchorElement) =>
+                    (cardRefs.current[index] = element)
+                  }
                 />
               ))}
             </div>
-          ) : (
+          ) : searchResults.length > 0 ? (
             <EmptySearch
               label="What are you looking for?"
               description="Fill in the search field above."
             />
+          ) : (
+            <EmptySearch
+              label="Uh-oh, we found nothing..."
+              description="Try using other keywords."
+            />
           )}
-          {}
         </div>
         <div className="d-none d-md-flex bg-brand-primary-100 w-100 p-3 gap-4 text-brand-primary-800 fw-semibold fs-6">
           <div className="d-flex align-items-center gap-2">

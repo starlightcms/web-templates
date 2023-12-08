@@ -1,0 +1,1 @@
+The current JSON files are files meant for the landing-page-typescript template and should be remade.

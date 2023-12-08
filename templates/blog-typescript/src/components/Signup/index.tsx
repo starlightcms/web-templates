@@ -1,5 +1,5 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
 import { Singleton, Image, getMediaFile } from "@starlightcms/next-sdk";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { SignupSingleton } from "@/starlight";
 import { FormEvent, useState } from "react";
 import clsx from "clsx";
@@ -12,7 +12,7 @@ type SignupProps = {
  * Renders a signup (to newsletter) call to action, with an image, some text,
  * an email input and a "Sign up" button.
  */
-export default function Signup({ singleton }: SignupProps) {
+export const Signup = ({ singleton }: SignupProps) => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState(0);
@@ -112,4 +112,4 @@ export default function Signup({ singleton }: SignupProps) {
       </Col>
     </Row>
   );
-}
+};
