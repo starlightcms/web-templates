@@ -7,9 +7,9 @@ import Starlight, {
 import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
 import { Layout } from "@/components/Layout";
 import { Container } from "react-bootstrap";
+import { Title } from "@/components/Title";
 import { Main } from "@/components/Main";
 import { GetStaticProps } from "next";
-import Head from "next/head";
 
 type AboutProps = {
   header: Singleton<HeaderSingleton>;
@@ -19,12 +19,10 @@ type AboutProps = {
 
 // TODO! DESCRIPTION
 const About = ({ header, hero, footer }: AboutProps) => {
-  // TODO! TITLE
+  // TODO! TITLE, ALSO IS RETURN NEEDED?
   return (
     <>
-      <Head>
-        <title>Blog Template</title>
-      </Head>
+      <Title>About Singleton Title</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">

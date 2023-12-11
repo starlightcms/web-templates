@@ -21,8 +21,6 @@
 }
 
 .cardWrapper {
-
-
   @include media-breakpoint-up(md) {
     max-height: 400px;
   }

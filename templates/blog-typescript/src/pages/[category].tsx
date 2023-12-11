@@ -5,14 +5,14 @@ import Starlight, {
   StarlightError,
 } from "@starlightcms/next-sdk";
 import { Layout } from "@/components/Layout";
-import Head from "next/head";
 import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { Col, Container, Row } from "react-bootstrap";
-import { ArticlesPage } from "@/components/ArticlesPage";
 import { PopularArticles } from "@/components/PopularArticles";
+import { ArticlesPage } from "@/components/ArticlesPage";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { Col, Container, Row } from "react-bootstrap";
+import { Title } from "@/components/Title";
 import { Main } from "@/components/Main";
+import { useRouter } from "next/router";
 
 type CategoryProps = {
   header: Singleton<HeaderSingleton>;
@@ -33,9 +33,7 @@ const Category = ({ header, hero, footer }: CategoryProps) => {
   // TODO! TITLE - ALSO, GET CATEGORY NAME FROM STARLIGHT, UPPERCASE FUNCTION WONT BE NEEDED
   return (
     <>
-      <Head>
-        <title>Blog Template</title>
-      </Head>
+      <Title>Category Title</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">

@@ -17,7 +17,7 @@ type HeroProps = {
 export const Hero = ({ singleton }: HeroProps) => {
   return (
     <div className="bg-brand-primary-50">
-      <Container className="px-4 py-7 d-flex flex-column gap-3">
+      <Container className="d-flex flex-column gap-3 px-4 pt-7 pb-5 pb-md-6">
         <p className="text-brand-secondary-400 fw-bold fs-6 mb-0">
           Featured Article
         </p>

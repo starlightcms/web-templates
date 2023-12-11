@@ -11,10 +11,10 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { Col, Container, Row } from "react-bootstrap";
 import { useEffect, useMemo, useState } from "react";
 import { Layout } from "@/components/Layout";
+import { Title } from "@/components/Title";
 import styles from "./styles.module.scss";
 import { Main } from "@/components/Main";
 import { useRouter } from "next/router";
-import Head from "next/head";
 import clsx from "clsx";
 
 type ArticleProps = {
@@ -89,16 +89,10 @@ const Article = ({ header, hero, footer }: ArticleProps) => {
     [currentURL, placeholderIcon],
   );
 
-  // TODO!!!!!! FIX BUTTONS ON MOBILE
-  // TODO!!!!! FIX TEXT ON MOBILE
-  // TODO!!!!!! " - WEB TEMPLATES" ON TITLE - SUFFIX! - ALSO, FIX ALL PAGE TITLES
-
-  // TODO! TITLE?
+  // TODO! GET POST TITLE FROM STARLIGHT
   return (
     <>
-      <Head>
-        <title>Blog Template</title>
-      </Head>
+      <Title>Post Title</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4">
@@ -113,7 +107,7 @@ const Article = ({ header, hero, footer }: ArticleProps) => {
               By John Doe • November 12th, 2023 at 2:50 PM
             </p>
 
-            <div className="d-flex gap-4 mb-5">
+            <div className="d-flex gap-3 mb-5 gap-md-4 flex-wrap">
               <div
                 className={clsx(
                   "bg-brand-secondary-200 rounded-5",

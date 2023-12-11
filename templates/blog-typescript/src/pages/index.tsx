@@ -10,8 +10,9 @@ import { ArticlesPage } from "@/components/ArticlesPage";
 import { Layout } from "@/components/Layout";
 import { Signup } from "@/components/Signup";
 import { Col, Row } from "react-bootstrap";
+import { Title } from "@/components/Title";
+import { Main } from "@/components/Main";
 import { Hero } from "@/components/Hero";
-import Head from "next/head";
 import {
   HeaderSingleton,
   HeroSingleton,
@@ -22,7 +23,6 @@ import {
   FAQSingleton,
   SignupSingleton,
 } from "@/starlight";
-import { Main } from "@/components/Main";
 
 // TODO! REMOVE UNUSED TYPES...
 type HomeProps = {
@@ -42,9 +42,7 @@ const Home = ({ header, hero, signup, footer }: HomeProps) => {
   // TODO! MD VS LG! CHECK ALL SPOTS...
   return (
     <>
-      <Head>
-        <title>Blog Template</title>
-      </Head>
+      <Title>Início</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <Hero singleton={hero} />
         <Main>

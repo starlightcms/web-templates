@@ -10,7 +10,7 @@ type LayoutProps = {
  * Container component.
  */
 export const Main = ({ children }: LayoutProps) => (
-  <Container as="main" className="d-flex flex-column gap-7 py-5 py-lg-6">
+  <Container as="main" className="d-flex flex-column gap-7 py-5 py-md-6">
     {children}
   </Container>
 );
