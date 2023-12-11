@@ -60,7 +60,10 @@ export default function PageSelector({
 
   return (
     <Pagination
-      className={clsx("fw-semibold mb-0 gap-5 gap-md-2", styles.pagination)}
+      className={clsx(
+        "d-flex justify-content-between fw-semibold mb-0 gap-5 gap-md-2 justify-content-md-start",
+        styles.pagination,
+      )}
     >
       <Pagination.Prev
         disabled={currentPage === 1}
@@ -76,7 +79,7 @@ export default function PageSelector({
       <div className="d-none d-md-flex gap-2">
         {showLeftDots && (
           <>
-            <Pagination.Item>1</Pagination.Item>
+            <Pagination.Item href={getPageLink(1)}>1</Pagination.Item>
             <Pagination.Ellipsis disabled />
           </>
         )}
@@ -94,7 +97,9 @@ export default function PageSelector({
         {showRightDots && (
           <>
             <Pagination.Ellipsis disabled />
-            <Pagination.Item>{lastPage}</Pagination.Item>
+            <Pagination.Item href={getPageLink(lastPage)}>
+              {lastPage}
+            </Pagination.Item>
           </>
         )}
       </div>

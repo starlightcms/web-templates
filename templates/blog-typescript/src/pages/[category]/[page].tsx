@@ -10,9 +10,9 @@ import { ArticlesPage } from "@/components/ArticlesPage";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Col, Container, Row } from "react-bootstrap";
 import { Layout } from "@/components/Layout";
+import { Title } from "@/components/Title";
 import { Main } from "@/components/Main";
 import { useRouter } from "next/router";
-import Head from "next/head";
 
 type CategoryPageProps = {
   header: Singleton<HeaderSingleton>;
@@ -31,12 +31,10 @@ const CategoryPage = ({ header, hero, footer }: CategoryPageProps) => {
     );
   };
 
-  // TODO! TITLE - ALSO, GET CATEGORY NAME FROM STARLIGHT, UPPERCASE FUNCTION WONT BE NEEDED
+  // TODO! TITLE - GET CATEGORY NAME FROM STARLIGHT, UPPERCASE FUNCTION WONT BE NEEDED
   return (
     <>
-      <Head>
-        <title>Blog Template</title>
-      </Head>
+      <Title>{`Category Title, página ${page}`}</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">

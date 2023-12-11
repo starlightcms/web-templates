@@ -1,14 +1,18 @@
 import { Singleton } from "@starlightcms/next-sdk";
 import { FooterSingleton } from "@/starlight";
 import { Container } from "react-bootstrap";
+import styles from "./styles.module.scss";
 import logo from "./assets/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
 // TODO! SINGLETON - OBLIGATORY!
 type FooterProps = {
   singleton?: Singleton<FooterSingleton>;
 };
+
+// TODO! MODIFICAR COMPONENTE NO LANDING PAGE...
 
 // TODO! LINKS, IMAGENS, TEXTOS DO STARLIGHT
 
@@ -49,8 +53,8 @@ export default function Footer({ singleton }: FooterProps) {
 
   return (
     <footer className="bg-brand-primary-50 border-top border-brand-100 text-brand-primary-700">
-      <Container className="d-flex flex-column gap-4 flex-md-row justify-content-md-between p-5">
-        <div className="d-flex flex-column gap-4 justify-content-lg-between">
+      <Container className="d-flex flex-column gap-4 flex-md-row justify-content-md-between pt-5 px-5">
+        <div className="d-flex flex-column gap-4 justify-content-md-between">
           <Link href="/">
             {/*<Image*/}
             {/*  media={singleton.data.website_logo}*/}
@@ -65,7 +69,7 @@ export default function Footer({ singleton }: FooterProps) {
           </Link>
           <span>
             {/*© {singleton.data.year} <b>{singleton.data.company_name}</b>*/}
-            © 2023 <b>Your Company</b>
+            <b>© 2023 Your Company</b>
           </span>
         </div>
         <nav>
@@ -91,16 +95,18 @@ export default function Footer({ singleton }: FooterProps) {
           </ul>
         </nav>
       </Container>
-      <div className="d-flex flex-row justify-content-center align-items-center w-100 pt-2 pb-6">
+      <div className="d-flex flex-column justify-content-center align-items-center flex-md-row w-100 py-6 gap-3">
         <span className="d-flex align-items-center gap-1">
           {/*{singleton.data.developed_by} <b>{singleton.data.company_name}</b>*/}
           Developed by <b>Your Company</b>
         </span>
-        <div className="vr mx-3 bg-brand-200" />
-        <span className="me-2">Powered by</span>
-        <a href="https://starlight.sh" target="_blank">
-          <Image src={logo} alt={"burger"} />
-        </a>
+        <div className={clsx("bg-brand-primary-100", styles.divider)} />
+        <div>
+          <span className="me-2">Powered by</span>
+          <a href="https://starlight.sh" target="_blank">
+            <Image src={logo} alt={"burger"} />
+          </a>
+        </div>
       </div>
     </footer>
   );
