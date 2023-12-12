@@ -41,22 +41,29 @@ export const Signup = ({ singleton }: SignupProps) => {
 
   // TODO! OPACITY TRANSITION
   return (
-    <Row className="bg-brand-secondary-100 text-center text-gray-100 mx-0 rounded-4 overflow-hidden d-md-flex flex-md-row">
+    <Row className="d-flex bg-brand-secondary-100 text-center text-gray-100 mx-0 rounded-4 overflow-hidden">
       <Col
-        className="p-0 overflow-hidden"
+        className="d-flex p-0 overflow-hidden justify-content-center align-items-center"
         sm={12}
         lg={6}
-        style={{
-          // backgroundImage: `url(${getMediaFile(singleton.data.image).path})`,
-          backgroundImage: `url(https://cards.scryfall.io/art_crop/front/4/2/42232ea6-e31d-46a6-9f94-b2ad2416d79b.jpg?1565989372)`,
-          backgroundSize: "cover",
-        }}
       >
         {/*<Image*/}
         {/*  media={singleton.data.image}*/}
         {/*  alt="TODO"*/}
         {/*  className="h-100 w-auto object-fit-fill"*/}
         {/*/>*/}
+        <div
+          className="d-flex flex-shrink-0 h-100 w-100 align-items-center justify-content-center position-relative"
+          style={{ minHeight: "20rem" }}
+        >
+          <img
+            className="position-absolute w-100 h-100 object-fit-cover rounded-2"
+            alt="test"
+            src="https://cards.scryfall.io/art_crop/front/4/2/42232ea6-e31d-46a6-9f94-b2ad2416d79b.jpg?1565989372"
+            // src="https://www.mtgnexus.com/img/gallery/6473-invasion-of-mercadia.jpg"
+            // src="https://cards.scryfall.io/art_crop/front/4/0/407d6723-bf58-403e-b2ac-ba52c51d356f.jpg?1682715363"
+          />
+        </div>
       </Col>
       <Col
         className="d-flex flex-column justify-content-center align-items-center px-4 py-6 px-md-4"
