@@ -41,7 +41,10 @@ export const Signup = ({ singleton }: SignupProps) => {
 
   // TODO! OPACITY TRANSITION
   return (
-    <Row className="d-flex bg-brand-secondary-100 text-center text-gray-100 mx-0 rounded-4 overflow-hidden">
+    <Row
+      className="d-flex bg-brand-secondary-100 text-center text-gray-100 mx-0 rounded-4 overflow-hidden"
+      id="newsletter"
+    >
       <Col
         className="d-flex p-0 overflow-hidden justify-content-center align-items-center"
         sm={12}
