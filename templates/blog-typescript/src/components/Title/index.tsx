@@ -11,6 +11,6 @@ type TitleProps = {
  */
 export const Title = ({ children }: TitleProps) => (
   <Head>
-    <title>{children} — Web Templates</title>
+    <title>{`${children} — Web Templates`}</title>
   </Head>
 );
