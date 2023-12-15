@@ -1,4 +1,4 @@
-import { Singleton } from "@starlightcms/next-sdk";
+import { Singleton, Image as SLImage } from "@starlightcms/next-sdk";
 import { FooterSingleton } from "@/starlight";
 import { Container } from "react-bootstrap";
 import styles from "./styles.module.scss";
@@ -7,14 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 
-// TODO! SINGLETON - OBLIGATORY!
 type FooterProps = {
-  singleton?: Singleton<FooterSingleton>;
+  singleton: Singleton<FooterSingleton>;
 };
 
-// TODO! MODIFICAR COMPONENTE NO LANDING PAGE...
-
-// TODO! LINKS, IMAGENS, TEXTOS DO STARLIGHT
+// TODO! MODIFICAR COMPONENTE NO LANDING PAGE! VER ESTILOS!
 
 /**
  * Renders a footer with the website logo, a set columns with navigation
@@ -22,33 +19,33 @@ type FooterProps = {
  */
 export default function Footer({ singleton }: FooterProps) {
   const firstListItems = [
-    { href: "https://google.com/", label: "Tech" },
-    { href: "https://google.com/", label: "Science" },
-    { href: "https://google.com/", label: "Entertainment" },
+    { href: "/tech", label: singleton.data.tech },
+    { href: "/science", label: singleton.data.science },
+    { href: "/entertainment", label: singleton.data.entertainment },
   ];
 
   const secondListItems = [
-    { href: "https://www.starlight.sh/", label: "Website" },
-    { href: "https://www.starlight.sh/#intro", label: "Features" },
+    { href: "https://www.starlight.sh/", label: singleton.data.website },
+    { href: "https://www.starlight.sh/#intro", label: singleton.data.features },
     {
       href: "https://knowledge.starlight.sh/",
-      label: "Knowledge Center",
+      label: singleton.data.knowledge_center,
     },
   ];
 
   const thirdListItems = [
     {
       href: "https://knowledge.starlight.sh/guia/desenvolvimento/",
-      label: "Development Guide",
+      label: singleton.data.development_guide,
     },
-    { href: "https://react.sdk.starlight.sh/", label: "SDK Docs" },
+    { href: "https://react.sdk.starlight.sh/", label: singleton.data.sdk_docs },
   ];
 
   // TODO! DO THIS ON LANDING PAGE TEMPLATE
   const lists = [
-    { name: "Categories", items: firstListItems },
-    { name: "Starlight", items: secondListItems },
-    { name: "Documentation", items: thirdListItems },
+    { name: singleton.data.categories, items: firstListItems },
+    { name: singleton.data.starlight, items: secondListItems },
+    { name: singleton.data.documentation, items: thirdListItems },
   ];
 
   return (
@@ -56,18 +53,15 @@ export default function Footer({ singleton }: FooterProps) {
       <Container className="d-flex flex-column gap-4 flex-md-row justify-content-md-between pt-5 px-5">
         <div className="d-flex flex-column gap-4 justify-content-md-between">
           <Link href="/">
-            {/*<Image*/}
-            {/*  media={singleton.data.website_logo}*/}
-            {/*  alt="Web Templates Logo"*/}
-            {/*  width={195}*/}
-            {/*  height={30}*/}
-            {/*/>*/}
-            <div
-              style={{ height: "30px", width: "195px" }}
-              className="bg-brand-secondary-900 rounded-1"
+            <SLImage
+              media={singleton.data.logo}
+              alt="Web Templates Logo"
+              width={195}
+              height={30}
             />
           </Link>
           <span>
+            {/* // TODO! REPLACE THIS TEXT... */}
             {/*© {singleton.data.year} <b>{singleton.data.company_name}</b>*/}
             <b>© 2023 Your Company</b>
           </span>
@@ -96,13 +90,13 @@ export default function Footer({ singleton }: FooterProps) {
         </nav>
       </Container>
       <div className="d-flex flex-column justify-content-center align-items-center flex-md-row w-100 py-6 gap-3">
+        {/* // TODO! REPLACE YOUR COMPANY */}
         <span className="d-flex align-items-center gap-1">
-          {/*{singleton.data.developed_by} <b>{singleton.data.company_name}</b>*/}
-          Developed by <b>Your Company</b>
+          Desenvolvido por <b>Your Company</b>
         </span>
         <div className={clsx("bg-brand-primary-100", styles.divider)} />
         <div>
-          <span className="me-2">Powered by</span>
+          <span className="me-2">Feito com</span>
           <a href="https://starlight.sh" target="_blank">
             <Image src={logo} alt={"burger"} />
           </a>

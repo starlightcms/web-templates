@@ -4,7 +4,7 @@ import Starlight, {
   Singleton,
   StarlightError,
 } from "@starlightcms/next-sdk";
-import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
+import { HeaderSingleton, FooterSingleton } from "@/starlight";
 import { FeaturedContent } from "@/components/FeaturedContent";
 import { PopularArticles } from "@/components/PopularArticles";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -19,13 +19,12 @@ import clsx from "clsx";
 
 type ArticleProps = {
   header: Singleton<HeaderSingleton>;
-  hero: Singleton<HeroSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
 // TODO! DESCRIPTION
 
-const Article = ({ header, hero, footer }: ArticleProps) => {
+const Article = ({ header, footer }: ArticleProps) => {
   const { asPath } = useRouter();
 
   const [currentURL, setCurrentURL] = useState("");
@@ -185,15 +184,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    const heroPromise = Starlight.singletons.get<HeroSingleton>("hero");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, hero, footer] = await Promise.all([
-      headerPromise,
-      heroPromise,
-      footerPromise,
-    ]);
+    const [header, footer] = await Promise.all([headerPromise, footerPromise]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -203,7 +197,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
-        hero: hero.data,
         footer: footer.data,
       },
       revalidate: 15,

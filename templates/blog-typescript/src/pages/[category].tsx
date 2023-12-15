@@ -5,7 +5,7 @@ import Starlight, {
   StarlightError,
 } from "@starlightcms/next-sdk";
 import { Layout } from "@/components/Layout";
-import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
+import { HeaderSingleton, FooterSingleton } from "@/starlight";
 import { PopularArticles } from "@/components/PopularArticles";
 import { ArticlesPage } from "@/components/ArticlesPage";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -16,11 +16,10 @@ import { useRouter } from "next/router";
 
 type CategoryProps = {
   header: Singleton<HeaderSingleton>;
-  hero: Singleton<HeroSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
-const Category = ({ header, hero, footer }: CategoryProps) => {
+const Category = ({ header, footer }: CategoryProps) => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -102,15 +101,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    const heroPromise = Starlight.singletons.get<HeroSingleton>("hero");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, hero, footer] = await Promise.all([
-      headerPromise,
-      heroPromise,
-      footerPromise,
-    ]);
+    const [header, footer] = await Promise.all([headerPromise, footerPromise]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -120,7 +114,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
-        hero: hero.data,
         footer: footer.data,
       },
       revalidate: 15,

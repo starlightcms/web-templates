@@ -4,7 +4,7 @@ import Starlight, {
   Singleton,
   StarlightError,
 } from "@starlightcms/next-sdk";
-import { HeaderSingleton, HeroSingleton, FooterSingleton } from "@/starlight";
+import { HeaderSingleton, FooterSingleton } from "@/starlight";
 import { Layout } from "@/components/Layout";
 import { Container } from "react-bootstrap";
 import { Title } from "@/components/Title";
@@ -13,12 +13,11 @@ import { GetStaticProps } from "next";
 
 type AboutProps = {
   header: Singleton<HeaderSingleton>;
-  hero: Singleton<HeroSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
 // TODO! DESCRIPTION
-const About = ({ header, hero, footer }: AboutProps) => {
+const About = ({ header, footer }: AboutProps) => {
   // TODO! TITLE, ALSO IS RETURN NEEDED?
   return (
     <>
@@ -56,15 +55,10 @@ const About = ({ header, hero, footer }: AboutProps) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    const heroPromise = Starlight.singletons.get<HeroSingleton>("hero");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, hero, footer] = await Promise.all([
-      headerPromise,
-      heroPromise,
-      footerPromise,
-    ]);
+    const [header, footer] = await Promise.all([headerPromise, footerPromise]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -74,7 +68,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
-        hero: hero.data,
         footer: footer.data,
       },
       revalidate: 15,
