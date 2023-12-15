@@ -15,36 +15,37 @@ import { Main } from "@/components/Main";
 import { Hero } from "@/components/Hero";
 import {
   HeaderSingleton,
-  HeroSingleton,
   ClientsSingleton,
   FeaturesRightSingleton,
   FooterSingleton,
   FAQItem,
   FAQSingleton,
   SignupSingleton,
+  Post,
 } from "@/starlight";
 
-// TODO! REMOVE UNUSED TYPES...
+// TODO! REMOVE UNUSED TYPES FROM TYPES FILE!
 type HomeProps = {
   header: Singleton<HeaderSingleton>;
-  hero: Singleton<HeroSingleton>;
-  clients: Singleton<ClientsSingleton>;
-  clientCollection: MediaObject[];
-  featuresRight: Singleton<FeaturesRightSingleton>;
-  faq: Singleton<FAQSingleton>;
-  faqCollection: Entry<FAQItem>[];
-  signup: Singleton<SignupSingleton>;
+  featured: Entry<Post>[];
+  // clients: Singleton<ClientsSingleton>;
+  // clientCollection: MediaObject[];
+  // featuresRight: Singleton<FeaturesRightSingleton>;
+  // faq: Singleton<FAQSingleton>;
+  // faqCollection: Entry<FAQItem>[];
+  // signup: Singleton<SignupSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
-const Home = ({ header, hero, signup, footer }: HomeProps) => {
-  // TODO! HEADER FIXES?
+const Home = ({ header, featured, footer }: HomeProps) => {
+  console.log(featured);
+
   // TODO! MD VS LG! CHECK ALL SPOTS...
   return (
     <>
       <Title>Início</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
-        <Hero singleton={hero} />
+        <Hero entry={featured[0]} />
         <Main>
           <Row className="gx-6 gy-6 d-flex flex-column-reverse flex-md-row">
             <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
@@ -61,7 +62,7 @@ const Home = ({ header, hero, signup, footer }: HomeProps) => {
               <PopularArticles label="Most Popular" />
             </Col>
           </Row>
-          <Signup singleton={signup} />
+          <Signup />
         </Main>
       </Layout>
     </>
@@ -76,30 +77,21 @@ export const getStaticProps = async () => {
   // TODO! REMOVE UNUSED REQUESTS
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    const heroPromise = Starlight.singletons.get<HeroSingleton>("hero");
-    const featuresRightPromise =
-      Starlight.singletons.get<FeaturesRightSingleton>("features-right");
-    const faqPromise = Starlight.singletons.get<FAQSingleton>("faq");
-    const signupPromise = Starlight.singletons.get<SignupSingleton>("signup");
+    const featuredPromise = Starlight.collection<Entry<Post>>("featured").items(
+      { order: "published_at:desc" },
+    );
+    // const signupPromise = Starlight.singletons.get<SignupSingleton>("signup");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, hero, featuresRight, faq, signup, footer] =
-      await Promise.all([
-        headerPromise,
-        heroPromise,
-        featuresRightPromise,
-        faqPromise,
-        signupPromise,
-        footerPromise,
-      ]);
-
-    // Since we only get the collection ids and metadata, we have to request the collections themselves
-    const faqCollectionPromise = Starlight.collection(
-      faq.data.data.faq_items.id,
-    ).items();
-
-    const [faqCollection] = await Promise.all([faqCollectionPromise]);
+    const [header, featured, footer] = await Promise.all([
+      headerPromise,
+      featuredPromise,
+      // featuresRightPromise,
+      // faqPromise,
+      // signupPromise,
+      footerPromise,
+    ]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -109,11 +101,11 @@ export const getStaticProps = async () => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
-        hero: hero.data,
-        featuresRight: featuresRight.data,
-        faq: faq.data,
-        faqCollection: faqCollection.data,
-        signup: signup.data,
+        featured: featured.data,
+        // featuresRight: featuresRight.data,
+        // faq: faq.data,
+        // faqCollection: faqCollection.data,
+        // signup: signup.data,
         footer: footer.data,
       },
       revalidate: 15,

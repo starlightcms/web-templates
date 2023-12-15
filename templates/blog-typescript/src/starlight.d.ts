@@ -13,18 +13,18 @@ import {
 // TODO! ALL THE TYPES
 type HeaderSingleton = {
   logo: MediaField;
-  button_label: StringField;
-  link_1_label: StringField;
-  link_2_label: StringField;
-  link_3_label: StringField;
+  tech: StringField;
+  science: StringField;
+  entertainment: StringField;
+  categories: StringField;
+  newsletter: StringField;
 };
 
-type HeroSingleton = {
+type Post = {
   title: StringField;
-  description: TextField;
-  main_button_label: TextField;
-  second_button_label: TextField;
   image: MediaField;
+  description: StringField;
+  content: VisualField;
 };
 
 type ClientsSingleton = {
@@ -40,39 +40,6 @@ type FeaturesRightSingleton = {
   card_1_text: TextField;
   card_2_icon: MediaField;
   card_2_text: TextField;
-};
-
-type FeatureCardsSingleton = {
-  card_1_icon: MediaField;
-  card_1_title: StringField;
-  card_1_text: TextField;
-  card_1_button: StringField;
-  card_2_icon: MediaField;
-  card_2_title: StringField;
-  card_2_text: TextField;
-  card_2_button: StringField;
-  card_3_icon: MediaField;
-  card_3_title: StringField;
-  card_3_text: TextField;
-  card_3_button: StringField;
-};
-
-type FeaturesLeftSingleton = {
-  title: StringField;
-  description: TextField;
-  image: MediaField;
-  card_1_title: StringField;
-  card_1_text: TextField;
-  card_1_button: StringField;
-  card_2_title: StringField;
-  card_2_text: TextField;
-  card_2_button: StringField;
-};
-
-type PricingSingleton = {
-  title: StringField;
-  sign_up: StringField;
-  plans: RelationField<Collection<Entry<Plan>>>;
 };
 
 type Plan = {
@@ -117,11 +84,12 @@ type SignupSingleton = {
 };
 
 type FooterSingleton = {
-  website_logo: MediaField;
-  year: StringField;
-  company_name: StringField;
-  developed_by: StringField;
-  starlight_logo: MediaField;
+  logo: MediaField;
+  categories: StringField;
+  tech: StringField;
+  science: StringField;
+  entertainment: StringField;
+  starlight: StringField;
   website: StringField;
   features: StringField;
   knowledge_center: StringField;

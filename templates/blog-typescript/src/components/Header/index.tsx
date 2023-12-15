@@ -7,9 +7,8 @@ import search from "./assets/search.svg";
 import Image from "next/image";
 import Link from "next/link";
 
-// TODO! SINGLETON - OBLIGATORY!
 type HeaderProps = {
-  singleton?: Singleton<HeaderSingleton>;
+  singleton: Singleton<HeaderSingleton>;
   setIsSearchOpen: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -21,27 +20,23 @@ type HeaderProps = {
 export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
   // TODO! DO THIS ON LANDING PAGE
   const links = [
-    { label: "Tech", href: "/tech" },
-    { label: "Science", href: "/science" },
-    { label: "Entertainment", href: "/entertainment" },
-    { label: "Categories", href: "#" },
+    { label: singleton.data.tech, href: "/tech" },
+    { label: singleton.data.science, href: "/science" },
+    { label: singleton.data.entertainment, href: "/entertainment" },
+    { label: singleton.data.categories, href: "#" },
   ];
 
   return (
     <Navbar expand="lg" fixed="top" bg="brand-primary-50 z-1">
       <Container>
         <Navbar.Brand>
-          {/*<SLImage*/}
-          {/*  media={singleton.data.logo}*/}
-          {/*  alt="Web Templates Logo"*/}
-          {/*  width={195}*/}
-          {/*  height={30}*/}
-          {/*  priority*/}
-          {/*/>*/}
           <Link href="/">
-            <div
-              style={{ height: "30px", width: "195px" }}
-              className="bg-brand-secondary-900 rounded-1"
+            <SLImage
+              media={singleton.data.logo}
+              alt="Web Templates Logo"
+              width={195}
+              height={30}
+              priority
             />
           </Link>
         </Navbar.Brand>
@@ -50,7 +45,6 @@ export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
         </Navbar.Toggle>
         <Navbar.Collapse>
           <Nav className="ms-auto grid gap-0 column-gap-4">
-            {/*<Nav.Link href="#">{singleton.data.link_1_label}</Nav.Link>*/}
             {links.map((link) => (
               <Nav.Link
                 href={link.href}
@@ -62,7 +56,7 @@ export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
             ))}
             <Link href={"/#newsletter"}>
               <Button className="bg-brand-secondary-500 border-brand-secondary-500 fw-bold lh-4">
-                Newsletter
+                {singleton.data.newsletter}
               </Button>
             </Link>
             <Button
