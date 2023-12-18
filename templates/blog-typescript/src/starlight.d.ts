@@ -10,7 +10,7 @@ import {
   MediaObject,
 } from "@starlightcms/next-sdk";
 
-// TODO! ALL THE TYPES
+// TODO! REVIEW ALL THE TYPES
 type HeaderSingleton = {
   logo: MediaField;
   tech: StringField;
@@ -20,16 +20,16 @@ type HeaderSingleton = {
   newsletter: StringField;
 };
 
-type Post = {
+type AboutSingleton = {
+  description: StringField;
+  text: VisualField;
+};
+
+type Article = {
   title: StringField;
   image: MediaField;
   description: StringField;
   content: VisualField;
-};
-
-type ClientsSingleton = {
-  label: TextField;
-  client_logos: RelationField<Collection<MediaObject>>;
 };
 
 type FeaturesRightSingleton = {
@@ -42,14 +42,6 @@ type FeaturesRightSingleton = {
   card_2_text: TextField;
 };
 
-type Plan = {
-  title: StringField;
-  slug: StringField;
-  description: TextField;
-  most_popular: BooleanField;
-  plan_items: VisualField;
-};
-
 type FAQSingleton = {
   title: StringField;
   faq_items: RelationField<Collection<Entry<FAQItem>>>;
@@ -59,28 +51,6 @@ type FAQItem = {
   question: StringField;
   answer: TextField;
   slug: StringField;
-};
-
-type TestimonialsSingleton = {
-  title: StringField;
-  testimonials: RelationField<Collection<Entry<Testimonial>>>;
-};
-
-type Testimonial = {
-  description: TextField;
-  icon: MediaField;
-  name: StringField;
-  company: StringField;
-  slug: StringField;
-};
-
-type SignupSingleton = {
-  image: MediaField;
-  title: StringField;
-  description: TextField;
-  email_placeholder: TextField;
-  button_label: StringField;
-  footnote: TextField;
 };
 
 type FooterSingleton = {
@@ -100,6 +70,6 @@ type FooterSingleton = {
 
 declare module "@starlightcms/react-sdk" {
   export interface DefaultModelDefinition {
-    posts: Post;
+    articles: Article;
   }
 }

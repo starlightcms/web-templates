@@ -1,8 +1,8 @@
 import Starlight, {
   Entry,
-  MediaObject,
   Singleton,
   StarlightError,
+  StarlightListResponse,
 } from "@starlightcms/next-sdk";
 import { PopularArticles } from "@/components/PopularArticles";
 import { FeaturedContent } from "@/components/FeaturedContent";
@@ -13,83 +13,72 @@ import { Col, Row } from "react-bootstrap";
 import { Title } from "@/components/Title";
 import { Main } from "@/components/Main";
 import { Hero } from "@/components/Hero";
-import {
-  HeaderSingleton,
-  ClientsSingleton,
-  FeaturesRightSingleton,
-  FooterSingleton,
-  FAQItem,
-  FAQSingleton,
-  SignupSingleton,
-  Post,
-} from "@/starlight";
+import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
+import { GetStaticProps } from "next";
 
 // TODO! REMOVE UNUSED TYPES FROM TYPES FILE!
 type HomeProps = {
   header: Singleton<HeaderSingleton>;
-  featured: Entry<Post>[];
-  // clients: Singleton<ClientsSingleton>;
-  // clientCollection: MediaObject[];
-  // featuresRight: Singleton<FeaturesRightSingleton>;
-  // faq: Singleton<FAQSingleton>;
-  // faqCollection: Entry<FAQItem>[];
-  // signup: Singleton<SignupSingleton>;
+  articles: StarlightListResponse<Entry<Article>>;
+  featured: Entry<Article>[];
+  popular: Entry<Article>[];
   footer: Singleton<FooterSingleton>;
 };
 
-const Home = ({ header, featured, footer }: HomeProps) => {
-  console.log(featured);
-
-  // TODO! MD VS LG! CHECK ALL SPOTS...
-  return (
-    <>
-      <Title>Início</Title>
-      <Layout headerSingleton={header} footerSingleton={footer}>
-        <Hero entry={featured[0]} />
-        <Main>
-          <Row className="gx-6 gy-6 d-flex flex-column-reverse flex-md-row">
-            <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
-              <FeaturedContent label="More Featured Content" />
-              {/* //TODO! GET LASTPAGE OF ALL! */}
-              <ArticlesPage
-                label="Latest Articles"
-                category={"page"}
-                currentPage={1}
-                lastPage={10}
-              />
-            </Col>
-            <Col sm={12} lg={4}>
-              <PopularArticles label="Most Popular" />
-            </Col>
-          </Row>
-          <Signup />
-        </Main>
-      </Layout>
-    </>
-  );
-};
+const Home = ({ header, articles, featured, popular, footer }: HomeProps) => (
+  <>
+    <Title>Início</Title>
+    <Layout headerSingleton={header} footerSingleton={footer}>
+      <Hero entry={featured[0]} />
+      <Main>
+        <Row className="gx-6 gy-6 d-flex flex-column-reverse flex-md-row">
+          <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
+            <FeaturedContent
+              label="Mais Destaques"
+              articles={featured.slice(1)}
+            />
+            <ArticlesPage
+              label="Artigos Mais Recentes"
+              articleList={articles}
+              category={"page"}
+            />
+          </Col>
+          <Col sm={12} lg={4}>
+            <PopularArticles label="Mais Populares" articles={popular} />
+          </Col>
+        </Row>
+        <Signup />
+      </Main>
+    </Layout>
+  </>
+);
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the section singletons in the configured workspace.
 // In case you're wondering, the reason we request this on the page rather than in
 // the individual sections is because it won't run on components, just on pages.
-export const getStaticProps = async () => {
-  // TODO! REMOVE UNUSED REQUESTS
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    const featuredPromise = Starlight.collection<Entry<Post>>("featured").items(
-      { order: "published_at:desc" },
-    );
-    // const signupPromise = Starlight.singletons.get<SignupSingleton>("signup");
+    const articlesPromise = Starlight.articles.entries.list({
+      page: 1,
+      limit: 3,
+    });
+    const featuredPromise = Starlight.collection<Entry<Article>>(
+      "featured",
+    ).items({ order: "published_at:desc" });
+    const popularPromise = Starlight.articles.entries.list({
+      order: "views:desc",
+      limit: 5,
+    });
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, featured, footer] = await Promise.all([
+    const [header, articles, featured, popular, footer] = await Promise.all([
       headerPromise,
+      articlesPromise,
       featuredPromise,
-      // featuresRightPromise,
-      // faqPromise,
-      // signupPromise,
+      popularPromise,
       footerPromise,
     ]);
 
@@ -101,11 +90,9 @@ export const getStaticProps = async () => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
+        articles: articles,
         featured: featured.data,
-        // featuresRight: featuresRight.data,
-        // faq: faq.data,
-        // faqCollection: faqCollection.data,
-        // signup: signup.data,
+        popular: popular.data,
         footer: footer.data,
       },
       revalidate: 15,

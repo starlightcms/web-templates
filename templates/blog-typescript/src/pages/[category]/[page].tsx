@@ -1,10 +1,11 @@
 import Starlight, {
   Entry,
-  MediaObject,
+  ModelCategory,
   Singleton,
   StarlightError,
+  StarlightListResponse,
 } from "@starlightcms/next-sdk";
-import { HeaderSingleton, FooterSingleton } from "@/starlight";
+import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
 import { PopularArticles } from "@/components/PopularArticles";
 import { ArticlesPage } from "@/components/ArticlesPage";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -16,54 +17,60 @@ import { useRouter } from "next/router";
 
 type CategoryPageProps = {
   header: Singleton<HeaderSingleton>;
+  articles: StarlightListResponse<Entry<Article>>;
+  category: ModelCategory;
+  popular: Entry<Article>[];
   footer: Singleton<FooterSingleton>;
 };
 
 // TODO! DESCRIPTION
-const CategoryPage = ({ header, footer }: CategoryPageProps) => {
+const CategoryPage = ({
+  header,
+  articles,
+  category,
+  popular,
+  footer,
+}: CategoryPageProps) => {
   const router = useRouter();
-  const { category, page } = router.query;
+  const { category: routerCategory, page } = router.query;
 
-  const getUppercaseCategory = (category: string) => {
-    return (
-      category.charAt(0).toUpperCase() + category.slice(1).replaceAll("-", " ")
-    );
-  };
-
-  // TODO! TITLE - GET CATEGORY NAME FROM STARLIGHT, UPPERCASE FUNCTION WONT BE NEEDED
+  // TODO! POPULAR ONLY FROM CATEGORY? - NO! IMPLEMENT ASAP
   return (
     <>
-      <Title>{`Category Title, página ${page}`}</Title>
+      <Title>{`${category.title}, página ${page}`}</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
-            {category !== "page" ? (
+            {routerCategory !== "page" ? (
               <>
                 <div className="d-flex flex-column gap-2">
                   <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
-                    Category
+                    Categoria
                   </p>
                   <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
-                    {getUppercaseCategory(category as string)}
+                    {category.title}
                   </h1>
-                  <span className="m-0 text-brand-primary-700 fs-5 lh-1">
-                    Quis autem vel eum iure reprehenderit qui in ea voluptate
-                    velit esse quam nihil molestiae consequatu.
-                  </span>
+                  {/*<span className="m-0 text-brand-primary-700 fs-5 lh-1">*/}
+                  {/*  Quis autem vel eum iure reprehenderit qui in ea voluptate*/}
+                  {/*  velit esse quam nihil molestiae consequatu.*/}
+                  {/*</span>*/}
                 </div>
                 <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
                   <p className="m-0 text-brand-secondary-800 fw-bold">
-                    800 articles
+                    {`${category.entry_count} artigo${
+                      category.entry_count !== 1 ? "s" : ""
+                    }`}
                   </p>
                 </div>
               </>
             ) : (
               <>
                 <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
-                  Category
+                  Categoria
+                  {/*  // TODO! PRECISA DISSO? */}
                 </p>
                 <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
-                  Latest Articles
+                  Artigos Mais Recentes
                 </h1>
               </>
             )}
@@ -72,16 +79,14 @@ const CategoryPage = ({ header, footer }: CategoryPageProps) => {
         <Main>
           <Row className="gx-6 gy-6 d-flex flex-row flex-md-row">
             <Col sm={12} lg={8}>
-              {/* // TODO! FIX CATEGORY AND LASTPAGE PROPS... */}
               <ArticlesPage
-                label={`Page ${page as string}`}
-                category={category as string}
-                currentPage={parseInt(page as string)}
-                lastPage={10}
+                label={`Página ${page as string}`}
+                articleList={articles}
+                category={routerCategory as string}
               />
             </Col>
             <Col sm={12} lg={4}>
-              <PopularArticles label="Most Popular" />
+              <PopularArticles label="Mais Populares" articles={popular} />
             </Col>
           </Row>
         </Main>
@@ -104,7 +109,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 // In case you're wondering, the reason we request this on the page rather than in
 // the individual sections is because it won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // TODO! REDIRECT
+  // TODO! CHECK IF REDIRECT WORKS AS INTENDED
   if (
     isNaN(parseInt(params?.page as string)) ||
     parseInt(params?.page as string) === 1
@@ -119,10 +124,33 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
+    // TODO! AUMENTAR LIMIT PRA 8
+    const articlesPromise =
+      params?.category !== "page"
+        ? Starlight.articles
+            .category(params?.category as string)
+            .entries({ page: parseInt(params?.page as string), limit: 3 })
+        : Starlight.articles.entries.list({
+            page: parseInt(params?.page as string),
+            limit: 3,
+          });
+    const categoryPromise = Starlight.articles
+      .category(params?.category as string)
+      .get();
+    const popularPromise = Starlight.articles.entries.list({
+      order: "views:desc",
+      limit: 5,
+    });
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, footer] = await Promise.all([headerPromise, footerPromise]);
+    const [header, articles, category, popular, footer] = await Promise.all([
+      headerPromise,
+      articlesPromise,
+      categoryPromise,
+      popularPromise,
+      footerPromise,
+    ]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -132,6 +160,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
+        articles: articles,
+        category: category.data,
+        popular: popular.data,
         footer: footer.data,
       },
       revalidate: 15,

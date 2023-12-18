@@ -1,17 +1,15 @@
 import PageSelector from "@/components/PageSelector";
+import { Entry, StarlightListResponse } from "@starlightcms/next-sdk";
 import { Row } from "react-bootstrap";
+import { Article } from "@/starlight";
 import Card from "@/components/Card";
 
-// TODO! TYPING OF ARTICLES, ALSO SHOULD NOT BE OPTIONAL
 type ArticlesPageProps = {
   label: string;
-  articles?: any;
+  articleList: StarlightListResponse<Entry<Article>>;
   category: string;
-  currentPage: number;
-  lastPage: number;
 };
 
-// TODO! Starlight texts + image
 /**
  * Renders a page of articles (as Cards) with a small title label and a page
  * selector at the bottom. Requires a label, a list of articles to be
@@ -23,38 +21,9 @@ type ArticlesPageProps = {
  */
 export const ArticlesPage = ({
   label,
-  articles,
+  articleList,
   category,
-  currentPage,
-  lastPage,
 }: ArticlesPageProps) => {
-  const mockLatestArticles = [
-    {
-      title: "How to choose the right customer for your photo business?",
-      description:
-        "Visiting places you’ve never been before might be the next big step in your journey.",
-      label: "Tech",
-      info: "November 12th, 2023 at 2:50 PM",
-    },
-    {
-      title:
-        "How to optimize images in WordPress for faster loading (complete guide)",
-      description:
-        "Visiting places you’ve never been before might be the next big step in your journey.",
-      label: "Entertainment",
-      info: "November 12th, 2023 at 2:50 PM",
-    },
-    {
-      title:
-        "Where to grow your business as a photographer: site or social media?",
-      description:
-        "Visiting places you’ve never been before might be the next big step in your journey.",
-      label: "Science",
-      info: "November 12th, 2023 at 2:50 PM",
-    },
-  ];
-
-  // TODO! ARTICLES MAP
   // TODO! GET PAGE SELECTOR PROPS VIA STARLGIHT
 
   return (
@@ -64,22 +33,17 @@ export const ArticlesPage = ({
           <span>{label}</span>
         </div>
 
-        <Row className="d-flex flex-column gap-6">
-          {mockLatestArticles.map((card) => (
-            <Card
-              key={card.title}
-              title={card.title}
-              description={card.description}
-              label={card.label}
-              info={card.info}
-            />
-          ))}
-        </Row>
+        {/* // TODO! UNCOMMENT */}
+        {/*<Row className="d-flex flex-column gap-6">*/}
+        {/*  {articles.map((article) => (*/}
+        {/*    <Card key={article.slug} article={article} />*/}
+        {/*  ))}*/}
+        {/*</Row>*/}
       </div>
       <PageSelector
         category={category}
-        currentPage={currentPage}
-        lastPage={lastPage}
+        currentPage={articleList.meta.current_page}
+        lastPage={articleList.meta.last_page}
       />
     </div>
   );

@@ -1,11 +1,13 @@
 import { Singleton, Image, getMediaFile } from "@starlightcms/next-sdk";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { SignupSingleton } from "@/starlight";
+// import { SignupSingleton } from "@/starlight";
 import { FormEvent, useState } from "react";
 import clsx from "clsx";
 
+// TODO! PROPS! ALSO CREATE SINGLETON
 type SignupProps = {
-  singleton?: Singleton<SignupSingleton>;
+  // singleton?: Singleton<SignupSingleton>;
+  singleton?: any;
 };
 
 /**
