@@ -3,8 +3,9 @@ import Starlight, {
   MediaObject,
   Singleton,
   StarlightError,
+  VisualContent,
 } from "@starlightcms/next-sdk";
-import { HeaderSingleton, FooterSingleton } from "@/starlight";
+import { HeaderSingleton, FooterSingleton, AboutSingleton } from "@/starlight";
 import { Layout } from "@/components/Layout";
 import { Container } from "react-bootstrap";
 import { Title } from "@/components/Title";
@@ -13,40 +14,36 @@ import { GetStaticProps } from "next";
 
 type AboutProps = {
   header: Singleton<HeaderSingleton>;
+  about: Singleton<AboutSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
 // TODO! DESCRIPTION
-const About = ({ header, footer }: AboutProps) => {
-  // TODO! TITLE, ALSO IS RETURN NEEDED?
-  return (
-    <>
-      <Title>About Singleton Title</Title>
-      <Layout headerSingleton={header} footerSingleton={footer}>
-        <div className="bg-brand-primary-50">
-          <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
-            <div className="d-flex flex-column gap-2">
-              <h1 className="m-0 fw-bold text-brand-primary-600">About Us</h1>
-              <span className="m-0 text-brand-primary-700 fs-5 lh-1">
-                Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-                esse quam nihil molestiae consequatu.
-              </span>
-            </div>
-          </Container>
-        </div>
-        <Main>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-            aliquid assumenda, commodi consectetur dolores ducimus eligendi est
-            fugiat maiores, maxime nesciunt perspiciatis, quam quas rem
-            repellendus vel vero voluptas voluptatum!
-            {/* TODO! PUT A VISUALCONTENT HERE... and that's it. */}
+
+const About = ({ header, about, footer }: AboutProps) => (
+  <>
+    <Title>{about.title}</Title>
+    <Layout headerSingleton={header} footerSingleton={footer}>
+      <div className="bg-brand-primary-50">
+        <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
+          <div className="d-flex flex-column gap-2">
+            <h1 className="m-0 fw-bold text-brand-primary-600">
+              {about.title}
+            </h1>
+            {/*<span className="m-0 text-brand-primary-700 fs-5 lh-1">*/}
+            {/*  /!* // TODO! IS SINGLETON DESCRIPTION NEEDED? *!/*/}
+            {/*  {about.data.description}*/}
+            {/*</span>*/}
           </div>
-        </Main>
-      </Layout>
-    </>
-  );
-};
+        </Container>
+      </div>
+      <Main>
+        {/* // TODO! STYLE PIC CAPTION, style FONT? */}
+        <VisualContent content={about.data.text} />
+      </Main>
+    </Layout>
+  </>
+);
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the section singletons in the configured workspace.
@@ -55,10 +52,15 @@ const About = ({ header, footer }: AboutProps) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
+    const aboutPromise = Starlight.singletons.get<AboutSingleton>("about");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, footer] = await Promise.all([headerPromise, footerPromise]);
+    const [header, about, footer] = await Promise.all([
+      headerPromise,
+      aboutPromise,
+      footerPromise,
+    ]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -68,6 +70,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
+        about: about.data,
         footer: footer.data,
       },
       revalidate: 15,

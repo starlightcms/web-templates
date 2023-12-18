@@ -1,10 +1,10 @@
 import Starlight, {
   Entry,
-  MediaObject,
   Singleton,
   StarlightError,
+  VisualContent,
 } from "@starlightcms/next-sdk";
-import { HeaderSingleton, FooterSingleton } from "@/starlight";
+import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
 import { FeaturedContent } from "@/components/FeaturedContent";
 import { PopularArticles } from "@/components/PopularArticles";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -19,12 +19,21 @@ import clsx from "clsx";
 
 type ArticleProps = {
   header: Singleton<HeaderSingleton>;
+  entry: Entry<Article>;
+  featured: Entry<Article>[];
+  popular: Entry<Article>[];
   footer: Singleton<FooterSingleton>;
 };
 
 // TODO! DESCRIPTION
 
-const Article = ({ header, footer }: ArticleProps) => {
+const Article = ({
+  header,
+  entry,
+  featured,
+  popular,
+  footer,
+}: ArticleProps) => {
   const { asPath } = useRouter();
 
   const [currentURL, setCurrentURL] = useState("");
@@ -34,6 +43,28 @@ const Article = ({ header, footer }: ArticleProps) => {
       setCurrentURL(window.location.origin + asPath);
   }, [asPath]);
 
+  // TODO! NEEDS TO BE USEMEMO? NOT - REWORK!
+  const metadata = useMemo(() => {
+    const date = entry.published_at
+      ? new Date(Date.parse(entry.published_at))
+      : undefined;
+
+    const formattedDate = new Intl.DateTimeFormat("pt-BR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "America/Fortaleza",
+    }).format(date);
+
+    // TODO!
+
+    return "";
+    // return `Por ${entry.author.name} • ${formattedDate}`;
+  }, [entry.published_at, entry.author.name]);
+
+  // TODO! REPLACE PLACEHOLDER ICONS WITH SVGS...
   const placeholderIcon = useMemo(
     () => (
       <div
@@ -88,22 +119,20 @@ const Article = ({ header, footer }: ArticleProps) => {
     [currentURL, placeholderIcon],
   );
 
-  // TODO! GET POST TITLE FROM STARLIGHT
+  // TODO! STYLE PICTURE CAPTION
+
   return (
     <>
-      <Title>Post Title</Title>
+      <Title>{entry.title}</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4">
-            <h1 className="fw-bold text-brand-primary-600">
-              Traveling as a way of self-discovery and progress
-            </h1>
+            <h1 className="fw-bold text-brand-primary-600">{entry.title}</h1>
             <span className="mb-3 text-brand-primary-700 fs-5 lh-1">
-              Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-              esse quam nihil molestiae consequatu.
+              {entry.data.description}
             </span>
             <p className="mb-4 text-brand-secondary-400 fs-6 lh-1 fw-bold">
-              By John Doe • November 12th, 2023 at 2:50 PM
+              {metadata}
             </p>
 
             <div className="d-flex gap-3 mb-5 gap-md-4 flex-wrap">
@@ -147,20 +176,15 @@ const Article = ({ header, footer }: ArticleProps) => {
         <Main>
           <Row className="gx-6 gy-6 d-flex flex-column flex-md-row">
             <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
-              <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-                adipisci aliquam expedita ipsum pariatur reprehenderit. Harum,
-                id libero maiores, nobis odit officiis, pariatur perspiciatis
-                rem tempore temporibus velit voluptate? Blanditiis?
-              </div>
+              <VisualContent content={entry.data.content} />
               <div
                 className="bg-brand-primary-300 w-100"
                 style={{ height: "1px" }}
               />
-              <FeaturedContent label="More Featured Content" />
+              <FeaturedContent label="Mais Destaques" articles={featured} />
             </Col>
             <Col sm={12} lg={4}>
-              <PopularArticles label="Most Popular" />
+              <PopularArticles label="Mais Populares" articles={popular} />
             </Col>
           </Row>
         </Main>
@@ -170,7 +194,7 @@ const Article = ({ header, footer }: ArticleProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // TODO! GET ALL CATEGORIES FROM STARLIGHT
+  // TODO! GET ALL CATEGORIES FROM STARLIGHT?
   return {
     paths: [],
     fallback: "blocking",
@@ -184,10 +208,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
+    const entryPromise = Starlight.articles.entries.get(params?.slug as string);
+    const featuredPromise = Starlight.collection<Entry<Article>>(
+      "featured",
+    ).items({ order: "published_at:desc" });
+    const popularPromise = Starlight.articles.entries.list({
+      order: "views:desc",
+      limit: 5,
+    });
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, footer] = await Promise.all([headerPromise, footerPromise]);
+    const [header, entry, featured, popular, footer] = await Promise.all([
+      headerPromise,
+      entryPromise,
+      featuredPromise,
+      popularPromise,
+      footerPromise,
+    ]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -197,6 +235,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
+        entry: entry.data,
+        featured: featured.data,
+        popular: popular.data,
         footer: footer.data,
       },
       revalidate: 15,
