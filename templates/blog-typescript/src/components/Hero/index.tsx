@@ -2,7 +2,6 @@ import { Image, Entry } from "@starlightcms/next-sdk";
 import { Container } from "react-bootstrap";
 import styles from "./styles.module.scss";
 import { Article } from "@/starlight";
-import { useMemo } from "react";
 import clsx from "clsx";
 
 type HeroProps = {
@@ -15,27 +14,24 @@ type HeroProps = {
  * the "Main" component because of its fullscreen (full width) background.
  */
 export const Hero = ({ entry }: HeroProps) => {
-  // TODO! NEEDS TO BE USEMEMO? NOT - REWORK!
+  const dateObject = entry.published_at
+    ? new Date(Date.parse(entry.published_at))
+    : undefined;
 
-  const metadata = useMemo(() => {
-    const date = entry.published_at
-      ? new Date(Date.parse(entry.published_at))
-      : undefined;
+  const entryDate = new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
-    const formattedDate = new Intl.DateTimeFormat("pt-BR", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZone: "America/Fortaleza",
-    }).format(date);
+  const entryTime = new Intl.DateTimeFormat("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
-    // TODO!
-
-    return "";
-    // return `Por ${entry.author.name} • ${formattedDate}`;
-  }, [entry.published_at, entry.author.name]);
+  const entryMetadata = `Por ${entry.author.name} • ${entryDate} às ${entryTime}`;
 
   return (
     <div className="bg-brand-primary-50">
@@ -74,7 +70,7 @@ export const Hero = ({ entry }: HeroProps) => {
             {entry.data.description}
           </p>
           <p className="text-brand-secondary-400 fw-semibold fs-6 my-0">
-            {metadata}
+            {entryMetadata}
           </p>
         </div>
       </Container>

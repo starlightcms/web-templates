@@ -7,14 +7,21 @@ import Starlight, {
 import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
 import { FeaturedContent } from "@/components/FeaturedContent";
 import { PopularArticles } from "@/components/PopularArticles";
+import { Image as SLImage } from "@starlightcms/next-sdk";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Col, Container, Row } from "react-bootstrap";
 import { useEffect, useMemo, useState } from "react";
+import twitterX from "./assets/twitter-x.svg";
 import { Layout } from "@/components/Layout";
+import facebook from "./assets/facebook.svg";
+import linkedin from "./assets/linkedin.svg";
+import whatsapp from "./assets/whatsapp.svg";
 import { Title } from "@/components/Title";
 import styles from "./styles.module.scss";
 import { Main } from "@/components/Main";
 import { useRouter } from "next/router";
+import share from "./assets/share.svg";
+import Image from "next/image";
 import clsx from "clsx";
 
 type ArticleProps = {
@@ -24,8 +31,6 @@ type ArticleProps = {
   popular: Entry<Article>[];
   footer: Singleton<FooterSingleton>;
 };
-
-// TODO! DESCRIPTION
 
 const Article = ({
   header,
@@ -37,47 +42,38 @@ const Article = ({
   const { asPath } = useRouter();
 
   const [currentURL, setCurrentURL] = useState("");
+  const [isCopiedOpen, setIsCopiedOpen] = useState(false);
+
+  useEffect(() => {
+    if (isCopiedOpen) {
+      const timer1 = setTimeout(() => setIsCopiedOpen(false), 3000);
+      return () => clearTimeout(timer1);
+    }
+  }, [isCopiedOpen]);
 
   useEffect(() => {
     if (typeof window !== "undefined")
       setCurrentURL(window.location.origin + asPath);
   }, [asPath]);
 
-  // TODO! NEEDS TO BE USEMEMO? NOT - REWORK!
-  const metadata = useMemo(() => {
-    const date = entry.published_at
-      ? new Date(Date.parse(entry.published_at))
-      : undefined;
+  const dateObject = entry.published_at
+    ? new Date(Date.parse(entry.published_at))
+    : undefined;
 
-    const formattedDate = new Intl.DateTimeFormat("pt-BR", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZone: "America/Fortaleza",
-    }).format(date);
+  // 15 de Janeiro de 2024
+  const articleDate = new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
-    // TODO!
-
-    return "";
-    // return `Por ${entry.author.name} • ${formattedDate}`;
-  }, [entry.published_at, entry.author.name]);
-
-  // TODO! REPLACE PLACEHOLDER ICONS WITH SVGS...
-  const placeholderIcon = useMemo(
-    () => (
-      <div
-        style={{
-          width: "24px",
-          height: "24px",
-          backgroundColor: "gray",
-          borderRadius: "10px",
-        }}
-      />
-    ),
-    [],
-  );
+  // 10:35
+  const articleTime = new Intl.DateTimeFormat("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
   const onShareClick = () => {
     if (navigator.share) {
@@ -88,35 +84,35 @@ const Article = ({
         })
         .catch(console.error);
     } else {
-      // TODO! SOME WARNING TO SAY TEXT WAS COPIED?
       navigator.clipboard.writeText(currentURL ?? "");
+      setIsCopiedOpen(true);
     }
   };
 
   const shareButtons = useMemo(
     () => [
       {
-        icon: placeholderIcon,
+        icon: twitterX,
         link: `https://twitter.com/intent/tweet?text=${currentURL}`,
         shareClass: "twitter-share-button",
       },
       {
-        icon: placeholderIcon,
+        icon: whatsapp,
         link: `https://wa.me/?text=${currentURL}`,
         shareClass: "whatsapp-share-button",
       },
       {
-        icon: placeholderIcon,
+        icon: facebook,
         link: `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`,
         shareClass: "facebook-share-button",
       },
       {
-        icon: placeholderIcon,
+        icon: linkedin,
         link: `https://www.linkedin.com/sharing/share-offsite/?url=${currentURL}`,
         shareClass: "linkedin-share-button",
       },
     ],
-    [currentURL, placeholderIcon],
+    [currentURL],
   );
 
   // TODO! STYLE PICTURE CAPTION
@@ -132,45 +128,79 @@ const Article = ({
               {entry.data.description}
             </span>
             <p className="mb-4 text-brand-secondary-400 fs-6 lh-1 fw-bold">
-              {metadata}
+              {`Por ${entry.author.name} • ${articleDate} às ${articleTime}`}
             </p>
 
-            <div className="d-flex gap-3 mb-5 gap-md-4 flex-wrap">
-              <div
-                className={clsx(
-                  "bg-brand-secondary-200 rounded-5",
-                  styles.shareButton,
-                )}
-                onClick={onShareClick}
-              >
-                {placeholderIcon}
-              </div>
-              {shareButtons.map((item) => (
-                <a
-                  key={item.link}
-                  href={item.link}
+            {/* // TODO! CHECK IF ANIMATION NEEDED, CHECK IF MARGIN BOTTOM */}
+            <div className="d-flex flex-column gap-3 flex-lg-row mb-5">
+              <div className="d-flex gap-3 gap-md-4 flex-wrap">
+                <div
                   className={clsx(
                     "bg-brand-secondary-200 rounded-5",
                     styles.shareButton,
-                    item.shareClass,
                   )}
-                  target="_blank"
+                  onClick={onShareClick}
                 >
-                  {item.icon}
-                </a>
-              ))}
+                  <Image
+                    src={share}
+                    alt={"Compartilhar"}
+                    width={24}
+                    height={24}
+                  />
+                </div>
+                {shareButtons.map((item) => (
+                  <a
+                    key={item.link}
+                    href={item.link}
+                    className={clsx(
+                      "bg-brand-secondary-200 rounded-5",
+                      styles.shareButton,
+                      item.shareClass,
+                    )}
+                    target="_blank"
+                  >
+                    <Image
+                      src={item.icon}
+                      alt={item.shareClass}
+                      width={24}
+                      height={24}
+                    />
+                  </a>
+                ))}
+              </div>
+              {isCopiedOpen && (
+                <p className="align-self-center m-0 fs-6 fw-semibold text-brand-primary-500">
+                  Copiado para a àrea de transferência!
+                </p>
+              )}
             </div>
           </Container>
         </div>
-        <div className={styles.imageContainer}>
+        <div className={styles.imageBackground}>
           <Container>
             <div
-              style={{
-                height: "380px",
-              }}
-              className="w-100 bg-brand-secondary-900 rounded-4"
-            />
-            {/*  // TODO! MISSING LABEL ON IMAGE... SEE HERO */}
+              className={clsx(
+                "d-flex align-items-center justify-content-center flex-shrink-0 bg-brand-secondary-200 position-relative overflow-hidden rounded-4",
+                styles.imageContainer,
+              )}
+            >
+              <SLImage
+                media={entry.data.image}
+                alt={entry.data.image.alt}
+                className="position-absolute w-100 h-100 object-fit-cover"
+              />
+
+              {entry.category !== null && (
+                <div
+                  className={clsx(
+                    "bg-brand-secondary-200 text-brand-secondary-800 fw-bold position-absolute py-2 lh-1 rounded-5",
+                    styles.label,
+                  )}
+                >
+                  {entry.category.title}
+                </div>
+              )}
+            </div>
           </Container>
         </div>
         <Main>

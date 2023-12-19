@@ -2,8 +2,20 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-.imageContainer {
+.imageBackground {
   background: linear-gradient(to bottom, tint-color($indigo-500, 90%) 50%, white 0%);
+}
+
+.imageContainer {
+  aspect-ratio: 2.184;
+}
+
+.label {
+  font-size: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 .shareButton {

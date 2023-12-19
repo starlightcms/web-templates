@@ -18,8 +18,6 @@ type AboutProps = {
   footer: Singleton<FooterSingleton>;
 };
 
-// TODO! DESCRIPTION
-
 const About = ({ header, about, footer }: AboutProps) => (
   <>
     <Title>{about.title}</Title>

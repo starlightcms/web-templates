@@ -18,12 +18,11 @@ import { useRouter } from "next/router";
 type CategoryPageProps = {
   header: Singleton<HeaderSingleton>;
   articles: StarlightListResponse<Entry<Article>>;
-  category: ModelCategory;
+  category: ModelCategory | null;
   popular: Entry<Article>[];
   footer: Singleton<FooterSingleton>;
 };
 
-// TODO! DESCRIPTION
 const CategoryPage = ({
   header,
   articles,
@@ -34,10 +33,11 @@ const CategoryPage = ({
   const router = useRouter();
   const { category: routerCategory, page } = router.query;
 
-  // TODO! POPULAR ONLY FROM CATEGORY? - NO! IMPLEMENT ASAP
   return (
     <>
-      <Title>{`${category.title}, página ${page}`}</Title>
+      <Title>{`${
+        routerCategory !== "page" ? category?.title : "Artigos Mais Recentes"
+      } — Página ${page}`}</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
@@ -48,7 +48,7 @@ const CategoryPage = ({
                     Categoria
                   </p>
                   <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
-                    {category.title}
+                    {category?.title}
                   </h1>
                   {/*<span className="m-0 text-brand-primary-700 fs-5 lh-1">*/}
                   {/*  Quis autem vel eum iure reprehenderit qui in ea voluptate*/}
@@ -57,8 +57,8 @@ const CategoryPage = ({
                 </div>
                 <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
                   <p className="m-0 text-brand-secondary-800 fw-bold">
-                    {`${category.entry_count} artigo${
-                      category.entry_count !== 1 ? "s" : ""
+                    {`${category?.entry_count} artigo${
+                      category?.entry_count !== 1 ? "s" : ""
                     }`}
                   </p>
                 </div>
@@ -67,7 +67,6 @@ const CategoryPage = ({
               <>
                 <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
                   Categoria
-                  {/*  // TODO! PRECISA DISSO? */}
                 </p>
                 <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
                   Artigos Mais Recentes
@@ -80,7 +79,13 @@ const CategoryPage = ({
           <Row className="gx-6 gy-6 d-flex flex-row flex-md-row">
             <Col sm={12} lg={8}>
               <ArticlesPage
-                label={`Página ${page as string}`}
+                label={
+                  routerCategory !== "page"
+                    ? `Artigos Mais Recentes em ${category?.title} — Página ${
+                        page as string
+                      }`
+                    : `Artigos Mais Recentes — Página ${page as string}`
+                }
                 articleList={articles}
                 category={routerCategory as string}
               />
@@ -95,7 +100,7 @@ const CategoryPage = ({
   );
 };
 
-// TODO! COMMENT EXPLAINING
+// TODO! COMMENT EXPLAINING THIS?
 export const getStaticPaths: GetStaticPaths = async () => {
   // TODO! GET ALL CATEGORIES FROM STARLIGHT
   return {
@@ -134,9 +139,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             page: parseInt(params?.page as string),
             limit: 3,
           });
-    const categoryPromise = Starlight.articles
-      .category(params?.category as string)
-      .get();
+    const categoryPromise =
+      params?.category !== "page"
+        ? Starlight.articles.category(params?.category as string).get()
+        : null;
     const popularPromise = Starlight.articles.entries.list({
       order: "views:desc",
       limit: 5,
@@ -161,7 +167,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // which is what we need to pass to our page.
         header: header.data,
         articles: articles,
-        category: category.data,
+        category: category?.data ?? null,
         popular: popular.data,
         footer: footer.data,
       },

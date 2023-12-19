@@ -39,27 +39,31 @@ export default function Card({
     return "defaultVertical";
   }, [small, horizontal]);
 
-  // TODO! NEEDS TO BE USEMEMO? NOT - REWORK!
-  const metadata = useMemo(() => {
-    // TODO! DATE ON MEDIUM (MOBILE!)
-    // TODO! "... ÀS [XX:XX]" ESTATICO NA HORA
+  const dateObject = article.published_at
+    ? new Date(Date.parse(article.published_at))
+    : undefined;
 
-    const date = article.published_at
-      ? new Date(Date.parse(article.published_at))
-      : undefined;
+  // 15 de Janeiro de 2024
+  const articleFullDate = new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
-    // TODO!
+  // 15 de Jan.
+  const articleShortDate = new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "short",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
-    return "";
-    // return new Intl.DateTimeFormat("pt-BR", {
-    //   day: "numeric",
-    //   month: small ? "short" : "long",
-    //   year: small ? undefined : "numeric",
-    //   hour: "2-digit",
-    //   minute: "2-digit",
-    //   timeZone: "America/Fortaleza",
-    // }).format(date);
-  }, [article.published_at, small]);
+  // 10:35
+  const articleTime = new Intl.DateTimeFormat("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
   return (
     <Link
@@ -72,22 +76,15 @@ export default function Card({
     >
       <div
         className={clsx(
-          "d-flex align-items-center justify-content-center flex-shrink-0 bg-brand-secondary-900 overflow-hidden position-relative rounded-2",
+          "d-flex align-items-center justify-content-center flex-shrink-0 bg-brand-secondary-900 position-relative",
           styles.imageContainer,
         )}
       >
         <Image
           media={article.data.image}
           alt={article.data.image.alt}
-          className="position-absolute w-100 h-100 object-fit-cover"
+          className="position-absolute w-100 h-100 object-fit-cover rounded-2"
         />
-        {/*<img*/}
-        {/*  className="position-absolute w-100 h-100 object-fit-cover"*/}
-        {/*  alt="test"*/}
-        {/*  src="https://cards.scryfall.io/art_crop/front/4/2/42232ea6-e31d-46a6-9f94-b2ad2416d79b.jpg?1565989372"*/}
-        {/*  // src="https://www.mtgnexus.com/img/gallery/6473-invasion-of-mercadia.jpg"*/}
-        {/*  // src="https://cards.scryfall.io/art_crop/front/4/0/407d6723-bf58-403e-b2ac-ba52c51d356f.jpg?1682715363"*/}
-        {/*/>*/}
 
         {article.category !== null && (
           <div
@@ -136,9 +133,27 @@ export default function Card({
             </p>
           )}
         </div>
-        <p className="text-brand-secondary-400 mb-0 fw-semibold overflow-hidden">
-          {metadata}
-        </p>
+
+        {cardClass !== "small" && (
+          <p
+            className={clsx(
+              "text-brand-secondary-400 mb-0 fw-semibold overflow-hidden",
+              cardClass === "defaultHorizontal" && "d-none d-md-block",
+            )}
+          >
+            {articleFullDate} às {articleTime}
+          </p>
+        )}
+        {cardClass !== "defaultVertical" && (
+          <p
+            className={clsx(
+              "text-brand-secondary-400 mb-0 fw-semibold overflow-hidden",
+              cardClass === "defaultHorizontal" && "d-block d-md-none",
+            )}
+          >
+            {articleShortDate} às {articleTime}
+          </p>
+        )}
       </div>
     </Link>
   );
