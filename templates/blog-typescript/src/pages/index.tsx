@@ -16,7 +16,6 @@ import { Hero } from "@/components/Hero";
 import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
 import { GetStaticProps } from "next";
 
-// TODO! REMOVE UNUSED TYPES FROM TYPES FILE!
 type HomeProps = {
   header: Singleton<HeaderSingleton>;
   articles: StarlightListResponse<Entry<Article>>;
@@ -25,6 +24,7 @@ type HomeProps = {
   footer: Singleton<FooterSingleton>;
 };
 
+// TODO! CREATE SIGNUP SINGLETON AND IMPLEMENT IT HERE
 const Home = ({ header, articles, featured, popular, footer }: HomeProps) => (
   <>
     <Title>Início</Title>
@@ -59,6 +59,7 @@ const Home = ({ header, articles, featured, popular, footer }: HomeProps) => (
 // the individual sections is because it won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async () => {
   try {
+    // TODO! AUMENTAR LIMIT PRA 8
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
     const articlesPromise = Starlight.articles.entries.list({
       page: 1,

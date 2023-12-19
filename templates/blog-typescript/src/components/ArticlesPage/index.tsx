@@ -23,28 +23,22 @@ export const ArticlesPage = ({
   label,
   articleList,
   category,
-}: ArticlesPageProps) => {
-  // TODO! GET PAGE SELECTOR PROPS VIA STARLGIHT
-
-  return (
-    <div className="d-flex flex-column gap-6">
-      <div className="d-flex flex-column gap-4">
-        <div className="text-brand-secondary-400 fw-bold">
-          <span>{label}</span>
-        </div>
-
-        {/* // TODO! UNCOMMENT */}
-        {/*<Row className="d-flex flex-column gap-6">*/}
-        {/*  {articles.map((article) => (*/}
-        {/*    <Card key={article.slug} article={article} />*/}
-        {/*  ))}*/}
-        {/*</Row>*/}
+}: ArticlesPageProps) => (
+  <div className="d-flex flex-column gap-6">
+    <div className="d-flex flex-column gap-4">
+      <div className="text-brand-secondary-400 fw-bold">
+        <span>{label}</span>
       </div>
-      <PageSelector
-        category={category}
-        currentPage={articleList.meta.current_page}
-        lastPage={articleList.meta.last_page}
-      />
+      <Row className="d-flex flex-column gap-6">
+        {articleList.data.map((article) => (
+          <Card key={article.slug} article={article} />
+        ))}
+      </Row>
     </div>
-  );
-};
+    <PageSelector
+      category={category}
+      currentPage={articleList.meta.current_page}
+      lastPage={articleList.meta.last_page}
+    />
+  </div>
+);

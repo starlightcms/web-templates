@@ -10,10 +10,13 @@ type PopularArticlesProps = {
   articles: Entry<Article>[];
 };
 
-// TODO! Description
-
+// TODO! LABEL SHOULD BE STATIC?
 /**
- * Renders a
+ * Renders a list of small Cards that will serve as a list of the most viewed
+ * articles. It receives a label (that will be rendered at the top of the
+ * component) and the list of articles to be displayed.
+ *
+ * @see Card
  */
 export const PopularArticles = ({ label, articles }: PopularArticlesProps) => (
   <div
@@ -27,8 +30,8 @@ export const PopularArticles = ({ label, articles }: PopularArticlesProps) => (
     </div>
 
     <Row className="d-flex flex-column gap-4">
-      {articles.map((article) => (
-        <Card key={article.slug} article={article} small />
+      {articles.map((article, index) => (
+        <Card key={article.slug} article={article} rank={index + 1} small />
       ))}
     </Row>
   </div>

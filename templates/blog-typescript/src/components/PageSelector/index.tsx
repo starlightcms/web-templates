@@ -9,10 +9,13 @@ type PageSelectorProps = {
   lastPage: number;
 };
 
-// TODO! Texts, image from Starlight
-
+// TODO! MOVE THIS COMPONENT TO ARTICLESPAGE?
 /**
- * Renders a
+ * Renders a simple page selector to help users navigate between pages of
+ * articles. It is included only in the ArticlesPage component. It receives a
+ * category name, the current page and the last page as props.
+ *
+ * @see ArticlesPage
  */
 export default function PageSelector({
   category,
@@ -69,11 +72,11 @@ export default function PageSelector({
         disabled={currentPage === 1}
         href={`/${category}/${currentPage - 1}`}
       >
-        🡠 Previous
+        🡠 Anterior
       </Pagination.Prev>
 
       <span className="align-self-center fw-semibold text-brand-primary-400 d-md-none">
-        Page {currentPage} of {lastPage}
+        Página {currentPage} de {lastPage}
       </span>
 
       <div className="d-none d-md-flex gap-2">
@@ -108,7 +111,7 @@ export default function PageSelector({
         disabled={currentPage === lastPage}
         href={`/${category}/${currentPage + 1}`}
       >
-        Next 🡢
+        Próxima 🡢
       </Pagination.Next>
     </Pagination>
   );

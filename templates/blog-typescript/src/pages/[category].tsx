@@ -24,7 +24,6 @@ type CategoryProps = {
   footer: Singleton<FooterSingleton>;
 };
 
-// TODO! DESCRIPTION?
 const Category = ({
   header,
   articles,
@@ -63,9 +62,8 @@ const Category = ({
         <Main>
           <Row className="gx-6 gy-6 d-flex flex-row flex-md-row">
             <Col sm={12} lg={8}>
-              {/* // TODO! FIX LABEL (LATEST ARTICLES IN TECH)? */}
               <ArticlesPage
-                label="Página 1"
+                label={`Artigos Mais Recentes em ${category.title}`}
                 articleList={articles}
                 category={routerCategory as string}
               />
@@ -104,7 +102,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   try {
-    // TODO! AUMENTAR LIMIT PRA 8
+    // TODO! AUMENTAR LIMITS PRA 8
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
     const articlesPromise = Starlight.articles.entries.list({
       page: parseInt(params?.page as string),

@@ -1,8 +1,7 @@
 import { Image, MediaObject } from "@starlightcms/next-sdk";
 import styles from "./styles.module.scss";
-import { RefObject, useMemo } from "react";
-import clsx from "clsx";
 import Link from "next/link";
+import clsx from "clsx";
 
 // TODO! REVIEW PROPS, SLUG NOT OPTIONAL
 type SearchCardProps = {
@@ -92,12 +91,6 @@ export const SearchCard = ({
           {info}
         </p>
       </div>
-
-      {/*<div*/}
-      {/*  className="position-absolute top-0 h-100"*/}
-      {/*  style={{ width: "20px", backgroundColor: "red" }}*/}
-      {/*  ref={cardRef}*/}
-      {/*/>*/}
     </Link>
   );
 };
