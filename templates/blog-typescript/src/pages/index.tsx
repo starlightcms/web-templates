@@ -4,6 +4,7 @@ import Starlight, {
   StarlightError,
   StarlightListResponse,
 } from "@starlightcms/next-sdk";
+import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
 import { PopularArticles } from "@/components/PopularArticles";
 import { FeaturedContent } from "@/components/FeaturedContent";
 import { ArticlesPage } from "@/components/ArticlesPage";
@@ -13,7 +14,6 @@ import { Col, Row } from "react-bootstrap";
 import { Title } from "@/components/Title";
 import { Main } from "@/components/Main";
 import { Hero } from "@/components/Hero";
-import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
 import { GetStaticProps } from "next";
 
 type HomeProps = {

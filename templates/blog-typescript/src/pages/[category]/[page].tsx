@@ -102,7 +102,6 @@ const CategoryPage = ({
 
 // TODO! COMMENT EXPLAINING THIS?
 export const getStaticPaths: GetStaticPaths = async () => {
-  // TODO! GET ALL CATEGORIES FROM STARLIGHT
   return {
     paths: [],
     fallback: "blocking",

@@ -1,48 +1,42 @@
-import { Image, MediaObject } from "@starlightcms/next-sdk";
+import { Entry, Image } from "@starlightcms/next-sdk";
 import styles from "./styles.module.scss";
+import { Article } from "@/starlight";
 import Link from "next/link";
 import clsx from "clsx";
 
-// TODO! REVIEW PROPS, SLUG NOT OPTIONAL
 type SearchCardProps = {
-  image?: MediaObject;
-  slug?: string;
-  title: string;
-  label?: string;
-  info?: string;
+  article: Entry<Article>;
   active: boolean;
   cardRef: (element: HTMLAnchorElement) => HTMLAnchorElement;
 };
 
 /**
- * Renders a card with many props to represent a post. You can send an image,
- * a title, a text description, a category label, some info (author and date),
- * booleans for creating a "small" and/or "horizontal" card and a number for
- * the "post rank" among the popular posts (that appears on the top-left).
- *
- * A couple of notes some props:
- * - The "small" prop will take precedence over the "horizontal" prop - i.e.
- * there are no cards that are both small and vertical, they'll be small and
- * horizontal.
- * - On smaller screens, "horizontal" (non-small) cards and "small" cards are
- * the same size.
- * - The "number" prop will only consider numbers from 1 to 5 (if they're on a
- * list, ideally you should send index + 1).
+ * Renders a card that contains a searched post and its information. For its
+ * props, you can send an article, a boolean that defines if it's "active" or
+ * "inactive" in the search and a ref that will be placed in the card.
  */
-export const SearchCard = ({
-  image,
-  slug,
-  title,
-  label,
-  info,
-  active,
-  cardRef,
-}: SearchCardProps) => {
-  // TODO! IMAGE!
+export const SearchCard = ({ article, active, cardRef }: SearchCardProps) => {
+  const dateObject = article.published_at
+    ? new Date(Date.parse(article.published_at))
+    : undefined;
+
+  // 15 de Jan.
+  const articleDate = new Intl.DateTimeFormat("pt-BR", {
+    day: "numeric",
+    month: "short",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
+
+  // 10:35
+  const articleTime = new Intl.DateTimeFormat("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "America/Fortaleza",
+  }).format(dateObject);
 
   return (
     <Link
-      href={slug ? `/article/${slug}` : "/article/testing"}
+      href={`/article/${article.slug}`}
       className={clsx(
         "d-flex flex-row position-relative gap-3 w-100 rounded-2 text-decoration-none",
         active && "bg-brand-secondary-200",
@@ -52,26 +46,24 @@ export const SearchCard = ({
     >
       <div
         className={clsx(
-          "d-flex align-items-center justify-content-center flex-shrink-0 bg-brand-secondary-900 position-relative rounded-2",
+          "d-flex align-items-center justify-content-center flex-shrink-0 position-relative rounded-2",
           styles.imageContainer,
         )}
       >
-        <img
+        <Image
+          media={article.data.image}
+          alt={article.data.image.alt}
           className="position-absolute w-100 h-100 object-fit-cover rounded-2"
-          alt="test"
-          src="https://cards.scryfall.io/art_crop/front/4/2/42232ea6-e31d-46a6-9f94-b2ad2416d79b.jpg?1565989372"
-          // src="https://www.mtgnexus.com/img/gallery/6473-invasion-of-mercadia.jpg"
-          // src="https://cards.scryfall.io/art_crop/front/4/0/407d6723-bf58-403e-b2ac-ba52c51d356f.jpg?1682715363"
         />
 
-        {label !== undefined && (
+        {article.category !== null && (
           <div
             className={clsx(
               "bg-brand-secondary-200 text-brand-secondary-800 fw-bold position-absolute py-2 lh-1 rounded-5",
               styles.label,
             )}
           >
-            {label}
+            {article.category.title}
           </div>
         )}
       </div>
@@ -84,11 +76,11 @@ export const SearchCard = ({
       >
         <div className="d-flex flex-column gap-2">
           <span className="text-brand-primary-600 fw-bold overflow-hidden">
-            {title}
+            {article.title}
           </span>
         </div>
         <p className="text-brand-secondary-400 mb-0 fw-semibold overflow-hidden">
-          {info}
+          {articleDate} às {articleTime}
         </p>
       </div>
     </Link>

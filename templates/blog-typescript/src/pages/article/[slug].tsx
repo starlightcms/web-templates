@@ -224,7 +224,7 @@ const Article = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // TODO! GET ALL CATEGORIES FROM STARLIGHT?
+  // TODO! GET LAST 15 ARTICLES
   return {
     paths: [],
     fallback: "blocking",
