@@ -1,16 +1,12 @@
 import "@starlightcms/react-sdk";
 import {
   MediaField,
-  RelationField,
   VisualField,
-  Collection,
   StringField,
   TextField,
   BooleanField,
-  MediaObject,
 } from "@starlightcms/next-sdk";
 
-// TODO! REVIEW ALL THE TYPES
 type HeaderSingleton = {
   logo: MediaField;
   tech: StringField;
@@ -32,26 +28,7 @@ type Article = {
   content: VisualField;
 };
 
-type FeaturesRightSingleton = {
-  title: StringField;
-  description: TextField;
-  image: MediaField;
-  card_1_icon: MediaField;
-  card_1_text: TextField;
-  card_2_icon: MediaField;
-  card_2_text: TextField;
-};
-
-type FAQSingleton = {
-  title: StringField;
-  faq_items: RelationField<Collection<Entry<FAQItem>>>;
-};
-
-type FAQItem = {
-  question: StringField;
-  answer: TextField;
-  slug: StringField;
-};
+// TODO! SIGNUP SINGLETON
 
 type FooterSingleton = {
   logo: MediaField;

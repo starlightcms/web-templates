@@ -80,11 +80,29 @@ const Category = ({
 
 // TODO! COMMENT EXPLAINING
 export const getStaticPaths: GetStaticPaths = async () => {
-  // TODO! GET ALL CATEGORIES FROM STARLIGHT
-  return {
-    paths: ["/tech", "/science", "/entertainment"],
-    fallback: "blocking",
-  };
+  try {
+    const categories = await Starlight.articles.categories.list();
+    const categorySlugArray = categories.data.map(function (category) {
+      return category.slug;
+    });
+
+    return {
+      paths: categorySlugArray,
+      fallback: "blocking",
+    };
+  } catch (e) {
+    if (e instanceof StarlightError) {
+      throw new Error(
+        "The Starlight SDK threw an error. Please check if you correctly set " +
+          "the NEXT_PUBLIC_STARLIGHT_WORKSPACE environment variable with a " +
+          "workspace ID. Original error message: " +
+          e.message,
+      );
+    }
+
+    // Not an SDK error, just throw it again.
+    throw e;
+  }
 };
 
 // This function runs server-side and fetches whatever the page needs to render.

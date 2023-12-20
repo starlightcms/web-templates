@@ -13,7 +13,7 @@ type CardProps = {
 };
 
 /**
- * Renders a card that renders a post and its information. For its props, you
+ * Renders a card that contains a post and its information. For its props, you
  * can send an article, booleans for creating a "small" and/or "horizontal"
  * card and a number for the "post rank" among the popular posts (that appears
  * on the top-left).
@@ -67,7 +67,7 @@ export default function Card({
 
   return (
     <Link
-      href={article.slug ? `/article/${article.slug}` : "/article/testing"}
+      href={`/article/${article.slug}`}
       className={clsx(
         "d-flex flex-row position-relative text-decoration-none",
         cardClass === "defaultVertical" && "flex-column",
@@ -76,7 +76,7 @@ export default function Card({
     >
       <div
         className={clsx(
-          "d-flex align-items-center justify-content-center flex-shrink-0 bg-brand-secondary-900 position-relative",
+          "d-flex align-items-center justify-content-center flex-shrink-0 position-relative",
           styles.imageContainer,
         )}
       >
