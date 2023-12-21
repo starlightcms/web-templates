@@ -1,13 +1,11 @@
-import { Singleton, Image, getMediaFile } from "@starlightcms/next-sdk";
+import { Singleton, Image } from "@starlightcms/next-sdk";
 import { Button, Col, Form, Row } from "react-bootstrap";
-// import { SignupSingleton } from "@/starlight";
+import { SignupSingleton } from "@/starlight";
 import { FormEvent, useState } from "react";
 import clsx from "clsx";
 
-// TODO! PROPS! ALSO CREATE SINGLETON
 type SignupProps = {
-  // singleton?: Singleton<SignupSingleton>;
-  singleton?: any;
+  singleton: Singleton<SignupSingleton>;
 };
 
 /**
@@ -41,7 +39,7 @@ export const Signup = ({ singleton }: SignupProps) => {
     if (response.status === 200) setEmail("");
   };
 
-  // TODO! OPACITY TRANSITION
+  // TODO! OPACITY TRANSITION?
   return (
     <Row
       className="d-flex bg-brand-secondary-100 text-center text-gray-100 mx-0 rounded-4 overflow-hidden"
@@ -52,21 +50,14 @@ export const Signup = ({ singleton }: SignupProps) => {
         sm={12}
         lg={6}
       >
-        {/*<Image*/}
-        {/*  media={singleton.data.image}*/}
-        {/*  alt="TODO"*/}
-        {/*  className="h-100 w-auto object-fit-fill"*/}
-        {/*/>*/}
         <div
           className="d-flex flex-shrink-0 h-100 w-100 align-items-center justify-content-center position-relative"
           style={{ minHeight: "20rem" }}
         >
-          <img
+          <Image
             className="position-absolute w-100 h-100 object-fit-cover rounded-2"
-            alt="test"
-            src="https://cards.scryfall.io/art_crop/front/4/2/42232ea6-e31d-46a6-9f94-b2ad2416d79b.jpg?1565989372"
-            // src="https://www.mtgnexus.com/img/gallery/6473-invasion-of-mercadia.jpg"
-            // src="https://cards.scryfall.io/art_crop/front/4/0/407d6723-bf58-403e-b2ac-ba52c51d356f.jpg?1682715363"
+            media={singleton.data.image}
+            alt={singleton.data.image.alt}
           />
         </div>
       </Col>
@@ -76,19 +67,17 @@ export const Signup = ({ singleton }: SignupProps) => {
         lg={6}
       >
         <h2 className="mb-2 fw-bold text-brand-secondary-500">
-          Sign up to our newsletter
+          {singleton.data.title}
         </h2>
         <p className="lh-lg m-0 text-brand-secondary-800">
-          Suspendisse id justo ac magna volutpat varius. Ut in dignissim purus.
-          Ut efficitur fermentum sapien vitae scelerisque. Nullam lobortis lorem
-          et eros sollicitudin sagittis.
+          {singleton.data.description}
         </p>
         <Form
           onSubmit={signUp}
           className="d-flex flex-column justify-content-center align-items-stretch w-100 my-4 mx-0 gap-2"
         >
           <Form.Control
-            placeholder="E-mail address"
+            placeholder={singleton.data.placeholder}
             className="p-3 w-100 border-2 border-brand-secondary-500 text-brand-secondary-800"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -101,7 +90,7 @@ export const Signup = ({ singleton }: SignupProps) => {
             className="py-3 px-5 bg-brand-secondary-500 border-brand-secondary-500 fw-bold text-white flex-shrink-0"
             disabled={isSubmitting}
           >
-            Sign up
+            {singleton.data.signup}
           </Button>
         </Form>
         {status !== 0 ? (
@@ -119,7 +108,7 @@ export const Signup = ({ singleton }: SignupProps) => {
           <></>
         )}
         <p className="fs-6 mb-0 text-brand-secondary-800">
-          Aenean lobortis luctus tellus, sit amet sodales odio consequat eu.
+          {singleton.data.footnote}
         </p>
       </Col>
     </Row>

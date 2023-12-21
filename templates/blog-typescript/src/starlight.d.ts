@@ -28,7 +28,14 @@ type Article = {
   content: VisualField;
 };
 
-// TODO! SIGNUP SINGLETON
+type SignupSingleton = {
+  image: MediaField;
+  title: StringField;
+  description: TextField;
+  placeholder: StringField;
+  signup: StringField;
+  footnote: StringField;
+};
 
 type FooterSingleton = {
   logo: MediaField;

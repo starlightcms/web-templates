@@ -6,11 +6,9 @@ import Card from "@/components/Card";
 import clsx from "clsx";
 
 type PopularArticlesProps = {
-  label: string;
   articles: Entry<Article>[];
 };
 
-// TODO! LABEL SHOULD BE STATIC?
 /**
  * Renders a list of small Cards that will serve as a list of the most viewed
  * articles. It receives a label (that will be rendered at the top of the
@@ -18,7 +16,7 @@ type PopularArticlesProps = {
  *
  * @see Card
  */
-export const PopularArticles = ({ label, articles }: PopularArticlesProps) => (
+export const PopularArticles = ({ articles }: PopularArticlesProps) => (
   <div
     className={clsx(
       "d-flex flex-column gap-4 position-sticky",
@@ -26,7 +24,7 @@ export const PopularArticles = ({ label, articles }: PopularArticlesProps) => (
     )}
   >
     <div className="text-brand-secondary-400 fw-bold">
-      <span>{label}</span>
+      <span>Mais Populares</span>
     </div>
 
     <Row className="d-flex flex-column gap-4">

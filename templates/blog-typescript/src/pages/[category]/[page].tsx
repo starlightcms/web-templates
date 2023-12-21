@@ -91,7 +91,7 @@ const CategoryPage = ({
               />
             </Col>
             <Col sm={12} lg={4}>
-              <PopularArticles label="Mais Populares" articles={popular} />
+              <PopularArticles articles={popular} />
             </Col>
           </Row>
         </Main>
@@ -100,7 +100,13 @@ const CategoryPage = ({
   );
 };
 
-// TODO! COMMENT EXPLAINING THIS?
+// This function runs server-side and pre-renders specific pages from the
+// application and caches them, where "paths" contains the routes of those
+// pages. In this case, we won't need to cache any specific route, as we
+// don't know how many pages a certain article category will have.
+// `"fallback: 'blocking'" means paths not returned by this function will not
+// be pre-rendered at build time, but instead at request time, and the browser
+// will display a loading state while it is being rendered.
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],

@@ -1,0 +1,9 @@
+@use "@/styles/variables";
+
+.visualContainer {
+  figcaption {
+    text-align: center;
+    color: variables.$brand-primary-300;
+    font-weight: variables.$font-weight-semibold;
+  }
+}

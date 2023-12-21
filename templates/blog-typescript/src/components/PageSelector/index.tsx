@@ -9,7 +9,6 @@ type PageSelectorProps = {
   lastPage: number;
 };
 
-// TODO! MOVE THIS COMPONENT TO ARTICLESPAGE?
 /**
  * Renders a simple page selector to help users navigate between pages of
  * articles. It is included only in the ArticlesPage component. It receives a

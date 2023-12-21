@@ -1,6 +1,4 @@
 import Starlight, {
-  Entry,
-  MediaObject,
   Singleton,
   StarlightError,
   VisualContent,
@@ -9,6 +7,7 @@ import { HeaderSingleton, FooterSingleton, AboutSingleton } from "@/starlight";
 import { Layout } from "@/components/Layout";
 import { Container } from "react-bootstrap";
 import { Title } from "@/components/Title";
+import styles from "./styles.module.scss";
 import { Main } from "@/components/Main";
 import { GetStaticProps } from "next";
 
@@ -17,6 +16,8 @@ type AboutProps = {
   about: Singleton<AboutSingleton>;
   footer: Singleton<FooterSingleton>;
 };
+
+// TODO! ABOUT LINK WHERE?
 
 const About = ({ header, about, footer }: AboutProps) => (
   <>
@@ -28,16 +29,16 @@ const About = ({ header, about, footer }: AboutProps) => (
             <h1 className="m-0 fw-bold text-brand-primary-600">
               {about.title}
             </h1>
-            {/*<span className="m-0 text-brand-primary-700 fs-5 lh-1">*/}
-            {/*  /!* // TODO! IS SINGLETON DESCRIPTION NEEDED? *!/*/}
-            {/*  {about.data.description}*/}
-            {/*</span>*/}
+            <span className="m-0 text-brand-primary-700 fs-5 lh-1">
+              {about.data.description}
+            </span>
           </div>
         </Container>
       </div>
       <Main>
-        {/* // TODO! STYLE PIC CAPTION, style FONT? */}
-        <VisualContent content={about.data.text} />
+        <div className={styles.visualContainer}>
+          <VisualContent content={about.data.text} />
+        </div>
       </Main>
     </Layout>
   </>

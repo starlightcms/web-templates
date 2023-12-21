@@ -1,13 +1,22 @@
+@use "@/styles/variables";
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
 .imageBackground {
-  background: linear-gradient(to bottom, tint-color($indigo-500, 90%) 50%, white 0%);
+  background: linear-gradient(to bottom, variables.$brand-primary-50 50%, white 0%);
 }
 
 .imageContainer {
   aspect-ratio: 2.184;
+}
+
+.visualContainer {
+  figcaption {
+    text-align: center;
+    color: variables.$brand-primary-300;
+    font-weight: variables.$font-weight-semibold;
+  }
 }
 
 .label {
