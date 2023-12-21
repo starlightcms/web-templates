@@ -15,20 +15,20 @@ import search from "./assets/search.svg";
 import { useRouter } from "next/router";
 import debounce from "lodash/debounce";
 import { Article } from "@/starlight";
-import clsx from "clsx";
 import Image from "next/image";
+import clsx from "clsx";
 
 type SearchProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-// TODO! DESCRIPTION, TEXTS?
 /**
- * Renders
+ * Renders a search popup that lets the user search for a specific entry. It
+ * only receives an isOpen state and its setter as props. This component is
+ * only used in the Header and has a few other subcomponents inside it.
  */
 export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
-  // TODO! REVIEW SPANS AND PS ALL OVER PROJECT
   const router = useRouter();
   const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -173,7 +173,7 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
               </div>
             ) : (
               <EmptySearch
-                label="Ops, não encontramos nada..."
+                label="Opa, não encontramos nada..."
                 description="Tente usar outras palavras-chave."
               />
             )

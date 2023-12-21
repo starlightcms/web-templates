@@ -1,11 +1,10 @@
+@use "@/styles/variables";
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-// TODO! USE CUSTOM VARIABLES
-
 .overlay {
-  background-color: rgba($indigo-900, 0.5);
+  background-color: rgba(variables.$brand-primary-900, 0.5);
   cursor: pointer;
 }
 
@@ -36,9 +35,9 @@
 
 .searchInput {
   outline: none;
-  border-color: $pink-500;
+  border-color: variables.$brand-primary-500;
   border-style: solid;
-  --bs-focus-ring-color: $pink-500;
+  --bs-focus-ring-color: variables.$brand-primary-500;
 }
 
 .searchIcon {

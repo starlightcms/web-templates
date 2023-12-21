@@ -61,7 +61,7 @@ export default function Footer({ singleton }: FooterProps) {
             />
           </Link>
           <span>
-            {/* // TODO! REPLACE THIS TEXT... */}
+            {/* // TODO! REPLACE THIS TEXT - DO ON TEMPLATE.JSON! Search discord: "basicamente adicionar essa ação" */}
             {/*© {singleton.data.year} <b>{singleton.data.company_name}</b>*/}
             <b>© 2023 Your Company</b>
           </span>
@@ -90,7 +90,6 @@ export default function Footer({ singleton }: FooterProps) {
         </nav>
       </Container>
       <div className="d-flex flex-column justify-content-center align-items-center flex-md-row w-100 py-6 gap-3">
-        {/* // TODO! REPLACE YOUR COMPANY */}
         <span className="d-flex align-items-center gap-1">
           Desenvolvido por <b>Your Company</b>
         </span>

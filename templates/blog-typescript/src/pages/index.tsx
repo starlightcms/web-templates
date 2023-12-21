@@ -4,7 +4,12 @@ import Starlight, {
   StarlightError,
   StarlightListResponse,
 } from "@starlightcms/next-sdk";
-import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
+import {
+  HeaderSingleton,
+  FooterSingleton,
+  Article,
+  SignupSingleton,
+} from "@/starlight";
 import { PopularArticles } from "@/components/PopularArticles";
 import { FeaturedContent } from "@/components/FeaturedContent";
 import { ArticlesPage } from "@/components/ArticlesPage";
@@ -21,11 +26,18 @@ type HomeProps = {
   articles: StarlightListResponse<Entry<Article>>;
   featured: Entry<Article>[];
   popular: Entry<Article>[];
+  signup: Singleton<SignupSingleton>;
   footer: Singleton<FooterSingleton>;
 };
 
-// TODO! CREATE SIGNUP SINGLETON AND IMPLEMENT IT HERE
-const Home = ({ header, articles, featured, popular, footer }: HomeProps) => (
+const Home = ({
+  header,
+  articles,
+  featured,
+  popular,
+  signup,
+  footer,
+}: HomeProps) => (
   <>
     <Title>Início</Title>
     <Layout headerSingleton={header} footerSingleton={footer}>
@@ -44,10 +56,10 @@ const Home = ({ header, articles, featured, popular, footer }: HomeProps) => (
             />
           </Col>
           <Col sm={12} lg={4}>
-            <PopularArticles label="Mais Populares" articles={popular} />
+            <PopularArticles articles={popular} />
           </Col>
         </Row>
-        <Signup />
+        <Signup singleton={signup} />
       </Main>
     </Layout>
   </>
@@ -72,16 +84,19 @@ export const getStaticProps: GetStaticProps = async () => {
       order: "views:desc",
       limit: 5,
     });
+    const signupPromise = Starlight.singletons.get<SignupSingleton>("signup");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, articles, featured, popular, footer] = await Promise.all([
-      headerPromise,
-      articlesPromise,
-      featuredPromise,
-      popularPromise,
-      footerPromise,
-    ]);
+    const [header, articles, featured, popular, signup, footer] =
+      await Promise.all([
+        headerPromise,
+        articlesPromise,
+        featuredPromise,
+        popularPromise,
+        signupPromise,
+        footerPromise,
+      ]);
 
     return {
       // This "props" object is what our section component (above) will receive as props.
@@ -94,6 +109,7 @@ export const getStaticProps: GetStaticProps = async () => {
         articles: articles,
         featured: featured.data,
         popular: popular.data,
+        signup: signup.data,
         footer: footer.data,
       },
       revalidate: 15,

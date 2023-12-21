@@ -1,13 +1,13 @@
+@use "@/styles/variables";
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-// TODO! USE THEME VARIABLES
 .searchCard {
   cursor: pointer;
 
   &:hover, &:focus {
-    background-color: $pink-200;
+    background-color: variables.$brand-secondary-200;
   }
 }
 

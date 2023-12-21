@@ -115,8 +115,6 @@ const Article = ({
     [currentURL],
   );
 
-  // TODO! STYLE PICTURE CAPTION
-
   return (
     <>
       <Title>{entry.title}</Title>
@@ -131,7 +129,7 @@ const Article = ({
               {`Por ${entry.author.name} • ${articleDate} às ${articleTime}`}
             </p>
 
-            {/* // TODO! CHECK IF ANIMATION NEEDED, CHECK IF MARGIN BOTTOM */}
+            {/* // TODO! LAST THING: CHECK IF ANIMATION NEEDED, CHECK IF MARGIN BOTTOM */}
             <div className="d-flex flex-column gap-3 flex-lg-row mb-5">
               <div className="d-flex gap-3 gap-md-4 flex-wrap">
                 <div
@@ -205,7 +203,14 @@ const Article = ({
         </div>
         <Main>
           <Row className="gx-6 gy-6 d-flex flex-column flex-md-row">
-            <Col className="d-flex flex-column gap-6" sm={12} lg={8}>
+            <Col
+              className={clsx(
+                "d-flex flex-column gap-6",
+                styles.visualContainer,
+              )}
+              sm={12}
+              lg={8}
+            >
               <VisualContent content={entry.data.content} />
               <div
                 className="bg-brand-primary-300 w-100"
@@ -214,7 +219,7 @@ const Article = ({
               <FeaturedContent label="Mais Destaques" articles={featured} />
             </Col>
             <Col sm={12} lg={4}>
-              <PopularArticles label="Mais Populares" articles={popular} />
+              <PopularArticles articles={popular} />
             </Col>
           </Row>
         </Main>
@@ -223,6 +228,12 @@ const Article = ({
   );
 };
 
+// This function runs server-side and pre-renders specific pages from the
+// application and caches them, where "paths" contains the routes of those
+// pages. In this case, we'll cache the routes of the 15 latest articles.
+// `"fallback: 'blocking'" means paths not returned by this function will not
+// be pre-rendered at build time, but instead at request time, and the browser
+// will display a loading state while it is being rendered.
 export const getStaticPaths: GetStaticPaths = async () => {
   // TODO! GET LAST 15 ARTICLES
   return {
