@@ -1,5 +1,5 @@
-import PageSelector from "@/components/PageSelector";
 import { Entry, StarlightListResponse } from "@starlightcms/next-sdk";
+import PageSelector from "@/components/PageSelector";
 import { Row } from "react-bootstrap";
 import { Article } from "@/starlight";
 import Card from "@/components/Card";

@@ -21,9 +21,8 @@ export const Signup = ({ singleton }: SignupProps) => {
     setIsSubmitting(true);
     event.preventDefault();
 
-    // TODO! URL FOR RESPONSE!
     const response = await fetch(
-      "https://submit.starlightcms.io/v2/organizations/starlight/workspaces/landing-page-template/forms/signup",
+      "https://submit.starlightcms.io/v2/organizations/starlight/workspaces/blog-template/forms/signup",
       {
         method: "POST",
         headers: {
@@ -97,7 +96,7 @@ export const Signup = ({ singleton }: SignupProps) => {
           <p
             className={clsx(
               "fs-6 mb-3 fw-bold",
-              status === 200 ? "text-brand-50" : "text-danger",
+              status === 200 ? "text-brand-secondary-500" : "text-danger",
             )}
           >
             {status === 200

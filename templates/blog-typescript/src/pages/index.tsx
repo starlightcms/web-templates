@@ -71,11 +71,10 @@ const Home = ({
 // the individual sections is because it won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    // TODO! AUMENTAR LIMIT PRA 8
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
     const articlesPromise = Starlight.articles.entries.list({
       page: 1,
-      limit: 3,
+      limit: 8,
     });
     const featuredPromise = Starlight.collection<Entry<Article>>(
       "featured",

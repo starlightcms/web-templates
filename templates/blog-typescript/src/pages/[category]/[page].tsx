@@ -56,7 +56,7 @@ const CategoryPage = ({
                   {/*</span>*/}
                 </div>
                 <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
-                  <p className="m-0 text-brand-secondary-800 fw-bold">
+                  <p className="m-0 text-brand-secondary-800 lh-1 fw-bold">
                     {`${category?.entry_count} artigo${
                       category?.entry_count !== 1 ? "s" : ""
                     }`}
@@ -134,12 +134,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    // TODO! AUMENTAR LIMIT PRA 8
     const articlesPromise =
       params?.category !== "page"
         ? Starlight.articles
             .category(params?.category as string)
-            .entries({ page: parseInt(params?.page as string), limit: 3 })
+            .entries({ page: parseInt(params?.page as string), limit: 8 })
         : Starlight.articles.entries.list({
             page: parseInt(params?.page as string),
             limit: 3,

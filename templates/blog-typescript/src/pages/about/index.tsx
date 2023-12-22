@@ -17,8 +17,6 @@ type AboutProps = {
   footer: Singleton<FooterSingleton>;
 };
 
-// TODO! ABOUT LINK WHERE?
-
 const About = ({ header, about, footer }: AboutProps) => (
   <>
     <Title>{about.title}</Title>
