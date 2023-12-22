@@ -23,7 +23,7 @@ export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
     { label: singleton.data.tech, href: "/tech" },
     { label: singleton.data.science, href: "/science" },
     { label: singleton.data.entertainment, href: "/entertainment" },
-    { label: singleton.data.categories, href: "#" },
+    { label: singleton.data.about, href: "/about" },
   ];
 
   return (

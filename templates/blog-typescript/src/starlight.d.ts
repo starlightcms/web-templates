@@ -12,7 +12,7 @@ type HeaderSingleton = {
   tech: StringField;
   science: StringField;
   entertainment: StringField;
-  categories: StringField;
+  about: StringField;
   newsletter: StringField;
 };
 

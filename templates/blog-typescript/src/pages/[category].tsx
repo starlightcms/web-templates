@@ -1,17 +1,16 @@
 import Starlight, {
   Entry,
-  MediaObject,
   ModelCategory,
   Singleton,
   StarlightError,
   StarlightListResponse,
 } from "@starlightcms/next-sdk";
-import { Layout } from "@/components/Layout";
 import { HeaderSingleton, FooterSingleton, Article } from "@/starlight";
 import { PopularArticles } from "@/components/PopularArticles";
 import { ArticlesPage } from "@/components/ArticlesPage";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Col, Container, Row } from "react-bootstrap";
+import { Layout } from "@/components/Layout";
 import { Title } from "@/components/Title";
 import { Main } from "@/components/Main";
 import { useRouter } from "next/router";
@@ -36,7 +35,7 @@ const Category = ({
 
   return (
     <>
-      <Title>${category.title}</Title>
+      <Title>{category.title}</Title>
       <Layout headerSingleton={header} footerSingleton={footer}>
         <div className="bg-brand-primary-50">
           <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
@@ -53,9 +52,11 @@ const Category = ({
               {/*</span>*/}
             </div>
             <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
-              {`${category.entry_count} artigo${
-                category.entry_count !== 1 ? "s" : ""
-              }`}
+              <p className="m-0 text-brand-secondary-800 lh-1 fw-bold">
+                {`${category?.entry_count} artigo${
+                  category?.entry_count !== 1 ? "s" : ""
+                }`}
+              </p>
             </div>
           </Container>
         </div>
@@ -89,8 +90,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const categories = await Starlight.articles.categories.list();
     const categorySlugArray = categories.data.map(function (category) {
-      return category.slug;
+      return `/${category.slug}`;
     });
+
+    // TODO! CHECK IF / IS NEEDED ABOVE
 
     return {
       paths: categorySlugArray,
@@ -126,15 +129,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   try {
-    // TODO! AUMENTAR LIMITS PRA 8
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    const articlesPromise = Starlight.articles.entries.list({
-      page: parseInt(params?.page as string),
-      limit: 3,
-    });
+    const articlesPromise = Starlight.articles
+      .category(params?.category as string)
+      .entries({ page: parseInt(params?.page as string), limit: 8 });
     const categoryPromise = Starlight.articles
       .category(params?.category as string)
-      .entries({ page: 1, limit: 3 });
+      .get();
     const popularPromise = Starlight.articles.entries.list({
       order: "views:desc",
       limit: 5,

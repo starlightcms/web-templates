@@ -235,11 +235,29 @@ const Article = ({
 // be pre-rendered at build time, but instead at request time, and the browser
 // will display a loading state while it is being rendered.
 export const getStaticPaths: GetStaticPaths = async () => {
-  // TODO! GET LAST 15 ARTICLES
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
+  try {
+    const latestArticles = await Starlight.articles.entries.list({ limit: 15 });
+    const articleSlugArray = latestArticles.data.map(function (entry) {
+      return `/article/${entry.slug}`;
+    });
+
+    return {
+      paths: articleSlugArray,
+      fallback: "blocking",
+    };
+  } catch (e) {
+    if (e instanceof StarlightError) {
+      throw new Error(
+        "The Starlight SDK threw an error. Please check if you correctly set " +
+          "the NEXT_PUBLIC_STARLIGHT_WORKSPACE environment variable with a " +
+          "workspace ID. Original error message: " +
+          e.message,
+      );
+    }
+
+    // Not an SDK error, just throw it again.
+    throw e;
+  }
 };
 
 // This function runs server-side and fetches whatever the page needs to render.
