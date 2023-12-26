@@ -43,7 +43,7 @@ const CategoryPage = ({
           <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
             {routerCategory !== "page" ? (
               <>
-                <div className="d-flex flex-column gap-2">
+                <div className="d-flex flex-column gap-2 gap-md-4">
                   <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
                     Categoria
                   </p>
@@ -116,10 +116,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the section singletons in the configured workspace.
-// In case you're wondering, the reason we request this on the page rather than in
-// the individual sections is because it won't run on components, just on pages.
+// In case you're wondering, the reason we request this on the page is that it
+// won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // TODO! CHECK IF REDIRECT WORKS AS INTENDED
   if (
     isNaN(parseInt(params?.page as string)) ||
     parseInt(params?.page as string) === 1
@@ -162,6 +161,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       footerPromise,
     ]);
 
+    if (!articles.data.length) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
       // This "props" object is what our section component (above) will receive as props.
       props: {
@@ -179,6 +184,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   } catch (e) {
     if (e instanceof StarlightError) {
+      if (e.response.status === 404) {
+        return {
+          notFound: true,
+        };
+      }
+
       throw new Error(
         "The Starlight SDK threw an error. Please check if you correctly set " +
           "the NEXT_PUBLIC_STARLIGHT_WORKSPACE environment variable with a " +

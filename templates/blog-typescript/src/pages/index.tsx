@@ -67,8 +67,8 @@ const Home = ({
 
 // This function runs server-side and fetches whatever the page needs to render.
 // In this case, we'll request the section singletons in the configured workspace.
-// In case you're wondering, the reason we request this on the page rather than in
-// the individual sections is because it won't run on components, just on pages.
+// In case you're wondering, the reason we request this on the page is that it
+// won't run on components, just on pages.
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
