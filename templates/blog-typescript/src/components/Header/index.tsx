@@ -1,6 +1,6 @@
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Singleton, Image as SLImage } from "@starlightcms/next-sdk";
-import { Dispatch, SetStateAction } from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { useSearchContext } from "@/components/SearchContext";
 import { HeaderSingleton } from "@/starlight";
 import burger from "./assets/burger.svg";
 import search from "./assets/search.svg";
@@ -9,7 +9,6 @@ import Link from "next/link";
 
 type HeaderProps = {
   singleton: Singleton<HeaderSingleton>;
-  setIsSearchOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 /**
@@ -17,7 +16,7 @@ type HeaderProps = {
  * On mobile, a "burger" icon is rendered, which allows the user to open
  * and close a mobile sidebar with the link and button lists.
  */
-export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
+export default function Header({ singleton }: HeaderProps) {
   // TODO! DO THIS ON LANDING PAGE
   const links = [
     { label: singleton.data.tech, href: "/tech" },
@@ -25,6 +24,8 @@ export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
     { label: singleton.data.entertainment, href: "/entertainment" },
     { label: singleton.data.about, href: "/about" },
   ];
+
+  const { setIsSearchOpen } = useSearchContext();
 
   return (
     <Navbar expand="lg" fixed="top" bg="brand-primary-50 z-1">
@@ -54,7 +55,7 @@ export default function Header({ singleton, setIsSearchOpen }: HeaderProps) {
                 {link.label}
               </Nav.Link>
             ))}
-            <Link href={"/#newsletter"}>
+            <Link href="/#newsletter">
               <Button className="bg-brand-secondary-500 border-brand-secondary-500 fw-bold lh-4">
                 {singleton.data.newsletter}
               </Button>

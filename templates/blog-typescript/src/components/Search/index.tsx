@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useSearchContext } from "@/components/SearchContext";
 import Starlight, { Entry } from "@starlightcms/next-sdk";
 import { EmptySearch } from "./components/EmptySearch";
 import { KeyWrapper } from "./components/KeyWrapper";
@@ -18,19 +19,16 @@ import { Article } from "@/starlight";
 import Image from "next/image";
 import clsx from "clsx";
 
-type SearchProps = {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-};
-
 /**
  * Renders a search popup that lets the user search for a specific entry. It
  * only receives an isOpen state and its setter as props. This component is
  * only used in the Header and has a few other subcomponents inside it.
  */
-export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
+export const Search = () => {
   const router = useRouter();
   const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+
+  const { isSearchOpen, setIsSearchOpen } = useSearchContext();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Entry<Article>[]>([]);
@@ -39,11 +37,11 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
   const maxEntries = 8;
 
   useEffect(() => {
-    if (!isOpen) setSelectedIndex(0);
-  }, [isOpen]);
+    if (!isSearchOpen) setSelectedIndex(0);
+  }, [isSearchOpen]);
 
   const handleClose = () => {
-    setIsOpen(false);
+    setIsSearchOpen(false);
     setSearchQuery("");
     setSearchResults([]);
     setHasSearched(false);
@@ -104,7 +102,7 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
     };
   }, [router, searchResults, selectedIndex, hasSearched]);
 
-  if (!isOpen) return <></>;
+  if (!isSearchOpen) return <></>;
 
   return (
     <div className="d-flex align-items-center justify-content-center w-100 h-100 position-fixed start-0 top-0 z-2">
@@ -113,7 +111,7 @@ export const Search = ({ isOpen, setIsOpen }: SearchProps) => {
           "w-100 h-100 position-absolute start-0 top-0",
           styles.overlay,
         )}
-        onClick={() => setIsOpen(false)}
+        onClick={() => setIsSearchOpen(false)}
       />
       <div
         className={clsx(
