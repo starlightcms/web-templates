@@ -1,5 +1,9 @@
+import {
+  HeaderSingleton,
+  FooterSingleton,
+  NotFoundSingleton,
+} from "@/starlight";
 import Starlight, { Singleton, StarlightError } from "@starlightcms/next-sdk";
-import { HeaderSingleton, FooterSingleton, AboutSingleton } from "@/starlight";
 import { useSearchContext } from "@/components/SearchContext";
 import questionmark from "./_assets/questionmark.svg";
 import { Button, Container } from "react-bootstrap";
@@ -10,15 +14,11 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-type NotFoundProps = {
-  header: Singleton<HeaderSingleton>;
-  about: Singleton<AboutSingleton>;
-  footer: Singleton<FooterSingleton>;
+type InnerNotFoundProps = {
+  notFound: Singleton<NotFoundSingleton>;
 };
 
-// TODO! NOT FOUND REDIRECTS
-
-const InnerNotFound = () => {
+const InnerNotFound = ({ notFound }: InnerNotFoundProps) => {
   const { setIsSearchOpen } = useSearchContext();
 
   return (
@@ -27,10 +27,10 @@ const InnerNotFound = () => {
         <Container className="d-flex flex-column pt-8 px-4 pb-6 gap-4">
           <div className="d-flex flex-column gap-2 gap-md-4">
             <p className="m-0 fw-bold text-brand-secondary-400 lh-1">
-              Erro 404
+              {notFound.data.label}
             </p>
             <h1 className="m-0 fw-bold text-brand-primary-600">
-              Página Não Encontrada
+              {notFound.data.page_title}
             </h1>
           </div>
         </Container>
@@ -40,22 +40,22 @@ const InnerNotFound = () => {
           <Image src={questionmark} alt="search" />
           <div className="d-flex flex-column gap-3 align-items-center text-center">
             <h2 className="text-brand-primary-600 fw-bold m-0 lh-1">
-              A página que você está tentando acessar não existe.
+              {notFound.data.title}
             </h2>
             <p className="text-brand-primary-800 fw-semibold m-0 fs-5 lh-1">
-              Como você quer continuar?
+              {notFound.data.description}
             </p>
             <div className="d-flex flex-column flex-md-row gap-3">
               <Link href="/">
                 <Button className="bg-brand-primary-400 border-brand-primary-400 fw-bold lh-4">
-                  Ir para a página inicial
+                  {notFound.data.homepage_button}
                 </Button>
               </Link>
               <Button
                 className="bg-brand-primary-400 border-brand-primary-400 fw-bold lh-4"
                 onClick={() => setIsSearchOpen(true)}
               >
-                Buscar conteúdo
+                {notFound.data.search_button}
               </Button>
             </div>
           </div>
@@ -65,11 +65,17 @@ const InnerNotFound = () => {
   );
 };
 
-const NotFound = ({ header, about, footer }: NotFoundProps) => (
+type NotFoundProps = {
+  header: Singleton<HeaderSingleton>;
+  notFound: Singleton<NotFoundSingleton>;
+  footer: Singleton<FooterSingleton>;
+};
+
+const NotFound = ({ header, notFound, footer }: NotFoundProps) => (
   <>
     <Title>Não Encontrado</Title>
     <Layout headerSingleton={header} footerSingleton={footer}>
-      <InnerNotFound />
+      <InnerNotFound notFound={notFound} />
     </Layout>
   </>
 );
@@ -78,17 +84,17 @@ const NotFound = ({ header, about, footer }: NotFoundProps) => (
 // In this case, we'll request the section singletons in the configured workspace.
 // In case you're wondering, the reason we request this on the page is that it
 // won't run on components, just on pages.
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // TODO! NOT-FOUND SINGLETON
+export const getStaticProps: GetStaticProps = async () => {
   try {
     const headerPromise = Starlight.singletons.get<HeaderSingleton>("header");
-    const aboutPromise = Starlight.singletons.get<AboutSingleton>("about");
+    const notFoundPromise =
+      Starlight.singletons.get<NotFoundSingleton>("not-found");
     const footerPromise = Starlight.singletons.get<FooterSingleton>("footer");
 
     // We wait for all the promises and store the responses into an array
-    const [header, about, footer] = await Promise.all([
+    const [header, notFound, footer] = await Promise.all([
       headerPromise,
-      aboutPromise,
+      notFoundPromise,
       footerPromise,
     ]);
 
@@ -100,7 +106,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         // always return the requested content in an object called "data",
         // which is what we need to pass to our page.
         header: header.data,
-        about: about.data,
+        notFound: notFound.data,
         footer: footer.data,
       },
       revalidate: 15,

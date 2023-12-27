@@ -11,8 +11,6 @@ type FooterProps = {
   singleton: Singleton<FooterSingleton>;
 };
 
-// TODO! MODIFICAR COMPONENTE NO LANDING PAGE! VER ESTILOS!
-
 /**
  * Renders a footer with the website logo, a set columns with navigation
  * links and some credits/copyright information.
@@ -41,7 +39,6 @@ export default function Footer({ singleton }: FooterProps) {
     { href: "https://react.sdk.starlight.sh/", label: singleton.data.sdk_docs },
   ];
 
-  // TODO! DO THIS ON LANDING PAGE TEMPLATE
   const lists = [
     { name: singleton.data.categories, items: firstListItems },
     { name: singleton.data.starlight, items: secondListItems },

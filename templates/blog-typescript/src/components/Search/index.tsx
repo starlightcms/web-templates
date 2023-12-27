@@ -1,16 +1,11 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchContext } from "@/components/SearchContext";
 import Starlight, { Entry } from "@starlightcms/next-sdk";
 import { EmptySearch } from "./components/EmptySearch";
 import { KeyWrapper } from "./components/KeyWrapper";
 import { SearchCard } from "./components/SearchCard";
+import bigSearch from "./assets/bigsearch.svg";
+import signpost from "./assets/signpost.svg";
 import styles from "./styles.module.scss";
 import search from "./assets/search.svg";
 import { useRouter } from "next/router";
@@ -67,7 +62,7 @@ export const Search = () => {
 
   useEffect(() => {
     const keyDownHandler = (event: KeyboardEvent) => {
-      if (event.key.includes("Arrow")) event.preventDefault();
+      if (event.key && event.key.includes("Arrow")) event.preventDefault();
 
       if (hasSearched && searchResults.length > 0) {
         if (selectedIndex === 0) {
@@ -171,12 +166,14 @@ export const Search = () => {
               </div>
             ) : (
               <EmptySearch
+                icon={signpost}
                 label="Opa, não encontramos nada..."
                 description="Tente usar outras palavras-chave."
               />
             )
           ) : (
             <EmptySearch
+              icon={bigSearch}
               label="O quê você está procurando?"
               description="Preencha o campo de busca acima."
             />

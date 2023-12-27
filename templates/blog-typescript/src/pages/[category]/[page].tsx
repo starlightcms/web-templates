@@ -140,7 +140,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             .entries({ page: parseInt(params?.page as string), limit: 8 })
         : Starlight.articles.entries.list({
             page: parseInt(params?.page as string),
-            limit: 3,
+            limit: 8,
           });
     const categoryPromise =
       params?.category !== "page"
