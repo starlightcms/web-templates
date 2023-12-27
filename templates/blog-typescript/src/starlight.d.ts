@@ -37,6 +37,15 @@ type SignupSingleton = {
   footnote: StringField;
 };
 
+type NotFoundSingleton = {
+  label: StringField;
+  page_title: StringField;
+  title: StringField;
+  description: StringField;
+  homepage_button: StringField;
+  search_button: StringField;
+};
+
 type FooterSingleton = {
   logo: MediaField;
   categories: StringField;

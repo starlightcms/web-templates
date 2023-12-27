@@ -24,8 +24,6 @@ export default function PageSelector({
   const [showLeftDots, setShowLeftDots] = useState(false);
   const [showRightDots, setShowRightDots] = useState(false);
 
-  // TODO! FOCUS RING
-
   useEffect(() => {
     if (currentPage && lastPage && lastPage > 5) {
       setShowLeftDots(currentPage > 4);

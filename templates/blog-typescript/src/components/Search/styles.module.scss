@@ -35,9 +35,9 @@
 
 .searchInput {
   outline: none;
-  border-color: variables.$brand-primary-500;
+  border-color: variables.$brand-secondary-500;
   border-style: solid;
-  --bs-focus-ring-color: variables.$brand-primary-500;
+  --bs-focus-ring-color: variables.$brand-secondary-500;
 }
 
 .searchIcon {

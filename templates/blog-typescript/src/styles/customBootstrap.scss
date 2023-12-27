@@ -29,6 +29,7 @@ $custom-colors: (
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
 $input-focus-box-shadow: 0 0 $focus-ring-blur $focus-ring-width rgba(map.get($custom-colors, "brand-secondary-600"), $focus-ring-opacity);
+$pagination-focus-box-shadow: 0 0 $focus-ring-blur $focus-ring-width rgba(map.get($custom-colors, "brand-primary-100"), $focus-ring-opacity);
 
 $font-sizes: map-merge($font-sizes, (
   7: $font-size-base * 0.75

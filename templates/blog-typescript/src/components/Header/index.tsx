@@ -17,7 +17,6 @@ type HeaderProps = {
  * and close a mobile sidebar with the link and button lists.
  */
 export default function Header({ singleton }: HeaderProps) {
-  // TODO! DO THIS ON LANDING PAGE
   const links = [
     { label: singleton.data.tech, href: "/tech" },
     { label: singleton.data.science, href: "/science" },
