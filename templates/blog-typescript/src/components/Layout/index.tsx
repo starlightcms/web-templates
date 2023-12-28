@@ -1,11 +1,11 @@
 import { FooterSingleton, HeaderSingleton } from "@/starlight";
+import { SearchContext } from "@/components/SearchContext";
 import { ReactNode, useEffect, useState } from "react";
 import { Singleton } from "@starlightcms/next-sdk";
 import { Search } from "@/components/Search";
 import styles from "./styles.module.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { SearchContext } from "@/components/SearchContext";
 
 type LayoutProps = {
   children: ReactNode;

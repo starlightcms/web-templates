@@ -50,10 +50,6 @@ const CategoryPage = ({
                   <h1 className="m-0 fw-bold text-brand-primary-600 lh-1">
                     {category?.title}
                   </h1>
-                  {/*<span className="m-0 text-brand-primary-700 fs-5 lh-1">*/}
-                  {/*  Quis autem vel eum iure reprehenderit qui in ea voluptate*/}
-                  {/*  velit esse quam nihil molestiae consequatu.*/}
-                  {/*</span>*/}
                 </div>
                 <div className="bg-brand-secondary-200 px-3 py-2 align-self-start rounded-5">
                   <p className="m-0 text-brand-secondary-800 lh-1 fw-bold">
