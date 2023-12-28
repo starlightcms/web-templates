@@ -5,7 +5,7 @@ import {
 } from "@/starlight";
 import Starlight, { Singleton, StarlightError } from "@starlightcms/next-sdk";
 import { useSearchContext } from "@/components/SearchContext";
-import questionmark from "./_assets/questionmark.svg";
+import questionMark from "./_assets/questionmark.svg";
 import { Button, Container } from "react-bootstrap";
 import { Layout } from "@/components/Layout";
 import { Title } from "@/components/Title";
@@ -37,7 +37,7 @@ const InnerNotFound = ({ notFound }: InnerNotFoundProps) => {
       </div>
       <Main>
         <div className="d-flex flex-column gap-5 py-6 align-items-center">
-          <Image src={questionmark} alt="search" />
+          <Image src={questionMark} alt="search" />
           <div className="d-flex flex-column gap-3 align-items-center text-center">
             <h2 className="text-brand-primary-600 fw-bold m-0 lh-1">
               {notFound.data.title}
