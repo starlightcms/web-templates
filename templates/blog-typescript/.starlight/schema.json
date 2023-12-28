@@ -1,10 +1,92 @@
 {
   "version": 1,
-  "timestamp": "1698673415",
+  "timestamp": "872956341",
   "actions": [
     {
       "type": "create",
       "entities": [
+        {
+          "type": "model",
+          "data": {
+            "title": "Artigos",
+            "slug": "articles",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "title": "Título",
+                    "key": "title",
+                    "type": "title",
+                    "is_required": true
+                  },
+                  {
+                    "title": "Slug",
+                    "key": "slug",
+                    "type": "slug",
+                    "is_required": true,
+                    "is_private": true
+                  },
+                  {
+                    "type": "media",
+                    "key": "image",
+                    "title": "Imagem",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  },
+                  {
+                    "type": "string",
+                    "key": "description",
+                    "title": "Descrição",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 500
+                    }
+                  },
+                  {
+                    "type": "visual",
+                    "key": "content",
+                    "title": "Conteúdo",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "modelCategory",
+          "data": {
+            "model": "articles",
+            "title": "Tecnologia",
+            "slug": "tech"
+          }
+        },
+        {
+          "type": "modelCategory",
+          "data": {
+            "model": "articles",
+            "title": "Ciência",
+            "slug": "science"
+          }
+        },
+        {
+          "type": "modelCategory",
+          "data": {
+            "model": "articles",
+            "title": "Entretenimento",
+            "slug": "entertainment"
+          }
+        },
         {
           "type": "singletonCategory",
           "data": {
@@ -13,172 +95,17 @@
           }
         },
         {
-          "type": "model",
+          "type": "singletonCategory",
           "data": {
-            "title": "Plans",
-            "slug": "plans",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "title": "Title",
-                    "key": "title",
-                    "type": "title",
-                    "is_required": true
-                  },
-                  {
-                    "title": "Slug",
-                    "key": "slug",
-                    "type": "slug",
-                    "is_required": true,
-                    "is_private": true
-                  },
-                  {
-                    "type": "text",
-                    "key": "description",
-                    "title": "Description",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "boolean",
-                    "key": "most_popular",
-                    "title": "Most popular",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "type": "visual",
-                    "key": "plan_items",
-                    "title": "Plan items",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "model",
-          "data": {
-            "title": "FAQ items",
-            "slug": "faq-items",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "title": "Question",
-                    "key": "question",
-                    "type": "title",
-                    "is_required": true
-                  },
-                  {
-                    "title": "Slug",
-                    "key": "slug",
-                    "type": "slug",
-                    "is_required": true,
-                    "is_private": true
-                  },
-                  {
-                    "type": "text",
-                    "key": "answer",
-                    "title": "Answer",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "model",
-          "data": {
-            "title": "Testimonials",
-            "slug": "testimonials",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "text",
-                    "key": "description",
-                    "title": "Description",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "media",
-                    "key": "icon",
-                    "title": "Icon",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "title": "Name",
-                    "key": "name",
-                    "type": "title",
-                    "is_required": true
-                  },
-                  {
-                    "type": "string",
-                    "key": "company",
-                    "title": "Company",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "title": "Slug",
-                    "key": "slug",
-                    "type": "slug",
-                    "is_required": true,
-                    "is_private": true
-                  }
-                ]
-              }
-            ]
+            "title": "Páginas",
+            "slug": "pages"
           }
         },
         {
           "type": "singleton",
           "data": {
-            "title": "Hero",
-            "slug": "hero",
+            "title": "Rodapé",
+            "slug": "footer",
             "category": "sections",
             "groups": [
               {
@@ -186,62 +113,163 @@
                 "type": "group",
                 "fields": [
                   {
-                    "type": "string",
-                    "key": "title",
-                    "title": "Title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "key": "description",
-                    "title": "Description",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "main_button_label",
-                    "title": "Main button label",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "second_button_label",
-                    "title": "Second button label",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
                     "type": "media",
-                    "key": "image",
-                    "title": "Image",
+                    "key": "logo",
+                    "title": "Logo",
                     "is_required": false,
-                    "is_listable": false,
+                    "is_listable": true,
                     "is_private": false,
                     "is_archived": false
+                  }
+                ]
+              },
+              {
+                "title": "Coluna 1",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "categories",
+                    "title": "Categorias",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "tech",
+                    "title": "Tecnologia",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "science",
+                    "title": "Ciência",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "entertainment",
+                    "title": "Entretenimento",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "Coluna 2",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "starlight",
+                    "title": "Starlight",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "website",
+                    "title": "Website",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "features",
+                    "title": "Features",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "knowledge_center",
+                    "title": "Knowledge Center",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "Coluna 3",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "documentation",
+                    "title": "Documentação",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "development_guide",
+                    "title": "Guia de Desenvolvimento",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "sdk_docs",
+                    "title": "Documentação do SDK",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
                   }
                 ]
               }
@@ -251,7 +279,7 @@
         {
           "type": "singleton",
           "data": {
-            "title": "Header",
+            "title": "Cabeçalho",
             "slug": "header",
             "category": "sections",
             "groups": [
@@ -270,56 +298,62 @@
                   },
                   {
                     "type": "string",
-                    "key": "button_label",
-                    "title": "Button label",
+                    "key": "tech",
+                    "title": "Tecnologia",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
-                    }
-                  }
-                ]
-              },
-              {
-                "title": "Links",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "link_1_label",
-                    "title": "Link 1 label",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
+                      "max": 200
                     }
                   },
                   {
                     "type": "string",
-                    "key": "link_2_label",
-                    "title": "Link 2 label",
+                    "key": "science",
+                    "title": "Ciência",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
+                      "max": 200
                     }
                   },
                   {
                     "type": "string",
-                    "key": "link_3_label",
-                    "title": "Link 3 label",
+                    "key": "entertainment",
+                    "title": "Entretenimento",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "about",
+                    "title": "Sobre",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "newsletter",
+                    "title": "Newsletter",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
                     }
                   }
                 ]
@@ -328,19 +362,48 @@
           }
         },
         {
-          "type": "collection",
+          "type": "singleton",
           "data": {
-            "title": "Clients",
-            "slug": "clients",
-            "type": "media"
+            "title": "Sobre nós",
+            "slug": "about",
+            "category": "pages",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "description",
+                    "title": "Descrição",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 500
+                    }
+                  },
+                  {
+                    "type": "visual",
+                    "key": "text",
+                    "title": "Texto",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  }
+                ]
+              }
+            ]
           }
         },
         {
           "type": "singleton",
           "data": {
-            "title": "Clients",
-            "slug": "clients",
-            "category": "sections",
+            "title": "404",
+            "slug": "not-found",
+            "category": "pages",
             "groups": [
               {
                 "title": "Informações básicas",
@@ -355,34 +418,21 @@
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
+                      "max": 200
                     }
                   },
                   {
-                    "type": "relation",
-                    "key": "client_logos",
-                    "title": "Client logos",
+                    "type": "string",
+                    "key": "page_title",
+                    "title": "Título da página",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
-                    "is_archived": false
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "singleton",
-          "data": {
-            "title": "Features right",
-            "slug": "features-right",
-            "category": "sections",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
                   {
                     "type": "string",
                     "key": "title",
@@ -392,11 +442,11 @@
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
+                      "max": 200
                     }
                   },
                   {
-                    "type": "text",
+                    "type": "string",
                     "key": "description",
                     "title": "Description",
                     "is_required": false,
@@ -404,517 +454,32 @@
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "media",
-                    "key": "image",
-                    "title": "Image",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  }
-                ]
-              },
-              {
-                "title": "Cards",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "media",
-                    "key": "card_1_icon",
-                    "title": "Card 1 icon",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "type": "text",
-                    "key": "card_1_text",
-                    "title": "Card 1 text",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "media",
-                    "key": "card_2_icon",
-                    "title": "Card 2 icon",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "type": "text",
-                    "key": "card_2_text",
-                    "title": "Card 2 text",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "singleton",
-          "data": {
-            "title": "Feature cards",
-            "slug": "feature-cards",
-            "category": "sections",
-            "groups": [
-              {
-                "title": "Card 1",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "media",
-                    "key": "card_1_icon",
-                    "title": "Card 1 icon",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "type": "string",
-                    "key": "card_1_title",
-                    "title": "Card 1 title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "key": "card_1_text",
-                    "title": "Card 1 text",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
+                      "max": 200
                     }
                   },
                   {
                     "type": "string",
-                    "key": "card_1_button",
-                    "title": "Card 1 button",
+                    "key": "homepage_button",
+                    "title": "Botão da página inicial",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "min": 0,
-                      "max": 1000
-                    }
-                  }
-                ]
-              },
-              {
-                "title": "Card 2",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "media",
-                    "key": "card_2_icon",
-                    "title": "Card 2 icon",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "type": "string",
-                    "key": "card_2_title",
-                    "title": "Card 2 title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "key": "card_2_text",
-                    "title": "Card 2 text",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
+                      "max": 200
                     }
                   },
                   {
                     "type": "string",
-                    "key": "card_2_button",
-                    "title": "Card 2 button",
+                    "key": "search_button",
+                    "title": "Botão da busca",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "min": 0,
-                      "max": 1000
+                      "max": 200
                     }
-                  }
-                ]
-              },
-              {
-                "title": "Card 3",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "media",
-                    "key": "card_3_icon",
-                    "title": "Card 3 icon",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "type": "string",
-                    "key": "card_3_title",
-                    "title": "Card 3 title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "key": "card_3_text",
-                    "title": "Card 3 text",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "card_3_button",
-                    "title": "Card 3 button",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 1000
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "singleton",
-          "data": {
-            "title": "Features left",
-            "slug": "features-left",
-            "category": "sections",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "title",
-                    "title": "Title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "key": "description",
-                    "title": "Description",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "media",
-                    "key": "image",
-                    "title": "Image",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  }
-                ]
-              },
-              {
-                "title": "Cards",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "card_1_title",
-                    "title": "Card 1 title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "key": "card_1_text",
-                    "title": "Card 1 text",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "card_1_button",
-                    "title": "Card 1 button",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "card_2_title",
-                    "title": "Card 2 title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "text",
-                    "key": "card_2_text",
-                    "title": "Card 2 text",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "min": 0,
-                      "max": 5000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "card_2_button",
-                    "title": "Card 2 button",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "collection",
-          "data": {
-            "title": "Plans",
-            "slug": "plans",
-            "type": "entry"
-          }
-        },
-        {
-          "type": "singleton",
-          "data": {
-            "title": "Pricing",
-            "slug": "pricing",
-            "category": "sections",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "title",
-                    "title": "Title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "sign_up",
-                    "title": "Sign up",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "relation",
-                    "key": "plans",
-                    "title": "Plans",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "collection",
-          "data": {
-            "title": "FAQ items",
-            "slug": "faq-items",
-            "type": "entry"
-          }
-        },
-        {
-          "type": "singleton",
-          "data": {
-            "title": "FAQ",
-            "slug": "faq",
-            "category": "sections",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "title",
-                    "title": "Title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "relation",
-                    "key": "faq_items",
-                    "title": "FAQ items",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "collection",
-          "data": {
-            "title": "Testimonials",
-            "slug": "testimonials",
-            "type": "entry"
-          }
-        },
-        {
-          "type": "singleton",
-          "data": {
-            "title": "Testimonials",
-            "slug": "testimonials",
-            "category": "sections",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "title",
-                    "title": "Title",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "relation",
-                    "key": "testimonials",
-                    "title": "Testimonials",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
                   }
                 ]
               }
@@ -935,7 +500,7 @@
                   {
                     "type": "media",
                     "key": "image",
-                    "title": "Image",
+                    "title": "Imagem",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
@@ -944,19 +509,19 @@
                   {
                     "type": "string",
                     "key": "title",
-                    "title": "Title",
+                    "title": "Título",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
+                      "max": 200
                     }
                   },
                   {
                     "type": "text",
                     "key": "description",
-                    "title": "Description",
+                    "title": "Descrição",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
@@ -968,39 +533,38 @@
                   },
                   {
                     "type": "string",
-                    "key": "email_placeholder",
-                    "title": "Email placeholder",
+                    "key": "placeholder",
+                    "title": "Placeholder",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
+                      "max": 200
                     }
                   },
                   {
                     "type": "string",
-                    "key": "button_label",
-                    "title": "Button label",
+                    "key": "signup",
+                    "title": "Botão de inscrever-se",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "max": 1000
+                      "max": 200
                     }
                   },
                   {
-                    "type": "text",
+                    "type": "string",
                     "key": "footnote",
-                    "title": "Footnote",
+                    "title": "Rodapé",
                     "is_required": false,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
                     "rules": {
-                      "min": 0,
-                      "max": 5000
+                      "max": 200
                     }
                   }
                 ]
@@ -1009,157 +573,11 @@
           }
         },
         {
-          "type": "singleton",
+          "type": "collection",
           "data": {
-            "title": "Footer",
-            "slug": "footer",
-            "category": "sections",
-            "groups": [
-              {
-                "title": "Informações básicas",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "media",
-                    "key": "website_logo",
-                    "title": "Website logo",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  },
-                  {
-                    "type": "string",
-                    "key": "year",
-                    "title": "Year",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "company_name",
-                    "title": "Company name",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "developed_by",
-                    "title": "Developed by",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "media",
-                    "key": "starlight_logo",
-                    "title": "Starlight logo",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false
-                  }
-                ]
-              },
-              {
-                "title": "Starlight links",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "website",
-                    "title": "Website",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "features",
-                    "title": "Features",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "knowledge_center",
-                    "title": "Knowledge center",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  }
-                ]
-              },
-              {
-                "title": "Documentation links",
-                "type": "group",
-                "fields": [
-                  {
-                    "type": "string",
-                    "key": "documentation",
-                    "title": "Documentation",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "development_guide",
-                    "title": "Development guide",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  },
-                  {
-                    "type": "string",
-                    "key": "sdk_docs",
-                    "title": "SDK Docs",
-                    "is_required": false,
-                    "is_listable": true,
-                    "is_private": false,
-                    "is_archived": false,
-                    "rules": {
-                      "max": 1000
-                    }
-                  }
-                ]
-              }
-            ]
+            "title": "Destaques",
+            "slug": "featured",
+            "type": "entry"
           }
         },
         {
@@ -1175,18 +593,17 @@
                   {
                     "type": "string",
                     "key": "email",
-                    "title": "Email address",
+                    "title": "Endereço de email",
                     "is_required": true,
                     "is_listable": true,
                     "is_private": false,
                     "is_archived": false,
-                    "is_unique": false,
-                    "is_identifier": false,
+                    "is_unique": true,
+                    "is_identifier": true,
                     "rules": {
-                      "min": 10,
-                      "max": 1000
+                      "min": 10
                     }
-                  }
+                  },
                 ]
               }
             ]
