@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "name": "Landing Page Template",
+  "name": "Blog Template",
   "author": "Starlight Web Templates",
   "instructions": "To start working, enter your project folder and run the development server:\n\n$ cd ${project.name}\n$ npm run dev",
   "actions": [
@@ -9,7 +9,8 @@
       "file": "../.env.example",
       "to": "../.env",
       "replace": {
-        "NEXT_PUBLIC_STARLIGHT_WORKSPACE=replace_me": "NEXT_PUBLIC_STARLIGHT_WORKSPACE=${workspace.id}"
+        "NEXT_PUBLIC_STARLIGHT_WORKSPACE=replace_me": "NEXT_PUBLIC_STARLIGHT_WORKSPACE=${workspace.id}",
+        "Your Company": "${organization.title}"
       }
     },
     {

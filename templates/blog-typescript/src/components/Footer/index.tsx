@@ -58,8 +58,6 @@ export default function Footer({ singleton }: FooterProps) {
             />
           </Link>
           <span>
-            {/* // TODO! REPLACE THIS TEXT - DO ON TEMPLATE.JSON! Search discord: "basicamente adicionar essa ação" */}
-            {/*© {singleton.data.year} <b>{singleton.data.company_name}</b>*/}
             <b>© 2023 Your Company</b>
           </span>
         </div>
