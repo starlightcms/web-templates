@@ -1,1 +1,0 @@
-Currently, content.json is meant for the landing-page-typescript template and will be remade.
