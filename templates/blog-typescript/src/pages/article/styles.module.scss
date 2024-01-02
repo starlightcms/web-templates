@@ -1,0 +1,33 @@
+@use "@/styles/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.imageBackground {
+  background: linear-gradient(to bottom, variables.$brand-primary-50 50%, white 0%);
+}
+
+.imageContainer {
+  aspect-ratio: 2.184;
+}
+
+.visualContainer {
+  figcaption {
+    text-align: center;
+    color: variables.$brand-primary-300;
+    font-weight: variables.$font-weight-semibold;
+  }
+}
+
+.label {
+  font-size: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.shareButton {
+  cursor: pointer;
+  padding: 0.625rem 1.125rem;
+}

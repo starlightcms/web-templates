@@ -1,0 +1,136 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+@mixin smallCardStyles {
+  gap: 1.5rem;
+
+  > div.texts {
+    gap: 0.5rem;
+
+    > div {
+      > span {
+        font-size: 1rem;
+        line-height: 1.25rem;
+      }
+
+      > p {
+        font-size: 0;
+        display: none;
+      }
+    }
+  }
+
+  > div.imageContainer {
+    width: 100%;
+    max-width: 120px;
+
+    > div.label {
+      font-size: 0.625rem;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      bottom: 0.5rem;
+      left: 0.5rem;
+    }
+  }
+}
+
+.small {
+  @include smallCardStyles;
+}
+
+.defaultHorizontal {
+  @include smallCardStyles;
+
+  @include media-breakpoint-up(md) {
+    > div.texts {
+      gap: 1rem;
+
+      > div {
+        > span {
+          font-size: 1.5rem;
+          line-height: 1.75rem;
+        }
+
+        > p {
+          font-size: 1rem;
+          line-height: 1.25rem;
+          display: inline;
+        }
+      }
+    }
+
+    > div.imageContainer {
+      max-width: 40%;
+
+      > div.label {
+        font-size: 0.75rem;
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+        bottom: 1rem;
+        left: 1rem;
+      }
+    }
+  }
+}
+
+.defaultVertical {
+  gap: 1rem;
+
+  > div.texts {
+    gap: 1rem;
+
+    > div {
+      > span {
+        font-size: 2rem;
+        line-height: 2.5rem;
+      }
+
+      > p {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+      }
+    }
+  }
+
+  > div.imageContainer {
+    div.label {
+      font-size: 1rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      bottom: 1rem;
+      left: 1rem;
+    }
+  }
+}
+
+.texts {
+  > div {
+    > span {
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  > p {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.imageContainer {
+  aspect-ratio: 1.4285;
+}
+
+.number {
+  width: 2rem;
+  height: 2rem;
+  top: -1rem;
+  left: -1rem;
+}

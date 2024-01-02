@@ -1,0 +1,68 @@
+@use "@/styles/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.searchCard {
+  cursor: pointer;
+
+  &:hover, &:focus {
+    background-color: variables.$brand-secondary-200;
+  }
+}
+
+.texts {
+  gap: 0.5rem;
+
+  > div {
+    > span {
+      font-size: 1rem;
+      line-height: 1.25rem;
+    }
+
+    > p {
+      font-size: 0;
+      display: none;
+    }
+  }
+}
+
+.imageContainer {
+  width: 100%;
+  max-width: 120px;
+  aspect-ratio: 1.4285;
+
+  > div.label {
+    font-size: 0.625rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+  }
+}
+
+.texts {
+  > div {
+    > span {
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  > p {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}
+
+.keyWrapper {
+  padding: 0.4062rem 0.5rem;
+}
+
+
