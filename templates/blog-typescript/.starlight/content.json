@@ -85,8 +85,8 @@
     {
       "type": "media",
       "data": {
-        "file": "media/sunset.png",
-        "title": "sunset",
+        "file": "media/sunsetwater.png",
+        "title": "sunsetwater",
         "alt": "",
         "description": ""
       }
@@ -242,13 +242,6 @@
                 "type": "paragraph"
               },
               {
-                "id": "s5tKmBbfkT",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
-              },
-              {
                 "id": "L2i-CqE-vX",
                 "data": {
                   "text": "Maecenas interdum enim eu viverra eleifend. Duis mattis mauris in diam pharetra elementum. Pellentesque hendrerit, orci vitae efficitur finibus, neque nulla feugiat augue, pellentesque porttitor ligula erat quis enim. Nullam imperdiet scelerisque mauris, et dapibus ex convallis id. Vestibulum ut nibh porttitor, tempor velit in, vulputate lorem. Curabitur sit amet orci eu justo imperdiet luctus non id erat. Nullam sit amet nunc quis dolor commodo auctor. Maecenas venenatis lacus dapibus lectus auctor, scelerisque auctor lectus mattis. Curabitur ut ipsum sed purus consectetur fringilla quis at risus."
@@ -348,13 +341,6 @@
                   "text": "Phasellus malesuada in sem ac euismod. Praesent sagittis viverra felis. Cras consequat rhoncus vehicula. Nam turpis mi, consequat ac lectus eget, faucibus finibus velit. Phasellus at tellus vel lectus ornare sodales ac ac ligula. Nullam posuere imperdiet nisl at porttitor. Curabitur ullamcorper mattis consequat. Maecenas interdum justo ut porttitor imperdiet. Aliquam in nulla at lectus condimentum dapibus. Phasellus sit amet faucibus metus. Ut eleifend porta commodo. Donec pulvinar scelerisque velit ac efficitur."
                 },
                 "type": "paragraph"
-              },
-              {
-                "id": "HbAK6-fCdy",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
               }
             ],
             "version": "2.27.0-rc.4"
@@ -395,13 +381,6 @@
                   "text": "Donec sit amet accumsan enim. In tellus enim, sollicitudin vitae mi non, euismod elementum mauris. Quisque auctor imperdiet mi, sit amet efficitur urna tincidunt id. Cras consectetur ac massa non euismod. Aenean dapibus sit amet nisi sed vestibulum. Praesent luctus laoreet iaculis. Morbi lacus orci, tincidunt a rutrum id, posuere at lorem. Aliquam faucibus purus sed mi bibendum, quis laoreet nulla commodo. Morbi quis sodales elit. Mauris in nisi id sapien finibus vehicula non in sapien. Phasellus ac leo in ex egestas fringilla vitae vitae sem. Aenean nec luctus mi."
                 },
                 "type": "paragraph"
-              },
-              {
-                "id": "gInkyzresm",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
               }
             ],
             "version": "2.27.0-rc.4"
@@ -428,13 +407,6 @@
                   "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porta rhoncus ipsum, eu sodales odio dapibus a. Aliquam efficitur molestie leo a porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse potenti. In a mattis metus. Vivamus in diam aliquet ipsum malesuada interdum. Phasellus est orci, mattis et auctor ut, convallis a orci. Praesent bibendum metus ipsum, in viverra mauris sollicitudin eu. Proin at dictum arcu, ac interdum mi."
                 },
                 "type": "paragraph"
-              },
-              {
-                "id": "jVaRBdCUkM",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
               },
               {
                 "id": "Tm0ECWvGYA",
@@ -484,13 +456,6 @@
                 "type": "paragraph"
               },
               {
-                "id": "dtgfujV5fx",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
-              },
-              {
                 "id": "cNL7_UY3LB",
                 "data": {
                   "text": "Sed tristique dolor id libero faucibus, a fringilla dui congue. Nam dapibus imperdiet neque in dapibus. Suspendisse porttitor a nulla a mattis. Integer bibendum libero ut neque tincidunt, sed lobortis ligula egestas. Pellentesque erat sem, dignissim eu tempor nec, lacinia quis risus. Sed justo leo, ultricies a aliquet et, lobortis a tortor. In lacinia dignissim diam eget maximus. Nullam sollicitudin tristique enim, viverra venenatis magna pharetra ut. Vivamus volutpat augue hendrerit lectus tempor, facilisis fermentum ante cursus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus vitae ipsum libero. Fusce pellentesque eros ut magna dictum, non tincidunt mauris placerat. In quis metus massa. Vivamus interdum ante sit amet mauris vestibulum, ut mollis lectus sagittis. Etiam pulvinar elit id orci rhoncus aliquam."
@@ -522,13 +487,6 @@
                   "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum mi gravida sapien porttitor, sed ornare magna mattis. Maecenas laoreet tincidunt sem. Nam eget mauris justo. Aenean iaculis, lectus et semper rutrum, diam ante euismod augue, convallis consectetur dolor ex sed lacus. Proin iaculis vitae neque ut ultrices. Duis at dui quis sapien viverra rutrum quis vel odio. Quisque ut ultrices diam, non ornare nibh. Maecenas est mauris, porta id sollicitudin et, accumsan in enim. Etiam molestie lobortis lacus id pulvinar. Nunc sollicitudin ipsum ut arcu posuere elementum. Donec vestibulum eu sapien et molestie. Integer vitae sem at ipsum efficitur malesuada sit amet vitae dolor. Aenean finibus augue eu porta eleifend."
                 },
                 "type": "paragraph"
-              },
-              {
-                "id": "MTK_fO4_Su",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
               },
               {
                 "id": "p5tdXyEXgw",
@@ -563,13 +521,6 @@
           "content": {
             "time": 1702564092615,
             "blocks": [
-              {
-                "id": "dz_R2bO8Jc",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
-              },
               {
                 "id": "UP6WuplsRs",
                 "data": {
@@ -625,13 +576,6 @@
                 "type": "paragraph"
               },
               {
-                "id": "SH0RDmuGTK",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
-              },
-              {
                 "id": "DKfrE_uMbb",
                 "data": {
                   "text": "Praesent aliquet erat tortor, eget fringilla nunc iaculis eget. Donec sit amet quam ac dolor lacinia rhoncus feugiat a dui. Suspendisse rhoncus finibus eros, ac ornare enim consectetur a. Vestibulum sagittis dui a nibh hendrerit, ut pellentesque purus mattis. Maecenas at ligula leo. Suspendisse in tincidunt velit. Pellentesque eget condimentum lacus, in iaculis dui. Nunc vel enim metus. Vivamus quis malesuada lacus, eu pretium nulla. Vivamus in luctus orci."
@@ -677,13 +621,6 @@
                   "text": "Ut feugiat magna vitae lorem molestie imperdiet in nec neque. Ut sed dolor ultricies, cursus nulla ac, cursus sapien. Suspendisse potenti. Morbi fringilla iaculis nisl sit amet pellentesque. Integer et magna lacinia eros fringilla ultrices eu tincidunt tortor. Maecenas tellus ligula, molestie efficitur aliquet vitae, bibendum vitae neque. Curabitur imperdiet tortor et ex pulvinar semper. Praesent ut ornare arcu. Pellentesque vitae augue fringilla, mattis metus in, luctus nisi. Cras dictum magna in convallis vehicula. In nec massa sed risus condimentum tempus in eget magna. Donec eu diam dictum, ultrices arcu eget, semper elit. Aenean ut condimentum tortor. Morbi et urna quis nisl facilisis ultricies."
                 },
                 "type": "paragraph"
-              },
-              {
-                "id": "wWLRi8zEzv",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
               }
             ],
             "version": "2.27.0-rc.4"
@@ -719,13 +656,6 @@
                 "type": "paragraph"
               },
               {
-                "id": "yHlKjgLYcY",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
-              },
-              {
                 "id": "uknFrzRlUY",
                 "data": {
                   "text": "Donec neque tellus, gravida eu bibendum sit amet, consectetur vitae neque. Aliquam nec sollicitudin nisi. Donec sollicitudin dui consequat egestas consectetur. Nam ornare lectus ut mauris elementum, et vulputate est tincidunt. Nam auctor eleifend nunc sit amet aliquet. Donec et eros ut lorem malesuada aliquam. Ut est urna, sollicitudin sed nulla sit amet, consequat porta neque. Donec tempor mi sed ligula tempus vestibulum. Cras gravida ut dui ut convallis. Maecenas rutrum nunc lacus, eget ornare dui ornare eu."
@@ -759,13 +689,6 @@
                 "type": "paragraph"
               },
               {
-                "id": "iPyVv9EG6L",
-                "data": {
-                  "test": "TODO - IMAGE! ALSO GET ALT, HREF, CAPTION, WIDTH, ETC ---------------------------------------"
-                },
-                "type": "image"
-              },
-              {
                 "id": "-OAxkNXcDo",
                 "data": {
                   "text": "Ut egestas neque tortor, non congue quam mattis eu. Vivamus vitae lectus rutrum, convallis libero et, lobortis sapien. Nunc porta arcu in lectus tincidunt malesuada. Nulla fermentum, nisl et sollicitudin viverra, ligula sem consequat neque, sed rutrum tellus enim faucibus est. Nulla eu justo sed mauris pretium pharetra. Curabitur lobortis odio et malesuada imperdiet. Etiam at condimentum tortor. Nam id justo sit amet dui varius mattis. Aliquam quam leo, varius vitae consectetur vitae, fermentum vel lorem. Proin rhoncus dictum convallis. Etiam rhoncus, augue quis maximus dignissim, ipsum libero vestibulum nibh, sed suscipit lorem erat vel purus."
@@ -786,7 +709,14 @@
       }
     },
     {
-      "todo": "FEATURED COLLECTION, ARTICLE CATEGORIES, IMAGE FIXES ---------------------------------------------------"
+      "type": "collectionItems",
+      "collection": "featured",
+      "items": [
+        "#{entry.articles.onde-expandir-seu-negocio-como-fotografo-site-ou-midia-social}",
+        "#{entry.articles.ajudando-uma-empresa-local-a-se-reinventar}",
+        "#{entry.articles.viajar-como-forma-de-autodescoberta-e-progresso}",
+        "#{entry.articles.como-escolher-as-cores-certas-na-hora-de-criar-um-site}"
+      ]
     }
   ]
 }
