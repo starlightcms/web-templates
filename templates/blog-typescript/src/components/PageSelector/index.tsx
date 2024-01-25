@@ -72,9 +72,11 @@ export default function PageSelector({
         🡠 Anterior
       </Pagination.Prev>
 
-      <span className="align-self-center fw-semibold text-brand-primary-400 d-md-none">
-        Página {currentPage} de {lastPage}
-      </span>
+      <li>
+        <span className="align-self-center fw-semibold text-brand-primary-400 d-md-none">
+          Página {currentPage} de {lastPage}
+        </span>
+      </li>
 
       <div className="d-none d-md-flex gap-2">
         {showLeftDots && (

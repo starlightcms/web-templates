@@ -130,48 +130,6 @@ const Article = ({
             </p>
 
             {/* // TODO! LAST THING: CHECK IF ANIMATION NEEDED, CHECK IF MARGIN BOTTOM */}
-            <div className="d-flex flex-column gap-3 flex-lg-row mb-5">
-              <div className="d-flex gap-3 gap-md-4 flex-wrap">
-                <div
-                  className={clsx(
-                    "bg-brand-secondary-200 rounded-5",
-                    styles.shareButton,
-                  )}
-                  onClick={onShareClick}
-                >
-                  <Image
-                    src={share}
-                    alt={"Compartilhar"}
-                    width={24}
-                    height={24}
-                  />
-                </div>
-                {shareButtons.map((item) => (
-                  <a
-                    key={item.link}
-                    href={item.link}
-                    className={clsx(
-                      "bg-brand-secondary-200 rounded-5",
-                      styles.shareButton,
-                      item.shareClass,
-                    )}
-                    target="_blank"
-                  >
-                    <Image
-                      src={item.icon}
-                      alt={item.shareClass}
-                      width={24}
-                      height={24}
-                    />
-                  </a>
-                ))}
-              </div>
-              {isCopiedOpen && (
-                <p className="align-self-center m-0 fs-6 fw-semibold text-brand-primary-500">
-                  Copiado para a àrea de transferência!
-                </p>
-              )}
-            </div>
           </Container>
         </div>
         <div className={styles.imageBackground}>

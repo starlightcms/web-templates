@@ -6,6 +6,7 @@ import burger from "./assets/burger.svg";
 import search from "./assets/search.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 type HeaderProps = {
   singleton: Singleton<HeaderSingleton>;
@@ -25,9 +26,17 @@ export default function Header({ singleton }: HeaderProps) {
   ];
 
   const { setIsSearchOpen } = useSearchContext();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <Navbar expand="lg" fixed="top" bg="brand-primary-50 z-1">
+    <Navbar
+      onToggle={(expanded) => setIsExpanded(expanded)}
+      role="navigation"
+      aria-label="Header menu"
+      expand="lg"
+      fixed="top"
+      bg="brand-primary-50 z-1"
+    >
       <Container>
         <Navbar.Brand>
           <Link href="/">
@@ -40,7 +49,11 @@ export default function Header({ singleton }: HeaderProps) {
             />
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0">
+        <Navbar.Toggle
+          aria-expanded={isExpanded}
+          aria-controls="basic-navbar-nav"
+          className="border-0"
+        >
           <Image src={burger} alt="burger" />
         </Navbar.Toggle>
         <Navbar.Collapse>
