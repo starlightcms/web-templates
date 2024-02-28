@@ -19,12 +19,7 @@ export default function FeaturesLeft({ singleton }: FeaturesLeftProps) {
   return (
     <Row className="d-flex flex-column text-center text-brand-800 flex-lg-row-reverse text-lg-start justify-content-lg-between gap-6">
       <Col className="d-flex flex-column justify-content-center">
-        <Image
-          media={singleton.data.image}
-          alt="TODO"
-          className="w-100"
-          height={625}
-        />
+        <Image media={singleton.data.image} className="h-100 w-auto" />
       </Col>
       <Col>
         <h2 className="fw-bold">{singleton.data.title}</h2>

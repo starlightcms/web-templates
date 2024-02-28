@@ -21,12 +21,7 @@ export default function FeaturesRight({ singleton }: FeaturesRightProps) {
   return (
     <Row className="d-flex flex-column text-center text-brand-800 flex-lg-row text-lg-start justify-content-lg-between gap-6">
       <Col className="d-flex flex-column justify-content-center">
-        <Image
-          media={singleton.data.image}
-          alt="TODO"
-          className="w-100"
-          height={500}
-        />
+        <Image media={singleton.data.image} className="w-100 h-auto" />
       </Col>
       <Col className="d-flex flex-column justify-content-center">
         <h2 className="fw-bold">{singleton.data.title}</h2>

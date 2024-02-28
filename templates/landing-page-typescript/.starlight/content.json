@@ -269,8 +269,26 @@
     {
       "type": "media",
       "data": {
-        "file": "media/grayrectangle.png",
-        "title": "grayrectangle",
+        "file": "media/hero.png",
+        "title": "hero",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/info-1.jpg",
+        "title": "info-1",
+        "alt": "",
+        "description": ""
+      }
+    },
+    {
+      "type": "media",
+      "data": {
+        "file": "media/info-2.jpg",
+        "title": "info-2",
         "alt": "",
         "description": ""
       }
@@ -284,7 +302,7 @@
           "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
           "main_button_label": "Sign up",
           "second_button_label": "Learn more",
-          "image": "#{media.grayrectangle}"
+          "image": "#{media.hero}"
         }
       }
     },
@@ -424,7 +442,7 @@
         "data": {
           "title": "Nullam felis ipsum, mollis quis.",
           "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          "image": "#{media.grayrectangle}",
+          "image": "#{media.info-1}",
           "card_1_icon": "#{media.award}",
           "card_1_text": "Suspendisse id justo ac magna volutpat varius. Ut in dignissim purus. Ut efficitur fermentum sapien vitae scelerisque. Nullam lobortis lorem et eros sollicitudin sagittis.",
           "card_2_icon": "#{media.cloud}",
@@ -486,7 +504,7 @@
         "data": {
           "title": "Nullam felis ipsum, mollis quis.",
           "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          "image": "#{media.grayrectangle}",
+          "image": "#{media.info-2}",
           "card_1_title": "Phasellus feugiat tellus",
           "card_1_text": "In leo nisi, lobortis id vulputate non, aliquet vitae massa. Fusce luctus sed felis id gravida. Aliquam erat volutpat. Quisque et ex nec neque aliquet tincidunt nec sit amet libero.",
           "card_1_button": "Learn more",

@@ -37,9 +37,7 @@ export default function Hero({ singleton }: HeroProps) {
           <Col className="d-flex justify-content-center" sm={12} lg={6}>
             <Image
               media={singleton.data.image}
-              alt="Cellphone"
-              className="my-5 mw-100"
-              height={535}
+              className="my-5 mw-100 h-auto"
             />
           </Col>
         </Row>
