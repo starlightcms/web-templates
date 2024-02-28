@@ -1,0 +1,70 @@
+@use "sass:map";
+@use "variables";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+$custom-colors: (
+  "brand-primary-50": variables.$brand-primary-50,
+  "brand-primary-100": variables.$brand-primary-100,
+  "brand-primary-200": variables.$brand-primary-200,
+  "brand-primary-300": variables.$brand-primary-300,
+  "brand-primary-400": variables.$brand-primary-400,
+  "brand-primary-500": variables.$brand-primary-500,
+  "brand-primary-600": variables.$brand-primary-600,
+  "brand-primary-700": variables.$brand-primary-700,
+  "brand-primary-800": variables.$brand-primary-800,
+  "brand-primary-900": variables.$brand-primary-900,
+  "brand-secondary-50": variables.$brand-secondary-50,
+  "brand-secondary-100": variables.$brand-secondary-100,
+  "brand-secondary-200": variables.$brand-secondary-200,
+  "brand-secondary-300": variables.$brand-secondary-300,
+  "brand-secondary-400": variables.$brand-secondary-400,
+  "brand-secondary-500": variables.$brand-secondary-500,
+  "brand-secondary-600": variables.$brand-secondary-600,
+  "brand-secondary-700": variables.$brand-secondary-700,
+  "brand-secondary-800": variables.$brand-secondary-800,
+  "brand-secondary-900": variables.$brand-secondary-900,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$input-focus-box-shadow: 0 0 $focus-ring-blur $focus-ring-width rgba(map.get($custom-colors, "brand-secondary-600"), $focus-ring-opacity);
+$pagination-focus-box-shadow: 0 0 $focus-ring-blur $focus-ring-width rgba(map.get($custom-colors, "brand-primary-100"), $focus-ring-opacity);
+
+$font-sizes: map-merge($font-sizes, (
+  7: $font-size-base * 0.75
+));
+
+$gutters: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 3,
+  7: $spacer * 6,
+);
+
+$spacers: map-merge($spacers, (
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 3,
+  7: $spacer * 4,
+  8: $spacer * 6,
+));
+
+@import 'bootstrap/scss/bootstrap.scss';
+//@import "bootstrap/scss/maps";
+//@import "bootstrap/scss/mixins";
+//@import "bootstrap/scss/root";
+//
+//@import "bootstrap/scss/utilities";
+//@import "bootstrap/scss/reboot";
+//@import "bootstrap/scss/type";
+//@import "bootstrap/scss/images";
+//@import "bootstrap/scss/containers";
+//@import "bootstrap/scss/grid";
+//@import "bootstrap/scss/helpers";
+//
+//@import "bootstrap/scss/utilities/api";

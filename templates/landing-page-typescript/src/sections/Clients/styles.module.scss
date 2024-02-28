@@ -1,0 +1,38 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.carousel {
+  height: 3.5rem;
+
+  :global(.carousel-inner) {
+    height: 100%;
+  }
+
+  :global(.carousel-item) {
+    transition-duration: 10s;
+    transition-timing-function: linear;
+
+    @include media-breakpoint-up(sm) {
+      transition-duration: 20s;
+    }
+    @include media-breakpoint-up(md) {
+      transition-duration: 25s;
+    }
+    @include media-breakpoint-up(lg) {
+      transition-duration: 30s;
+    }
+  }
+}
+
+.gradient {
+  position: absolute;
+  top: 2rem;
+  left: 1.5rem;
+  height: 3.5rem;
+  width: calc(100% - 3rem);
+
+  @include media-breakpoint-down(xl) {
+    background: linear-gradient(90deg, #FFF 0%, transparent 17.35%, transparent 82.81%, #FFF 100%);
+  }
+}
