@@ -1,0 +1,612 @@
+{
+  "version": 1,
+  "timestamp": "872956341",
+  "actions": [
+    {
+      "type": "create",
+      "entities": [
+        {
+          "type": "model",
+          "data": {
+            "title": "Artigos",
+            "slug": "articles",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "title": "Título",
+                    "key": "title",
+                    "type": "title",
+                    "is_required": true
+                  },
+                  {
+                    "title": "Slug",
+                    "key": "slug",
+                    "type": "slug",
+                    "is_required": true,
+                    "is_private": true
+                  },
+                  {
+                    "type": "media",
+                    "key": "image",
+                    "title": "Imagem",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  },
+                  {
+                    "type": "string",
+                    "key": "description",
+                    "title": "Descrição",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 500
+                    }
+                  },
+                  {
+                    "type": "visual",
+                    "key": "content",
+                    "title": "Conteúdo",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "modelCategory",
+          "data": {
+            "model": "articles",
+            "title": "Tecnologia",
+            "slug": "tech"
+          }
+        },
+        {
+          "type": "modelCategory",
+          "data": {
+            "model": "articles",
+            "title": "Ciência",
+            "slug": "science"
+          }
+        },
+        {
+          "type": "modelCategory",
+          "data": {
+            "model": "articles",
+            "title": "Entretenimento",
+            "slug": "entertainment"
+          }
+        },
+        {
+          "type": "singletonCategory",
+          "data": {
+            "title": "Seções",
+            "slug": "sections"
+          }
+        },
+        {
+          "type": "singleton",
+          "data": {
+            "title": "Rodapé",
+            "slug": "footer",
+            "category": "sections",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "media",
+                    "key": "logo",
+                    "title": "Logo",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  }
+                ]
+              },
+              {
+                "title": "Coluna 1",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "categories",
+                    "title": "Categorias",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "tech",
+                    "title": "Tecnologia",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "science",
+                    "title": "Ciência",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "entertainment",
+                    "title": "Entretenimento",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "Coluna 2",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "starlight",
+                    "title": "Starlight",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "website",
+                    "title": "Website",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "features",
+                    "title": "Features",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "knowledge_center",
+                    "title": "Knowledge Center",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "Coluna 3",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "documentation",
+                    "title": "Documentação",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "development_guide",
+                    "title": "Guia de Desenvolvimento",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "sdk_docs",
+                    "title": "Documentação do SDK",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "singleton",
+          "data": {
+            "title": "Cabeçalho",
+            "slug": "header",
+            "category": "sections",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "media",
+                    "key": "logo",
+                    "title": "Logo",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  },
+                  {
+                    "type": "string",
+                    "key": "tech",
+                    "title": "Tecnologia",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "science",
+                    "title": "Ciência",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "entertainment",
+                    "title": "Entretenimento",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "about",
+                    "title": "Sobre",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "newsletter",
+                    "title": "Newsletter",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "singleton",
+          "data": {
+            "title": "Sobre nós",
+            "slug": "about",
+            "category": "pages",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "description",
+                    "title": "Descrição",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 500
+                    }
+                  },
+                  {
+                    "type": "visual",
+                    "key": "text",
+                    "title": "Texto",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "singleton",
+          "data": {
+            "title": "404",
+            "slug": "not-found",
+            "category": "pages",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "label",
+                    "title": "Label",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "page_title",
+                    "title": "Título da página",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "title",
+                    "title": "Title",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "description",
+                    "title": "Description",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "homepage_button",
+                    "title": "Botão da página inicial",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "search_button",
+                    "title": "Botão da busca",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "singleton",
+          "data": {
+            "title": "Signup",
+            "slug": "signup",
+            "category": "sections",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "media",
+                    "key": "image",
+                    "title": "Imagem",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false
+                  },
+                  {
+                    "type": "string",
+                    "key": "title",
+                    "title": "Título",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "key": "description",
+                    "title": "Descrição",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "min": 0,
+                      "max": 5000
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "placeholder",
+                    "title": "Placeholder",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "signup",
+                    "title": "Botão de inscrever-se",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  },
+                  {
+                    "type": "string",
+                    "key": "footnote",
+                    "title": "Rodapé",
+                    "is_required": false,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "rules": {
+                      "max": 200
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "type": "collection",
+          "data": {
+            "title": "Destaques",
+            "slug": "featured",
+            "type": "entry"
+          }
+        },
+        {
+          "type": "form",
+          "data": {
+            "title": "Signup",
+            "slug": "signup",
+            "groups": [
+              {
+                "title": "Informações básicas",
+                "type": "group",
+                "fields": [
+                  {
+                    "type": "string",
+                    "key": "email",
+                    "title": "Endereço de email",
+                    "is_required": true,
+                    "is_listable": true,
+                    "is_private": false,
+                    "is_archived": false,
+                    "is_unique": true,
+                    "is_identifier": true,
+                    "rules": {
+                      "min": 10
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "import",
+      "file": "content.json"
+    }
+  ]
+}
