@@ -172,8 +172,8 @@
           "tech": "Tecnologia",
           "science": "Ciência",
           "entertainment": "Entretenimento",
-          "about": "Starlight",
-          "newsletter": "Website"
+          "about": "Sobre nós",
+          "newsletter": "Newsletter"
         }
       }
     },
@@ -634,8 +634,8 @@
       "data": {
         "draft": false,
         "data": {
-          "title": "Como otimizar imagens no WordPress para carregamento mais rápido (guia completo)",
-          "slug": "como-otimizar-imagens-no-wordpress-para-carregamento-mais-rapido-guia-completo",
+          "title": "Como otimizar imagens no Starlight para carregamento mais rápido (guia completo)",
+          "slug": "como-otimizar-imagens-no-starlight-para-carregamento-mais-rapido-guia-completo",
           "description": "Visitar lugares onde você nunca esteve antes pode ser o próximo grande passo em sua jornada.",
           "image": "#{media.cactus}",
           "content": {
@@ -716,6 +716,39 @@
         "#{entry.articles.ajudando-uma-empresa-local-a-se-reinventar}",
         "#{entry.articles.viajar-como-forma-de-autodescoberta-e-progresso}",
         "#{entry.articles.como-escolher-as-cores-certas-na-hora-de-criar-um-site}"
+      ]
+    },
+    {
+      "type": "modelCategoryEntries",
+      "model": "articles",
+      "category": "tech",
+      "entries": [
+        "#{entry.articles.como-escolher-as-cores-certas-na-hora-de-criar-um-site}",
+        "#{entry.articles.licoes-e-insights-de-8-anos-de-pixelgrade}",
+        "#{entry.articles.onde-expandir-seu-negocio-como-fotografo-site-ou-midia-social}",
+        "#{entry.articles.como-escolher-o-cliente-certo-para-o-seu-negocio-fotografico}",
+        "#{entry.articles.como-otimizar-imagens-no-starlight-para-carregamento-mais-rapido-guia-completo}"
+      ]
+    },
+    {
+      "type": "modelCategoryEntries",
+      "model": "articles",
+      "category": "science",
+      "entries": [
+        "#{entry.articles.uma-quantidade-absurdamente-gigantesca-e-colossal-de-texto-que-nao-aparece-completamente}",
+        "#{entry.articles.ajudando-uma-empresa-local-a-se-reinventar}",
+        "#{entry.articles.duas-linhas-com-caracteres}",
+        "#{entry.articles.cuidar-e-o-novo-marketing}"
+      ]
+    },
+    {
+      "type": "modelCategoryEntries",
+      "model": "articles",
+      "category": "entertainment",
+      "entries": [
+        "#{entry.articles.onde-expandir-seu-negocio-como-fotografo-site-ou-midia-social}",
+        "#{entry.articles.viajar-como-forma-de-autodescoberta-e-progresso}",
+        "#{entry.articles.artigo-de-uma-linha}"
       ]
     }
   ]

@@ -69,7 +69,7 @@ export default function PageSelector({
         disabled={currentPage === 1}
         href={`/${category}/${currentPage - 1}`}
       >
-        🡠 Anterior
+        ← Anterior
       </Pagination.Prev>
 
       <li>
@@ -110,7 +110,7 @@ export default function PageSelector({
         disabled={currentPage === lastPage}
         href={`/${category}/${currentPage + 1}`}
       >
-        Próxima 🡢
+        Próxima →
       </Pagination.Next>
     </Pagination>
   );

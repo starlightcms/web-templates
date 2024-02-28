@@ -95,13 +95,6 @@
           }
         },
         {
-          "type": "singletonCategory",
-          "data": {
-            "title": "Páginas",
-            "slug": "pages"
-          }
-        },
-        {
           "type": "singleton",
           "data": {
             "title": "Rodapé",
