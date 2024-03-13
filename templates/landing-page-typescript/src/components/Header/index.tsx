@@ -14,6 +14,12 @@ type HeaderProps = {
  * and close a mobile sidebar with the link and button lists.
  */
 export default function Header({ singleton }: HeaderProps) {
+  const links = [
+    { label: singleton.data.link_1_label, href: "#" },
+    { label: singleton.data.link_2_label, href: "#" },
+    { label: singleton.data.link_3_label, href: "#" },
+  ];
+
   return (
     <Navbar expand="lg" fixed="top" bg="brand-50">
       <Container>
@@ -31,9 +37,11 @@ export default function Header({ singleton }: HeaderProps) {
         </Navbar.Toggle>
         <Navbar.Collapse>
           <Nav className="ms-auto grid gap-0 column-gap-4">
-            <Nav.Link href="#">{singleton.data.link_1_label}</Nav.Link>
-            <Nav.Link href="#">{singleton.data.link_2_label}</Nav.Link>
-            <Nav.Link href="#">{singleton.data.link_3_label}</Nav.Link>
+            {links.map((link) => (
+              <Nav.Link key={link.label} href={link.href}>
+                {link.label}
+              </Nav.Link>
+            ))}
             <Button className="bg-brand-500 border-brand-500">
               {singleton.data.button_label}
             </Button>

@@ -2,6 +2,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { Singleton, Image } from "@starlightcms/next-sdk";
 import { SignupSingleton } from "@/starlight";
 import { FormEvent, useState } from "react";
+import styles from "./styles.module.scss";
 import clsx from "clsx";
 
 type SignupProps = {
@@ -38,13 +39,12 @@ export default function Signup({ singleton }: SignupProps) {
     if (response.status === 200) setEmail("");
   };
 
-  // TODO! OPACITY TRANSITION
   return (
     <Row className="bg-brand-400 text-center text-gray-100 mx-0 rounded-4 overflow-hidden d-lg-flex flex-lg-row">
       <Col className="p-0" sm={12} lg={4}>
         <Image
           media={singleton.data.image}
-          alt="TODO"
+          alt="Signup image"
           className="w-100 h-100"
         />
       </Col>
@@ -62,7 +62,7 @@ export default function Signup({ singleton }: SignupProps) {
         >
           <Form.Control
             placeholder={singleton.data.email_placeholder}
-            className="p-3 w-100"
+            className={clsx("p-3 w-100", styles.formInputs)}
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             disabled={isSubmitting}
@@ -71,7 +71,10 @@ export default function Signup({ singleton }: SignupProps) {
           />
           <Button
             type="submit"
-            className="py-3 px-5 bg-brand-100 border-brand-100 fw-bold text-brand-500 flex-shrink-0"
+            className={clsx(
+              "py-3 px-5 bg-brand-100 border-brand-100 fw-bold text-brand-500 flex-shrink-0",
+              styles.formInputs,
+            )}
             disabled={isSubmitting}
           >
             {singleton.data.button_label}

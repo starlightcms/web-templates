@@ -1,8 +1,8 @@
-# Landing Page Boilerplate
+# Blog Boilerplate
 
-This is a landing page boilerplate template, which includes a pre-configured [Starlight SDK](https://react.sdk.starlight.sh/)
-client, a functional single-page layout with header and footer menus, mobile-first styles using Bootstrap and a few
-pre-created sections that show you how to request Starlight content using the SDK client.
+This is a blog boilerplate template, which includes a pre-configured [Starlight SDK](https://react.sdk.starlight.sh/)
+client, a functional layout with header and footer menus, mobile-first styles using Bootstrap and a few
+pre-created pages and components that show you how to request Starlight content using the SDK client.
 
 This template is part of the [Web Templates](https://github.com/starlightcms/web-templates) repository, a collection of 
 open-source starter templates for web applications created by the [Starlight](https://www.starlight.sh/) team.
@@ -12,10 +12,10 @@ open-source starter templates for web applications created by the [Starlight](ht
 The easiest way to bootstrap this template is by using the Starlight CLI:
 
 ```shell
-npx @starlightcms/cli create landing-page
+npx @starlightcms/cli create blog-typescript
 ```
 
-The CLI will clone this template locally and set-up the Starlight SDK for you.
+The CLI will clone this template locally and set up the Starlight SDK for you.
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ pnpm dev
 
 ## Development
 
-This template uses [Next.js](https://nextjs.org/) and was made in a way in which it's easy to remove any unwanted section
+This template uses [Next.js](https://nextjs.org/) and was made in a way in which it's easy to remove any unwanted page or section
 and add new ones.
 
 ### Styling
@@ -47,16 +47,16 @@ For its styling, this template uses Next.js'
 Inside its sections, this template uses a few React Bootstrap components, such as 
 [Container](https://react-bootstrap.github.io/docs/layout/grid/#container),
 [Accordion](https://react-bootstrap.github.io/docs/components/accordion),
-[Button](https://react-bootstrap.github.io/docs/components/buttons)
-and [Carousel](https://react-bootstrap.github.io/docs/components/carousel).
+[Button](https://react-bootstrap.github.io/docs/components/buttons), [Carousel](https://react-bootstrap.github.io/docs/components/carousel), among others.
 
 An SCSS file was created in `src/styles/customBootstrap.scss`, in which we import Bootstrap to add custom variables and
-edit existing ones in its environment, namely colors, font sizes and margin/padding sizes.
+edit existing ones in its environment, namely colors, font sizes and margin/padding sizes (TODO!!!! CHANGE). Some components and sections
+also have their own SCSS files, to add specific styles that aren't possible through Bootstrap.
 
 ##### Colors
 
 A few colors were added in the `customBootstrap.scss` file: some "Brand" colors (a main color based on Bootstrap's
-Indigo colors) and 3 Gray colors. If you want to change or add colors, just modify the `$custom-colors` map.
+Indigo colors) and 3 Gray colors. If you want to change or add colors, just modify the `$custom-colors` map. (TODO MORE COLROS)
 
 ##### Other variables
 

@@ -10,8 +10,8 @@ type CardProps = {
 
 /**
  * Renders a card-like component with testimonials from your website's users.
- * You can send text (the testimonial), the person's icon, their name and their
- * job information (company and position).
+ * As props, you can send text (the testimonial), the person's icon, their name
+ * and their job information (company and position).
  */
 export default function Testimonial({ text, icon, name, company }: CardProps) {
   return (

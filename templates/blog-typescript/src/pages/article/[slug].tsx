@@ -128,8 +128,6 @@ const Article = ({
             <p className="mb-4 text-brand-secondary-400 fs-6 lh-1 fw-bold">
               {`Por ${entry.author.name} • ${articleDate} às ${articleTime}`}
             </p>
-
-            {/* // TODO! LAST THING: CHECK IF ANIMATION NEEDED, CHECK IF MARGIN BOTTOM */}
           </Container>
         </div>
         <div className={styles.imageBackground}>

@@ -40,10 +40,10 @@ type PlanProps = {
 };
 
 /**
- * Renders a card-like component with payment plans for your website. You can
- * send a title, a description, a list of features (strings), a signup link and
- * a boolean that defines the most popular plan (it has a different border
- * color and also a bootstrap Badge).
+ * Renders a card-like component with payment plans for your website. As props,
+ * you can send a title, a description, a list of features (strings), a signup
+ * link and a boolean that defines the most popular plan (it has a different
+ * border color and also a bootstrap Badge).
  *
  * @see https://react-bootstrap.github.io/docs/components/badge/
  */
