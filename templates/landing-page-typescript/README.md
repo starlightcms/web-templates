@@ -70,18 +70,21 @@ it with Bootstrap using the `map-merge` function.
 This template is composed of a single page divided into sections.
 
 #### Hero 
+
 The topmost component of the page with basic information, introducing the website with a few short texts, buttons and an
 image.
 
 Component file: [src/sections/Hero/index.tsx](src/sections/Hero/index.tsx)
 
-#### Clients:
+#### Clients
+
 Renders the client logos. If the logos don't fit the browser window, it renders a customized
 [Bootstrap Carousel](https://react-bootstrap.github.io/docs/components/carousel) that cycles around to show all of them.
 
 Component file: [src/sections/Clients/index.tsx](src/sections/Clients/index.tsx)
 
 #### FeaturesRight
+
 Renders the first details and information on the page. It has an image, a title, some text and 2 (borderless)
 [Cards](#card). It is named as such because the information will be displayed on the right part of the screen while
 on desktop. In smaller pages the image will simply be above the texts.
@@ -89,11 +92,13 @@ on desktop. In smaller pages the image will simply be above the texts.
 Component file: [src/sections/FeaturesRight/index.tsx](src/sections/FeaturesRight/index.tsx)
 
 #### FeatureCards
+
 Renders some more details and information on the page using three bordered [Cards](#card).
 
 Component file: [src/sections/FeatureCards/index.tsx](src/sections/FeatureCards/index.tsx)
 
 #### FeaturesLeft
+
 Renders the last few details and information on the page. It is similar to [FeaturesRight](#featuresright), except
 having 2 bordered [Cards](#card) (rather than having 3 borderless ones) and its information displayed on the left while
 on desktop.
@@ -101,22 +106,26 @@ on desktop.
 Component file: [src/sections/FeaturesLeft/index.tsx](src/sections/FeaturesLeft/index.tsx)
 
 #### Pricing
+
 Renders 3 [Plan](#plan) components with pricing and benefit information on payment plans for your app.
 
 Component file: [src/sections/Pricing/index.tsx](src/sections/Pricing/index.tsx)
 
 #### FAQ
+
 Renders an FAQ using the [Bootstrap Accordion](https://react-bootstrap.github.io/docs/components/accordion) component.
 Each item has a title (the question) and a description (the answer).
 
 Component file: [src/sections/FAQ/index.tsx](src/sections/FAQ/index.tsx)
 
 #### Testimonials
+
 Renders 2 [Testimonial](#testimonial) components with testimonials from your app's clients.
 
 Component file: [src/sections/Testimonials/index.tsx](src/sections/Testimonials/index.tsx)
 
 #### Signup
+
 Renders a signup (to newsletter) call to action, with an image, some text, an email input and a "Sign up" button.
 
 Component file: [src/sections/Signup/index.tsx](src/sections/Signup/index.tsx)

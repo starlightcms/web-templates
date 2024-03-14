@@ -80,7 +80,7 @@ const NotFound = ({ header, notFound, footer }: NotFoundProps) => (
   </>
 );
 
-// This function runs server-side and fetches whatever the page needs to render.
+// This function runs server-side and fetches whatever tlhe page needs to render.
 // In this case, we'll request the section singletons in the configured workspace.
 // In case you're wondering, the reason we request this on the page is that it
 // won't run on components, just on pages.

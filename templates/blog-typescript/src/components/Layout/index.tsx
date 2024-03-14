@@ -15,8 +15,9 @@ type LayoutProps = {
 
 /**
  * Renders the main website layout with the Header, Footer and Search
- * components. Inside it, you should have the "Hero" content (the one with a
- * pink background) and a <Main> tag that has the page content inside it.
+ * components. Inside it, you should have the "Hero" content of your page
+ * (the one with a colored background) and a <Main> tag that has the page
+ * content inside it.
  *
  * You'll probably want to wrap all your pages with this component.
  * See any page index file to learn how to use it.
