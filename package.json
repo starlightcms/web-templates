@@ -1,6 +1,6 @@
 {
   "name": "@starlightcms/web-templates",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Official Starlight templates for web applications.",
   "private": true,
   "main": "index.js",

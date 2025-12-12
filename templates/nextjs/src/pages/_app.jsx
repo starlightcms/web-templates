@@ -1,3 +1,4 @@
+import "@starlightcms/react-sdk/styles.css";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 import Starlight from "@starlightcms/next-sdk";

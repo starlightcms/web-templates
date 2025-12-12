@@ -5,6 +5,12 @@ const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
     includePaths: [join(__dirname, "src/styles")],
+    silenceDeprecations: [
+      "import",
+      "color-functions",
+      "global-builtin",
+      "if-function",
+    ],
   },
   images: {
     remotePatterns: [
@@ -14,10 +20,6 @@ const nextConfig = {
         port: "",
       },
     ],
-  },
-  eslint: {
-    // TODO: remove before fixing all eslint errors
-    ignoreDuringBuilds: true,
   },
 };
 
