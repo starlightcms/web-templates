@@ -1,24 +1,25 @@
 import { program } from 'commander'
 import { select } from '@inquirer/prompts'
-import { readFileSync } from 'fs'
+import { readdirSync } from 'fs'
 import { exec } from 'child_process'
 import chalk from 'chalk'
+
 
 program
   .argument('<command...>')
   .action(async (command) => {
     const parsedCommand = command.join(' ')
 
-    console.log(`${chalk.green('❯')} Running: ${chalk.bold(`npm ${parsedCommand}`)}`)
+    console.log(`${chalk.green('❯')} ${chalk.bold(`npm ${parsedCommand}`)}\n`)
 
-    const packageJson = JSON.parse(readFileSync(`${process.cwd()}/package.json`).toString())
-    const templates = packageJson.workspaces.map((ws) => ({
-      name: ws.replace('templates/', ''),
-      value: ws,
-    }))
+    const templates = readdirSync(`${process.cwd()}/templates`, { withFileTypes: true })
+      .filter(entry => entry.isDirectory()).map(entry => ({
+        name: entry.name,
+        value: entry.name
+      }))
 
     const selected = await select({
-      message: 'Select a template to run the command:',
+      message: 'Select a template to run the command above:',
       choices: templates,
     })
 

@@ -1,7 +1,8 @@
+import "@starlightcms/react-sdk/styles.css";
+import "@/styles/customBootstrap.scss";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import Starlight from "@starlightcms/next-sdk";
-import "@/styles/customBootstrap.scss";
 import { MobileProvider } from "@/components/MobileProvider";
 
 /**

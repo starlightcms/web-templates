@@ -1,8 +1,9 @@
+import "@starlightcms/react-sdk/styles.css";
+import "@/styles/customBootstrap.scss";
+import Head from "next/head";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import Starlight from "@starlightcms/next-sdk";
-import "@/styles/customBootstrap.scss";
-import Head from "next/head";
 
 /**
  * Initialize the Starlight SDK. You must place the ID of the workspace you want to
